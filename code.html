@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-variant": "#d8e3fa", "surface": "#f9f9ff", "on-primary-container": "#7890ae", "surface-container": "#e7eeff", "inverse-primary": "#b1c8e8", "secondary": "#1d6587", "on-secondary-container": "#115e80", "on-error": "#ffffff", "on-surface-variant": "#43474d", "outline-variant": "#c4c6ce", "surface-dim": "#cfdaf1", "outline": "#74777e", "tertiary-container": "#471800", "on-tertiary-container": "#e26b2d", "on-primary": "#ffffff", "on-tertiary-fixed": "#351000", "error": "#ba1a1a", "on-error-container": "#93000a", "on-secondary-fixed-variant": "#004c6a", "surface-tint": "#49607c", "primary-container": "#0e2841", "secondary-fixed-dim": "#90cef5", "on-tertiary": "#ffffff", "inverse-on-surface": "#ebf1ff", "tertiary": "#260900", "primary": "#001326", "error-container": "#ffdad6", "tertiary-fixed": "#ffdbcc", "tertiary-fixed-dim": "#ffb694", "on-tertiary-fixed-variant": "#7b2f00", "on-secondary": "#ffffff", "background": "#f9f9ff", "on-background": "#111c2c", "primary-fixed-dim": "#b1c8e8", "secondary-container": "#98d6fe", "surface-bright": "#f9f9ff", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#314863", "on-primary-fixed": "#011d35", "secondary-fixed": "#c5e7ff", "on-surface": "#111c2c", "surface-container-high": "dee8ff", "primary-fixed": "#d1e4ff", "surface-container-highest": "#d8e3fa", "inverse-surface": "#263142", "surface-container-low": "#f0f3ff", "on-secondary-fixed": "#001e2d" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin-tablet": "2rem", "space-sm": "0.75rem", "gutter-mobile": "1rem", "space-3xl": "4rem", "gutter-desktop": "1.5rem", "space-xs": "0.5rem", "space-xl": "2rem", "space-2xs": "0.25rem", "space-lg": "1.5rem", "space-2xl": "3rem", "space-md": "1rem", "margin-desktop": "3rem", "margin-mobile": "1rem" }, fontFamily: { "headline-lg-mobile": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "title-lg": ["Plus Jakarta Sans"], "display-mobile": ["Plus Jakarta Sans"], "title-md": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "section-eyebrow": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"] }, fontSize: { "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}], "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}], "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}], "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}], "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}], "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "700"}], "title-lg": ["18px", {"lineHeight": "26px", "fontWeight": "600"}], "display-mobile": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "800"}], "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}], "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}], "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}], "section-eyebrow": ["11px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "800"}], "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}], "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-28 flex flex-col justify-between px-space-md py-space-2xs"><div class="flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs"><img alt="Smart Farmer Portal Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W2ntLU0bCc44xUZzQ1na_1IWrziJ0nNwYV6canAwcG_Tkbmvri6fIH2oowtlBWenYuucxaWGNF2tviqZN1NSKXn7khDOCTC3HE_H_67zqrtQzjXLnVpAYN4Kis_Tzlce8dXN1BSNowJsFfl0rU0n2AFTamJuuEBA3vVeacsrXn0Q67g8E0sMZOa3lNTrnIb0rXeLPDfX3r0yJaGPaUC3CGXpC6lwB1oSGVUAJQgxUdHWltOj6eQTT-"/><div class="flex flex-col leading-tight"><span class="font-title-md text-title-md text-primary tracking-tight">Smart Farmer Portal</span><span class="font-section-eyebrow text-section-eyebrow uppercase text-secondary font-bold">Overview</span></div></div><div class="flex items-center gap-space-xs"><div class="px-space-xs py-space-2xs rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md font-bold tracking-tight">SIH 2026 #26032</div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><nav class="flex items-center gap-space-xs overflow-x-auto no-scrollbar pb-space-2xs" data-active-classes="bg-primary text-on-primary font-bold shadow-[0_1px_3px_rgba(14,40,65,0.05)]"><a aria-current="page" class="px-space-sm py-space-2xs rounded-full whitespace-nowrap transition-colors bg-primary text-on-primary font-bold shadow-[0_1px_3px_rgba(14,40,65,0.05)]" data-path="overview" href="#hero">Hero</a><a class="px-space-sm py-space-2xs rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md whitespace-nowrap transition-colors" data-path="solution" href="#solution">Solution</a><a class="px-space-sm py-space-2xs rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md whitespace-nowrap transition-colors" data-path="architecture" href="#architecture">Architecture</a><a class="px-space-sm py-space-2xs rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md whitespace-nowrap transition-colors" data-path="feasibility" href="#feasibility">Feasibility</a><a class="px-space-sm py-space-2xs rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md whitespace-nowrap transition-colors" data-path="impact" href="#impact">Impact</a><a class="px-space-sm py-space-2xs rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md whitespace-nowrap transition-colors" data-path="features" href="#features">Features</a></nav></div></header><main class="flex-1 w-full bg-surface pt-28 pb-32"><div class="flex flex-col w-full">
+<!-- Language Bar & Accessibility Quick Toggles -->
+<div class="w-full bg-primary-container px-space-md py-space-xs text-on-primary">
+<div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<button class="flex items-center gap-space-2xs px-space-sm py-1 rounded-full bg-secondary text-on-secondary font-label-md text-label-md hover:bg-secondary/90 transition-all shadow-sm" id="langModalBtn">
+<span class="material-symbols-outlined text-[16px]">language</span>
+<span id="currentLangLabel">English (EN)</span>
+<span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+<span class="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-secondary-container"></span>
+<span class="hidden sm:inline-block font-section-eyebrow text-section-eyebrow tracking-wider text-surface-dim uppercase" data-i18n="govtech_portal_tag">SIH 2026 Govtech Multilingual Portal</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="flex items-center gap-1 px-space-sm py-1 rounded-full bg-surface-variant/20 hover:bg-surface-variant/30 text-surface-dim font-label-md text-label-md transition-all" id="globalAudioTourBtn">
+<span class="material-symbols-outlined text-[18px]">record_voice_over</span>
+<span data-i18n="audio_tour_btn">Guided Voice Tour</span>
+</button>
+<div class="flex items-center gap-1 bg-primary/40 px-2 py-0.5 rounded-full">
+<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+<span class="font-label-md text-label-md text-emerald-300" data-i18n="live_telemetry_status">APMC Mandi Online</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Hero Section -->
+<section class="w-full relative px-space-md py-space-xl lg:py-space-2xl bg-surface" id="hero">
+<div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-space-xl">
+<!-- Left Content -->
+<div class="w-full lg:w-3/5 flex flex-col items-start text-left">
+<div class="flex items-center gap-space-xs mb-space-xs">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span data-i18n="sih_badge">Smart Mandi Allocation Engine</span>
+</span>
+<button aria-label="Listen" class="p-1 rounded-full bg-surface-container hover:bg-surface-container-high text-secondary transition-all" onclick="speakElementText('hero-speak-target')" title="Listen to summary">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+<div id="hero-speak-target">
+<h1 class="font-display text-display text-primary tracking-tight mb-space-xs" data-i18n="hero_title">
+            Direct Grain Booking. Zero Waiting At The Mandi Gate.
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-space-md" data-i18n="hero_desc">
+            An illiterate-friendly voice and icon driven procurement gateway. Select your crop with visual badges, secure a verified dock gate pass, and arrive directly at scheduled unloading times.
+          </p>
+</div>
+<!-- Triple Coded Live Status Bar (Color + Shape + Icon/Face) -->
+<div class="w-full p-space-sm rounded-xl bg-surface-container-low shadow-sm mb-space-lg">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold uppercase text-primary" data-i18n="mandi_load_indicator">Live Yard Load Status</span>
+<button class="text-secondary hover:text-primary" onclick="speakElementText('yard-status-text')">
+<span class="material-symbols-outlined text-[16px]">volume_up</span>
+</button>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant" data-i18n="auto_refresh_tag">Updated 2m ago</span>
+</div>
+<!-- Triple Coded Indicator Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-xs" id="yard-status-text">
+<!-- Optimal Dock Card -->
+<div class="flex items-center gap-3 p-space-xs rounded-lg bg-surface-container-lowest shadow-sm">
+<div class="w-10 h-10 rounded-full bg-[#e8f5e9] text-[#196b24] flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">sentiment_very_satisfied</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#196b24]"></span>
+<span class="font-title-md text-title-md text-primary font-bold" data-i18n="gate_a_name">Gate 01 - Wheat</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant" data-i18n="wait_time_fast">Fast: 12 min wait</span>
+</div>
+</div>
+<!-- Moderate Dock Card -->
+<div class="flex items-center gap-3 p-space-xs rounded-lg bg-surface-container-lowest shadow-sm">
+<div class="w-10 h-10 rounded-lg bg-[#fff3e0] text-[#c2410c] flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">sentiment_neutral</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-none rotate-45 bg-[#c2410c]"></span>
+<span class="font-title-md text-title-md text-primary font-bold" data-i18n="gate_b_name">Gate 02 - Paddy</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant" data-i18n="wait_time_mod">Moderate: 38 min wait</span>
+</div>
+</div>
+<!-- Congested Dock Card -->
+<div class="flex items-center gap-3 p-space-xs rounded-lg bg-surface-container-lowest shadow-sm">
+<div class="w-10 h-10 rounded-md bg-[#fee2e2] text-[#991b1b] flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">sentiment_dissatisfied</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-b-[9px] border-b-[#991b1b]"></span>
+<span class="font-title-md text-title-md text-primary font-bold" data-i18n="gate_c_name">Gate 03 - Cotton</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant" data-i18n="wait_time_high">Full: 90 min wait</span>
+</div>
+</div>
+</div>
+</div>
+<!-- CTA Buttons -->
+<div class="flex flex-wrap items-center gap-space-sm w-full">
+<a class="px-space-lg py-space-sm rounded-lg bg-on-tertiary-container hover:bg-tertiary-container text-on-primary font-title-md text-title-md font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2" href="#booking">
+<span class="material-symbols-outlined">confirmation_number</span>
+<span data-i18n="cta_book_slot">Instant Gate Booking</span>
+</a>
+<button class="px-space-lg py-space-sm rounded-lg bg-surface-container-high hover:bg-surface-variant text-primary font-title-md text-title-md font-bold shadow-sm transition-all flex items-center justify-center gap-2" onclick="triggerVoiceBookingSession()">
+<span class="material-symbols-outlined text-secondary">mic</span>
+<span data-i18n="cta_voice_assist">Speak To Book</span>
+</button>
+</div>
+</div>
+<!-- Right Visual Feature Hero Card -->
+<div class="w-full lg:w-2/5 flex flex-col">
+<div class="relative w-full rounded-2xl overflow-hidden bg-primary-container text-on-primary p-space-md shadow-xl">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="p-2 rounded-xl bg-secondary text-on-secondary">
+<span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
+</span>
+<div>
+<h3 class="font-title-lg text-title-lg font-bold leading-tight" data-i18n="pass_preview_title">Express Mandi Gate Token</h3>
+<span class="font-label-md text-label-md text-inverse-primary" data-i18n="pass_preview_sub">Government of India Verified</span>
+</div>
+</div>
+<button class="text-inverse-primary hover:text-on-primary" onclick="speakElementText('gatepass-sample-card')">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest text-on-surface p-space-md rounded-xl shadow-inner flex flex-col gap-space-sm" id="gatepass-sample-card">
+<div class="flex items-center justify-between border-b border-surface-dim pb-2">
+<div>
+<span class="font-section-eyebrow text-section-eyebrow text-outline uppercase tracking-wider block" data-i18n="farmer_label">Farmer Beneficiary</span>
+<span class="font-title-md text-title-md font-bold text-primary">Sardar Harinder Singh</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-[#e8f5e9] text-[#196b24] font-label-md text-label-md font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span data-i18n="status_approved">DOCK RESERVED</span>
+</span>
+</div>
+<!-- Quick Metrics Grid -->
+<div class="grid grid-cols-2 gap-2 text-left">
+<div class="p-2 rounded-lg bg-surface-container-low">
+<span class="font-section-eyebrow text-section-eyebrow text-on-surface-variant block uppercase" data-i18n="commodity_crop">Crop / Jinsi</span>
+<span class="font-title-md text-title-md font-bold text-primary flex items-center gap-1">
+<span class="text-[18px]">🌾</span>
+<span data-i18n="crop_wheat_name">Wheat (Sharbati)</span>
+</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-low">
+<span class="font-section-eyebrow text-section-eyebrow text-on-surface-variant block uppercase" data-i18n="volume_weight">Expected Weight</span>
+<span class="font-title-md text-title-md font-bold text-secondary">85 Quintals</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-low">
+<span class="font-section-eyebrow text-section-eyebrow text-on-surface-variant block uppercase" data-i18n="allocated_slot">Allocated Window</span>
+<span class="font-title-md text-title-md font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-amber-500">wb_sunny</span>
+<span data-i18n="morning_slot_time">08:00 AM - 11:00 AM</span>
+</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-low">
+<span class="font-section-eyebrow text-section-eyebrow text-on-surface-variant block uppercase" data-i18n="bay_assignment">Dedicated Bay</span>
+<span class="font-title-md text-title-md font-bold text-on-tertiary-container">Dock Bay #04</span>
+</div>
+</div>
+<!-- QR Code Simulation Block -->
+<div class="w-full flex items-center justify-between p-2 rounded-lg bg-surface-container">
+<div class="flex items-center gap-2">
+<div class="w-14 h-14 bg-primary text-on-primary rounded flex items-center justify-center p-1">
+<svg class="w-full h-full" fill="currentColor" viewbox="0 0 24 24">
+<path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm10-2h8v8h-8V2zm2 2v4h4V4h-4zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm14 0h4v4h-4v-4zm-4 4h4v4h-4v-4zm-4-4h4v4h-4v-4zm4-4h4v4h-4v-4zm4 4h2v2h-2v-2z"></path>
+</svg>
+</div>
+<div>
+<span class="font-label-md text-label-md font-bold text-primary block">PB-02-AK-9811</span>
+<span class="font-section-eyebrow text-section-eyebrow text-outline">TOKEN #26032-APMC-92</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[28px] text-secondary">verified_user</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Slot Booking Simulator -->
+<section class="w-full px-space-md py-space-xl bg-surface-container-low" id="booking">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-sm">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-section-eyebrow text-section-eyebrow uppercase text-secondary font-bold" data-i18n="booking_eyebrow">STEP-BY-STEP SLOTTING</span>
+<button class="text-secondary hover:text-primary" onclick="speakElementText('booking-instructions')" title="Speak step instructions">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary" data-i18n="booking_title">Visual Slot Generator &amp; Token Pass</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl" data-i18n="booking_subtitle" id="booking-instructions">
+            No typing required. Tap the picture of your crop, tap the sun time icon, choose your truck size, and produce an authentic gate pass.
+          </p>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-primary font-label-md text-label-md font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">flash_on</span>
+<span data-i18n="live_sync_status">Instant Yard Sync</span>
+</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Interactive Controls (Col 8) -->
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<!-- Step 1: Select Visual Crop -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center font-bold">1</span>
+<span class="font-title-lg text-title-lg font-bold text-primary" data-i18n="step1_crop_select">Select Harvest / Crop</span>
+</div>
+<button class="text-secondary hover:text-primary" onclick="speakCropOptions()" title="Listen to crop choices">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs">
+<!-- Wheat -->
+<button class="crop-btn p-3 rounded-xl bg-surface-container hover:bg-secondary-container/40 flex flex-col items-center text-center transition-all group active:scale-95" data-crop="wheat" onclick="selectCrop('wheat', 'Wheat (Gehun)', '₹ 2,275/Qtl', '🌾')" type="button">
+<span class="text-4xl mb-1 group-hover:scale-110 transition-transform">🌾</span>
+<span class="font-title-md text-title-md font-bold text-primary" data-i18n="crop_wheat">Wheat</span>
+<span class="font-label-md text-label-md text-secondary">गेहूं / ਕਣਕ</span>
+<span class="font-section-eyebrow text-section-eyebrow text-on-surface-variant mt-1">MSP ₹2,275</span>
+</button>
+<!-- Paddy / Rice -->
+<button class="crop-btn p-3 rounded-xl bg-surface-container hover:bg-secondary-container/40 flex flex-col items-center text-center transition-all group active:scale-95" data-crop="paddy" onclick="selectCrop('paddy', 'Paddy Rice (Dhan)', '₹ 2,183/Qtl', '🍚')" type="button">
+<span class="text-4xl mb-1 group-hover:scale-110 transition-transform">🍚</span>
+<span class="font-title-md text-title-md font-bold text-primary" data-i18n="crop_paddy">Paddy Rice</span>
+<span class="font-label-md text-label-md text-secondary">धान / ਝੋਨਾ</span>
+<span class="font-section-eyebrow text-section-eyebrow text-on-surface-variant mt-1">MSP ₹2,183</span>
+</button>
+<!-- Mustard -->
+<button class="crop-btn p-3 rounded-xl bg-surface-container hover:bg-secondary-container/40 flex flex-col items-center text-center transition-all group active:scale-95" data-crop="mustard" onclick="selectCrop('mustard', 'Mustard (Sarson)', '₹ 5,650/Qtl', '🌼')" type="button">
+<span class="text-4xl mb-1 group-hover:scale-110 transition-transform">🌼</span>
+<span class="font-title-md text-title-md font-bold text-primary" data-i18n="crop_mustard">Mustard</span>
+<span class="font-label-md text-label-md text-secondary">सरसों / ਸਰ੍ਹੋਂ</span>
+<span class="font-section-eyebrow text-section-eyebrow text-on-surface-variant mt-1">MSP ₹5,650</span>
+</button>
+<!-- Cotton -->
+<button class="crop-btn p-3 rounded-xl bg-surface-container hover:bg-secondary-container/40 flex flex-col items-center text-center transition-all group active:scale-95" data-crop="cotton" onclick="selectCrop('cotton', 'Cotton (Kapas)', '₹ 7,020/Qtl', '☁️')" type="button">
+<span class="text-4xl mb-1 group-hover:scale-110 transition-transform">☁️</span>
+<span class="font-title-md text-title-md font-bold text-primary" data-i18n="crop_cotton">Cotton</span>
+<span class="font-label-md text-label-md text-secondary">कपास / ਕਪਾਹ</span>
+<span class="font-section-eyebrow text-section-eyebrow text-on-surface-variant mt-1">MSP ₹7,020</span>
+</button>
+</div>
+</div>
+<!-- Step 2: Visual Sun Phase Timing & Date -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center font-bold">2</span>
+<span class="font-title-lg text-title-lg font-bold text-primary" data-i18n="step2_time_select">Choose Arrival Sun Phase &amp; Date</span>
+</div>
+<button class="text-secondary hover:text-primary" onclick="speakElementText('sun-phase-guide')">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+<!-- Visual Date Selectors -->
+<div class="grid grid-cols-3 gap-space-xs">
+<button class="date-btn p-2.5 rounded-xl bg-secondary-container text-on-secondary-container font-bold text-center flex flex-col items-center justify-center" data-date="Today" onclick="selectDate('Today', '18 Oct')" type="button">
+<span class="font-label-md text-label-md uppercase" data-i18n="date_today">Today</span>
+<span class="font-title-md text-title-md">18 Oct</span>
+</button>
+<button class="date-btn p-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-center flex flex-col items-center justify-center" data-date="Tomorrow" onclick="selectDate('Tomorrow', '19 Oct')" type="button">
+<span class="font-label-md text-label-md uppercase" data-i18n="date_tomorrow">Tomorrow</span>
+<span class="font-title-md text-title-md">19 Oct</span>
+</button>
+<button class="date-btn p-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-center flex flex-col items-center justify-center" data-date="Day After" onclick="selectDate('Day After', '20 Oct')" type="button">
+<span class="font-label-md text-label-md uppercase" data-i18n="date_day_after">Day After</span>
+<span class="font-title-md text-title-md">20 Oct</span>
+</button>
+</div>
+<!-- Sun Phase Cards with Triple Coded Traffic -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-xs" id="sun-phase-guide">
+<!-- Morning Slot -->
+<button class="slot-btn p-3 rounded-xl bg-surface-container hover:bg-secondary-container/30 flex flex-col text-left transition-all" data-slot="Morning" onclick="selectSlot('Morning (06:00 - 11:00 AM)', 'Low Queue', 'Gate 01')" type="button">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-amber-500 text-[28px]">wb_twilight</span>
+<span class="px-2 py-0.5 rounded-full bg-[#e8f5e9] text-[#196b24] font-label-md text-label-md font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-[#196b24]"></span>
+<span data-i18n="slot_fast">Fast</span>
+</span>
+</div>
+<span class="font-title-md text-title-md font-bold text-primary" data-i18n="slot_morning">Morning Rise</span>
+<span class="font-label-md text-label-md text-on-surface-variant">06:00 AM - 11:00 AM</span>
+<span class="font-section-eyebrow text-section-eyebrow text-secondary mt-1">Gate 01 Ready</span>
+</button>
+<!-- Afternoon Slot -->
+<button class="slot-btn p-3 rounded-xl bg-surface-container hover:bg-secondary-container/30 flex flex-col text-left transition-all" data-slot="Afternoon" onclick="selectSlot('Afternoon (11:00 AM - 03:00 PM)', 'Moderate Queue', 'Gate 02')" type="button">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-orange-500 text-[28px]">wb_sunny</span>
+<span class="px-2 py-0.5 rounded-full bg-[#fff3e0] text-[#c2410c] font-label-md text-label-md font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-none rotate-45 bg-[#c2410c]"></span>
+<span data-i18n="slot_mod">Medium</span>
+</span>
+</div>
+<span class="font-title-md text-title-md font-bold text-primary" data-i18n="slot_afternoon">Midday Sun</span>
+<span class="font-label-md text-label-md text-on-surface-variant">11:00 AM - 03:00 PM</span>
+<span class="font-section-eyebrow text-section-eyebrow text-secondary mt-1">Gate 02 Ready</span>
+</button>
+<!-- Evening Slot -->
+<button class="slot-btn p-3 rounded-xl bg-surface-container hover:bg-secondary-container/30 flex flex-col text-left transition-all" data-slot="Evening" onclick="selectSlot('Evening (03:00 PM - 07:00 PM)', 'Heavy Rush', 'Gate 03')" type="button">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-indigo-400 text-[28px]">bedtime</span>
+<span class="px-2 py-0.5 rounded-full bg-[#fee2e2] text-[#991b1b] font-label-md text-label-md font-bold flex items-center gap-1">
+<span class="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-b-[7px] border-b-[#991b1b]"></span>
+<span data-i18n="slot_slow">Rush</span>
+</span>
+</div>
+<span class="font-title-md text-title-md font-bold text-primary" data-i18n="slot_evening">Evening Sunset</span>
+<span class="font-label-md text-label-md text-on-surface-variant">03:00 PM - 07:00 PM</span>
+<span class="font-section-eyebrow text-section-eyebrow text-secondary mt-1">Gate 03 Peak</span>
+</button>
+</div>
+</div>
+<!-- Step 3: Vehicle Category -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center font-bold">3</span>
+<span class="font-title-lg text-title-lg font-bold text-primary" data-i18n="step3_vehicle_select">Select Transport Type</span>
+</div>
+<button class="text-secondary hover:text-primary" onclick="speakElementText('vehicle-types-text')">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+<div class="grid grid-cols-3 gap-space-xs" id="vehicle-types-text">
+<button class="vehicle-btn p-3 rounded-xl bg-surface-container hover:bg-secondary-container/30 flex flex-col items-center text-center transition-all" data-vehicle="tractor" onclick="selectVehicle('Tractor Trolley', '40-80 Qtl', '🚜')" type="button">
+<span class="text-3xl mb-1">🚜</span>
+<span class="font-title-md text-title-md font-bold text-primary" data-i18n="vehicle_tractor">Tractor Trolley</span>
+<span class="font-label-md text-label-md text-on-surface-variant">40-80 Qtl</span>
+</button>
+<button class="vehicle-btn p-3 rounded-xl bg-surface-container hover:bg-secondary-container/30 flex flex-col items-center text-center transition-all" data-vehicle="truck" onclick="selectVehicle('Heavy Truck', '100-250 Qtl', '🚛')" type="button">
+<span class="text-3xl mb-1">🚛</span>
+<span class="font-title-md text-title-md font-bold text-primary" data-i18n="vehicle_truck">Heavy Truck</span>
+<span class="font-label-md text-label-md text-on-surface-variant">100-250 Qtl</span>
+</button>
+<button class="vehicle-btn p-3 rounded-xl bg-surface-container hover:bg-secondary-container/30 flex flex-col items-center text-center transition-all" data-vehicle="pickup" onclick="selectVehicle('Mini Pickup', '15-30 Qtl', '🛻')" type="button">
+<span class="text-3xl mb-1">🛻</span>
+<span class="font-title-md text-title-md font-bold text-primary" data-i18n="vehicle_pickup">Mini Pickup</span>
+<span class="font-label-md text-label-md text-on-surface-variant">15-30 Qtl</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Generated Gate Pass Output (Col 4) -->
+<div class="lg:col-span-4 flex flex-col">
+<div class="sticky top-32 p-space-md rounded-2xl bg-surface-container-lowest shadow-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between border-b border-surface-dim pb-2">
+<span class="font-title-lg text-title-lg font-bold text-primary" data-i18n="receipt_live_pass">Live Generated Gate Pass</span>
+<button class="p-1 rounded-full bg-secondary-container text-on-secondary-container hover:bg-secondary hover:text-on-secondary transition-all" onclick="readOutPassDetails()" title="Read my pass aloud">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+<!-- Dynamic Pass Visual Token -->
+<div class="p-space-sm rounded-xl bg-surface-container border-2 border-dashed border-secondary/40 flex flex-col gap-3" id="live-gate-token">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-section-eyebrow text-section-eyebrow text-outline uppercase" data-i18n="token_id_label">Pass Serial</span>
+<span class="font-title-md text-title-md font-bold text-primary block" id="disp-token-id">APMC-26032-841</span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-primary text-on-primary flex items-center justify-center font-bold text-xl" id="disp-crop-emoji">
+                  🌾
+                </div>
+</div>
+<div class="space-y-1 text-left">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant" data-i18n="commodity_selected">Crop:</span>
+<span class="font-title-md text-title-md font-bold text-primary" id="disp-crop">Wheat (Gehun)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant" data-i18n="date_selected">Arrival Date:</span>
+<span class="font-title-md text-title-md font-bold text-primary" id="disp-date">Today (18 Oct)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant" data-i18n="time_selected">Window:</span>
+<span class="font-title-md text-title-md font-bold text-secondary" id="disp-slot">Morning (06:00 - 11:00 AM)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant" data-i18n="transport_selected">Transport:</span>
+<span class="font-title-md text-title-md font-bold text-primary" id="disp-vehicle">Tractor Trolley</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant" data-i18n="assigned_dock_gate">Assigned Dock:</span>
+<span class="font-title-md text-title-md font-bold text-on-tertiary-container" id="disp-gate">Gate 01 (Bay 04)</span>
+</div>
+</div>
+<!-- Sim QR code -->
+<div class="w-full py-2 bg-surface-container-lowest rounded-lg flex items-center justify-center">
+<svg class="w-24 h-24 text-primary" fill="currentColor" viewbox="0 0 24 24">
+<path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm10-2h8v8h-8V2zm2 2v4h4V4h-4zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm14 0h4v4h-4v-4zm-4 4h4v4h-4v-4zm-4-4h4v4h-4v-4zm4-4h4v4h-4v-4zm4 4h2v2h-2v-2z"></path>
+</svg>
+</div>
+</div>
+<!-- Confirmation Action -->
+<button class="w-full py-space-sm rounded-xl bg-on-tertiary-container hover:bg-tertiary-container text-on-primary font-title-md text-title-md font-bold shadow transition-all flex items-center justify-center gap-2" id="downloadPassBtn" onclick="confirmPassAction()">
+<span class="material-symbols-outlined">file_download</span>
+<span data-i18n="btn_confirm_download">Save SMS &amp; Gate Pass</span>
+</button>
+<button class="w-full py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-secondary font-label-lg text-label-lg font-bold transition-all flex items-center justify-center gap-1.5" onclick="readOutPassDetails()">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+<span data-i18n="btn_listen_pass">Read Pass In My Language</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Problem vs Solution Matrix -->
+<section class="w-full px-space-md py-space-xl bg-surface" id="solution">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-section-eyebrow text-section-eyebrow uppercase text-secondary font-bold" data-i18n="solution_eyebrow">BEFORE &amp; AFTER SMART MANDI</span>
+<h2 class="font-headline-lg text-headline-lg text-primary" data-i18n="solution_title">Eradicating Mandi Congestion &amp; Exploitation</h2>
+</div>
+<button class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high text-secondary" onclick="speakElementText('solution-matrix-content')" title="Listen to comparison">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md" id="solution-matrix-content">
+<!-- Legacy Distress Card -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low shadow-sm flex flex-col gap-space-sm relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="px-space-sm py-1 rounded-full bg-[#fee2e2] text-[#991b1b] font-label-md text-label-md font-bold flex items-center gap-1.5">
+<span class="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-b-[8px] border-b-[#991b1b]"></span>
+<span data-i18n="legacy_mandi_badge">Legacy Mandi Bottleneck</span>
+</span>
+<span class="material-symbols-outlined text-rose-500 text-[28px]">warning</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary" data-i18n="legacy_heading">Unorganized 14-Hour Roadside Queues</h3>
+<ul class="space-y-3 font-body-md text-body-md text-on-surface-variant">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-rose-500 text-[18px] shrink-0 mt-0.5">cancel</span>
+<span data-i18n="legacy_point_1">Farmers burn diesel idling in 3 km tractor queues outside yards without food or water.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-rose-500 text-[18px] shrink-0 mt-0.5">cancel</span>
+<span data-i18n="legacy_point_2">Middlemen exploit farmer exhaustion to discount price by up to ₹300/quintal.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-rose-500 text-[18px] shrink-0 mt-0.5">cancel</span>
+<span data-i18n="legacy_point_3">Sudden unseasonal rains ruin grain sacks exposed on open tarmac roads.</span>
+</li>
+</ul>
+</div>
+<!-- Smart Solution Card -->
+<div class="p-space-lg rounded-2xl bg-primary text-on-primary shadow-lg flex flex-col gap-space-sm relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="px-space-sm py-1 rounded-full bg-[#e8f5e9] text-[#196b24] font-label-md text-label-md font-bold flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#196b24]"></span>
+<span data-i18n="smart_portal_badge">SIH 2026 Engine</span>
+</span>
+<span class="material-symbols-outlined text-secondary-container text-[28px]">verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-primary" data-i18n="smart_heading">Guaranteed 20-Minute Dock Allocation</h3>
+<ul class="space-y-3 font-body-md text-body-md text-surface-dim">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-400 text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span data-i18n="smart_point_1">Automated gate pass routes vehicle directly to designated weighbridge and unloading bay.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-400 text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span data-i18n="smart_point_2">Multi-lingual voice bot schedules slots over basic phone call (IVR) or one-tap web buttons.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-400 text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span data-i18n="smart_point_3">Dynamic load balancing redistributes surplus arrivals across neighboring APMC yards.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Govtech Architecture & Real-Time Flow -->
+<section class="w-full px-space-md py-space-xl bg-surface-container-low" id="architecture">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-section-eyebrow text-section-eyebrow uppercase text-secondary font-bold" data-i18n="arch_eyebrow">TECH BLUEPRINT</span>
+<h2 class="font-headline-lg text-headline-lg text-primary" data-i18n="arch_title">Robust, Low-Bandwidth Architecture</h2>
+</div>
+<button class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high text-secondary" onclick="speakElementText('arch-diagram-text')">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+</div>
+<!-- 4-Stage Flow Architecture Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md" id="arch-diagram-text">
+<!-- Stage 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-2">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary font-bold">01</div>
+<h4 class="font-title-lg text-title-lg font-bold text-primary" data-i18n="arch_step1_title">Edge Farmer Input</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="arch_step1_desc">
+            Visual icon selectors, Voice WebSpeech API, or toll-free Hindi/Punjabi/Telugu IVR telephony lines.
+          </p>
+<span class="font-label-md text-label-md text-secondary font-bold mt-auto" data-i18n="arch_step1_tech">Web Speech &amp; Native Dialers</span>
+</div>
+<!-- Stage 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-2">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary font-bold">02</div>
+<h4 class="font-title-lg text-title-lg font-bold text-primary" data-i18n="arch_step2_title">Load Balancer &amp; Queue</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="arch_step2_desc">
+            Redis-backed FIFO concurrency token bucket guarantees no gate overbooking during peak harvest windows.
+          </p>
+<span class="font-label-md text-label-md text-secondary font-bold mt-auto" data-i18n="arch_step2_tech">Redis + Event Driven Mesh</span>
+</div>
+<!-- Stage 3 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-2">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary font-bold">03</div>
+<h4 class="font-title-lg text-title-lg font-bold text-primary" data-i18n="arch_step3_title">ANPR &amp; Optical Scan</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="arch_step3_desc">
+            At mandi gate entry, OCR cameras read tractor number plates and match instant QR tokens in 1.4 seconds.
+          </p>
+<span class="font-label-md text-label-md text-secondary font-bold mt-auto" data-i18n="arch_step3_tech">Edge Tensor OCR &amp; QR</span>
+</div>
+<!-- Stage 4 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-2">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary font-bold">04</div>
+<h4 class="font-title-lg text-title-lg font-bold text-primary" data-i18n="arch_step4_title">Direct DBT Settlement</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="arch_step4_desc">
+            Weighbridge slips trigger instant Aadhaar-linked bank transfers into farmer accounts at guaranteed MSP.
+          </p>
+<span class="font-label-md text-label-md text-secondary font-bold mt-auto" data-i18n="arch_step4_tech">NPCI / PFMS Gateway</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Feasibility & Operational Viability -->
+<section class="w-full px-space-md py-space-xl bg-surface" id="feasibility">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-section-eyebrow text-section-eyebrow uppercase text-secondary font-bold" data-i18n="feasibility_eyebrow">REAL WORLD READINESS</span>
+<h2 class="font-headline-lg text-headline-lg text-primary" data-i18n="feasibility_title">Feasibility &amp; Deployment Roadmap</h2>
+</div>
+<button class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high text-secondary" onclick="speakElementText('feasibility-section-text')">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md" id="feasibility-section-text">
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-sm flex flex-col gap-2">
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined">signal_cellular_alt_1_bar</span>
+<span class="font-title-md text-title-md font-bold" data-i18n="offline_first_title">2G / Low Internet Resilience</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="offline_first_desc">
+            The web portal packages as an offline-first PWA weighing under 1.2 MB. It caches tokens locally and functions smoothly over slow rural EDGE connections.
+          </p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-sm flex flex-col gap-2">
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="font-title-md text-title-md font-bold" data-i18n="apmc_integration_title">e-NAM &amp; APMC Sync</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="apmc_integration_desc">
+            Directly plugs into existing Government of India e-NAM systems without replacing current physical weighbridge hardware.
+          </p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-sm flex flex-col gap-2">
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined">record_voice_over</span>
+<span class="font-title-md text-title-md font-bold" data-i18n="voice_first_title">100% Illiteracy Covered</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="voice_first_desc">
+            Complete reliance on audio cues, crop photos, and sun dials enables any unlettered kisan to book their tractor dock in under 60 seconds.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Impact & Proven Metrics -->
+<section class="w-full px-space-md py-space-xl bg-surface-container" id="impact">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-section-eyebrow text-section-eyebrow uppercase text-secondary font-bold" data-i18n="impact_eyebrow">FIELD VALIDATION</span>
+<h2 class="font-headline-lg text-headline-lg text-primary" data-i18n="impact_title">Measurable Socio-Economic Transformation</h2>
+</div>
+<button class="p-2 rounded-full bg-surface-container-high hover:bg-surface-variant text-secondary" onclick="speakElementText('impact-metrics-cards')">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+</div>
+<!-- Impact Numbers Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-md" id="impact-metrics-cards">
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm text-center flex flex-col items-center">
+<span class="font-display text-display text-on-tertiary-container font-extrabold">-78%</span>
+<span class="font-title-md text-title-md font-bold text-primary mt-1" data-i18n="metric1_label">Gate Waiting Delay</span>
+<span class="font-label-md text-label-md text-on-surface-variant" data-i18n="metric1_sub">From 14 hrs down to 22 mins</span>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm text-center flex flex-col items-center">
+<span class="font-display text-display text-secondary font-extrabold">₹1,420</span>
+<span class="font-title-md text-title-md font-bold text-primary mt-1" data-i18n="metric2_label">Saved Per Trip</span>
+<span class="font-label-md text-label-md text-on-surface-variant" data-i18n="metric2_sub">Tractor diesel &amp; lodging savings</span>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm text-center flex flex-col items-center">
+<span class="font-display text-display text-[#196b24] font-extrabold">0%</span>
+<span class="font-title-md text-title-md font-bold text-primary mt-1" data-i18n="metric3_label">Distress Crop Sales</span>
+<span class="font-label-md text-label-md text-on-surface-variant" data-i18n="metric3_sub">Guaranteed MSP slot protection</span>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm text-center flex flex-col items-center">
+<span class="font-display text-display text-primary font-extrabold">12.8M</span>
+<span class="font-title-md text-title-md font-bold text-primary mt-1" data-i18n="metric4_label">Quintals Handled</span>
+<span class="font-label-md text-label-md text-on-surface-variant" data-i18n="metric4_sub">Simulated throughput target</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Accessible Features Showcase -->
+<section class="w-full px-space-md py-space-xl bg-surface" id="features">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-section-eyebrow text-section-eyebrow uppercase text-secondary font-bold" data-i18n="features_eyebrow">EQUAL ACCESS</span>
+<h2 class="font-headline-lg text-headline-lg text-primary" data-i18n="features_title">Built For Every Indian Farmer</h2>
+</div>
+<button class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high text-secondary" onclick="speakElementText('features-detail-grid')">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-space-md" id="features-detail-grid">
+<!-- Feature 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-sm flex flex-col gap-2">
+<div class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">hearing</span>
+</div>
+<h3 class="font-title-lg text-title-lg font-bold text-primary" data-i18n="feat1_title">Universal Audio Buttons</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="feat1_desc">
+            Every heading, metric card, and instruction features a high-visibility speaker icon. Tap once to hear everything in Hindi, Punjabi, Telugu, or English.
+          </p>
+</div>
+<!-- Feature 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-sm flex flex-col gap-2">
+<div class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">palette</span>
+</div>
+<h3 class="font-title-lg text-title-lg font-bold text-primary" data-i18n="feat2_title">Triple-Coded Clarity</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="feat2_desc">
+            Never rely on color alone. Crowdedness, gate availability, and weather hazards use distinct shapes (circle/diamond/triangle) and face expressions.
+          </p>
+</div>
+<!-- Feature 3 -->
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-sm flex flex-col gap-2">
+<div class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">mic_double</span>
+</div>
+<h3 class="font-title-lg text-title-lg font-bold text-primary" data-i18n="feat3_title">Direct Voice AI Assistant</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="feat3_desc">
+            Press the bottom-right floating microphone and speak naturally. Say "Wheat for tomorrow morning" and the system automatically creates your pass.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Persistent 64x64 Pulsating Voice Booking Button -->
+<button aria-label="AI Voice Booking Assistant" class="fixed bottom-20 right-4 sm:right-8 z-40 w-16 h-16 rounded-full bg-on-tertiary-container hover:bg-tertiary-container text-on-primary shadow-2xl flex items-center justify-center transition-transform hover:scale-105 active:scale-95 animate-bounce" id="floatingVoiceBtn" onclick="triggerVoiceBookingSession()" title="Click to speak and book slot">
+<span class="material-symbols-outlined text-[32px]">mic</span>
+<span class="absolute -top-1 -right-1 flex h-4 w-4">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-4 w-4 bg-orange-500"></span>
+</span>
+</button>
+<!-- Full Screen Language Picker Modal -->
+<div class="fixed inset-0 z-50 bg-primary/80 backdrop-blur-md hidden flex items-center justify-center p-space-md" id="languageModal">
+<div class="w-full max-w-2xl bg-surface-container-lowest rounded-3xl p-space-lg shadow-2xl flex flex-col gap-space-md">
+<div class="flex items-center justify-between border-b border-surface-dim pb-3">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary font-bold">Select Preferred Language / भाषा चुनें</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Tap a language card to listen and select for whole portal</p>
+</div>
+<button class="p-2 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface" onclick="toggleLangModal(false)">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<!-- English Card -->
+<button class="lang-select-card p-space-md rounded-2xl bg-surface-container hover:bg-secondary-container/40 text-left flex items-center justify-between transition-all group" onclick="setGlobalLanguage('en')">
+<div class="flex flex-col">
+<span class="font-title-lg text-title-lg font-bold text-primary">English</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Default Interface</span>
+</div>
+</button><button class="p-2.5 rounded-full bg-surface-container-lowest shadow text-secondary group-hover:bg-secondary group-hover:text-on-secondary" onclick="event.stopPropagation(); playLangSample('en')">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+<!-- Hindi Card -->
+<button class="lang-select-card p-space-md rounded-2xl bg-surface-container hover:bg-secondary-container/40 text-left flex items-center justify-between transition-all group" onclick="setGlobalLanguage('hi')">
+<div class="flex flex-col">
+<span class="font-title-lg text-title-lg font-bold text-primary">हिंदी (Hindi)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">संपूर्ण पोर्टल हिंदी में सुनें</span>
+</div>
+</button><button class="p-2.5 rounded-full bg-surface-container-lowest shadow text-secondary group-hover:bg-secondary group-hover:text-on-secondary" onclick="event.stopPropagation(); playLangSample('hi')">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+<!-- Punjabi Card -->
+<button class="lang-select-card p-space-md rounded-2xl bg-surface-container hover:bg-secondary-container/40 text-left flex items-center justify-between transition-all group" onclick="setGlobalLanguage('pa')">
+<div class="flex flex-col">
+<span class="font-title-lg text-title-lg font-bold text-primary">ਪੰਜਾਬੀ (Punjabi)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">ਕਣਕ ਅਤੇ ਝੋਨਾ ਮੰਡੀ ਸਲਾਟ ਬੁੱਕ ਕਰੋ</span>
+</div>
+</button><button class="p-2.5 rounded-full bg-surface-container-lowest shadow text-secondary group-hover:bg-secondary group-hover:text-on-secondary" onclick="event.stopPropagation(); playLangSample('pa')">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+<!-- Telugu Card -->
+<button class="lang-select-card p-space-md rounded-2xl bg-surface-container hover:bg-secondary-container/40 text-left flex items-center justify-between transition-all group" onclick="setGlobalLanguage('te')">
+<div class="flex flex-col">
+<span class="font-title-lg text-title-lg font-bold text-primary">తెలుగు (Telugu)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">మార్కెట్ యార్డ్ స్లాట్ బుకింగ్</span>
+</div>
+</button><button class="p-2.5 rounded-full bg-surface-container-lowest shadow text-secondary group-hover:bg-secondary group-hover:text-on-secondary" onclick="event.stopPropagation(); playLangSample('te')">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Voice Assistant Overlay Modal -->
+<div class="fixed inset-0 z-50 bg-primary/85 backdrop-blur-md hidden flex items-center justify-center p-space-md" id="voiceModal">
+<div class="w-full max-w-lg bg-surface-container-lowest rounded-3xl p-space-lg shadow-2xl flex flex-col items-center text-center gap-space-md">
+<div class="w-20 h-20 rounded-full bg-on-tertiary-container/10 flex items-center justify-center relative">
+<span class="material-symbols-outlined text-[44px] text-on-tertiary-container animate-pulse">mic</span>
+<span class="absolute inset-0 rounded-full border-4 border-on-tertiary-container/30 animate-ping"></span>
+</div>
+<div class="space-y-1">
+<h3 class="font-headline-sm text-headline-sm font-bold text-primary" data-i18n="voice_modal_listening">Listening to your voice...</h3>
+<p class="font-body-md text-body-md text-on-surface-variant" data-i18n="voice_modal_hint">Try saying: "Book Wheat for Tomorrow Morning"</p>
+</div>
+<div class="w-full p-space-sm bg-surface-container rounded-xl min-h-[64px] font-title-md text-title-md text-primary flex items-center justify-center italic" id="voiceTranscriptBox">
+        "Speak now..."
+      </div>
+<div class="flex items-center gap-space-sm w-full">
+<button class="flex-1 py-space-xs rounded-xl bg-surface-container-high hover:bg-surface-variant text-primary font-label-lg text-label-lg font-bold" onclick="simulateVoiceBookingWheat()">
+          Simulate (Wheat)
+        </button>
+<button class="flex-1 py-space-xs rounded-xl bg-surface-container-high hover:bg-surface-variant text-primary font-label-lg text-label-lg font-bold" onclick="simulateVoiceBookingPaddy()">
+          Simulate (Paddy)
+        </button>
+</div>
+<button class="px-space-md py-1.5 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface font-label-md text-label-md" onclick="closeVoiceModal()">
+        Cancel / बंद करें
+      </button>
+</div>
+</div>
+</div>
+<script>
+  // Complete Multilingual Dictionary for all 4 Accessibility Defect Resolvers
+  const translations = {
+    en: {
+      govtech_portal_tag: "SIH 2026 Govtech Multilingual Portal",
+      audio_tour_btn: "Guided Voice Tour",
+      live_telemetry_status: "APMC Mandi Online",
+      sih_badge: "Smart Mandi Allocation Engine",
+      hero_title: "Direct Grain Booking. Zero Waiting At The Mandi Gate.",
+      hero_desc: "An illiterate-friendly voice and icon driven procurement gateway. Select your crop with visual badges, secure a verified dock gate pass, and arrive directly at scheduled unloading times.",
+      mandi_load_indicator: "Live Yard Load Status",
+      auto_refresh_tag: "Updated 2m ago",
+      gate_a_name: "Gate 01 - Wheat",
+      wait_time_fast: "Fast: 12 min wait",
+      gate_b_name: "Gate 02 - Paddy",
+      wait_time_mod: "Moderate: 38 min wait",
+      gate_c_name: "Gate 03 - Cotton",
+      wait_time_high: "Full: 90 min wait",
+      cta_book_slot: "Instant Gate Booking",
+      cta_voice_assist: "Speak To Book",
+      pass_preview_title: "Express Mandi Gate Token",
+      pass_preview_sub: "Government of India Verified",
+      farmer_label: "Farmer Beneficiary",
+      status_approved: "DOCK RESERVED",
+      commodity_crop: "Crop / Jinsi",
+      crop_wheat_name: "Wheat (Sharbati)",
+      volume_weight: "Expected Weight",
+      allocated_slot: "Allocated Window",
+      morning_slot_time: "08:00 AM - 11:00 AM",
+      bay_assignment: "Dedicated Bay",
+      booking_eyebrow: "STEP-BY-STEP SLOTTING",
+      booking_title: "Visual Slot Generator & Token Pass",
+      booking_subtitle: "No typing required. Tap the picture of your crop, tap the sun time icon, choose your truck size, and produce an authentic gate pass.",
+      live_sync_status: "Instant Yard Sync",
+      step1_crop_select: "1. Select Harvest / Crop",
+      crop_wheat: "Wheat",
+      crop_paddy: "Paddy Rice",
+      crop_mustard: "Mustard",
+      crop_cotton: "Cotton",
+      step2_time_select: "2. Choose Arrival Sun Phase & Date",
+      date_today: "Today",
+      date_tomorrow: "Tomorrow",
+      date_day_after: "Day After",
+      slot_fast: "Fast",
+      slot_morning: "Morning Rise",
+      slot_mod: "Medium",
+      slot_afternoon: "Midday Sun",
+      slot_slow: "Rush",
+      slot_evening: "Evening Sunset",
+      step3_vehicle_select: "3. Select Transport Type",
+      vehicle_tractor: "Tractor Trolley",
+      vehicle_truck: "Heavy Truck",
+      vehicle_pickup: "Mini Pickup",
+      receipt_live_pass: "Live Generated Gate Pass",
+      token_id_label: "Pass Serial",
+      commodity_selected: "Crop:",
+      date_selected: "Arrival Date:",
+      time_selected: "Window:",
+      transport_selected: "Transport:",
+      assigned_dock_gate: "Assigned Dock:",
+      btn_confirm_download: "Save SMS & Gate Pass",
+      btn_listen_pass: "Read Pass In My Language",
+      solution_eyebrow: "BEFORE & AFTER SMART MANDI",
+      solution_title: "Eradicating Mandi Congestion & Exploitation",
+      legacy_mandi_badge: "Legacy Mandi Bottleneck",
+      legacy_heading: "Unorganized 14-Hour Roadside Queues",
+      legacy_point_1: "Farmers burn diesel idling in 3 km tractor queues outside yards without food or water.",
+      legacy_point_2: "Middlemen exploit farmer exhaustion to discount price by up to ₹300/quintal.",
+      legacy_point_3: "Sudden unseasonal rains ruin grain sacks exposed on open tarmac roads.",
+      smart_portal_badge: "SIH 2026 Engine",
+      smart_heading: "Guaranteed 20-Minute Dock Allocation",
+      smart_point_1: "Automated gate pass routes vehicle directly to designated weighbridge and unloading bay.",
+      smart_point_2: "Multi-lingual voice bot schedules slots over basic phone call (IVR) or one-tap web buttons.",
+      smart_point_3: "Dynamic load balancing redistributes surplus arrivals across neighboring APMC yards.",
+      arch_eyebrow: "TECH BLUEPRINT",
+      arch_title: "Robust, Low-Bandwidth Architecture",
+      arch_step1_title: "Edge Farmer Input",
+      arch_step1_desc: "Visual icon selectors, Voice WebSpeech API, or toll-free Hindi/Punjabi/Telugu IVR telephony lines.",
+      arch_step1_tech: "Web Speech & Native Dialers",
+      arch_step2_title: "Load Balancer & Queue",
+      arch_step2_desc: "Redis-backed FIFO concurrency token bucket guarantees no gate overbooking during peak harvest windows.",
+      arch_step2_tech: "Redis + Event Driven Mesh",
+      arch_step3_title: "ANPR & Optical Scan",
+      arch_step3_desc: "At mandi gate entry, OCR cameras read tractor number plates and match instant QR tokens in 1.4 seconds.",
+      arch_step3_tech: "Edge Tensor OCR & QR",
+      arch_step4_title: "Direct DBT Settlement",
+      arch_step4_desc: "Weighbridge slips trigger instant Aadhaar-linked bank transfers into farmer accounts at guaranteed MSP.",
+      arch_step4_tech: "NPCI / PFMS Gateway",
+      feasibility_eyebrow: "REAL WORLD READINESS",
+      feasibility_title: "Feasibility & Deployment Roadmap",
+      offline_first_title: "2G / Low Internet Resilience",
+      offline_first_desc: "The web portal packages as an offline-first PWA weighing under 1.2 MB. It caches tokens locally and functions smoothly over slow rural EDGE connections.",
+      apmc_integration_title: "e-NAM & APMC Sync",
+      apmc_integration_desc: "Directly plugs into existing Government of India e-NAM systems without replacing current physical weighbridge hardware.",
+      voice_first_title: "100% Illiteracy Covered",
+      voice_first_desc: "Complete reliance on audio cues, crop photos, and sun dials enables any unlettered kisan to book their tractor dock in under 60 seconds.",
+      impact_eyebrow: "FIELD VALIDATION",
+      impact_title: "Measurable Socio-Economic Transformation",
+      metric1_label: "Gate Waiting Delay",
+      metric1_sub: "From 14 hrs down to 22 mins",
+      metric2_label: "Saved Per Trip",
+      metric2_sub: "Tractor diesel & lodging savings",
+      metric3_label: "Distress Crop Sales",
+      metric3_sub: "Guaranteed MSP slot protection",
+      metric4_label: "Quintals Handled",
+      metric4_sub: "Simulated throughput target",
+      features_eyebrow: "EQUAL ACCESS",
+      features_title: "Built For Every Indian Farmer",
+      feat1_title: "Universal Audio Buttons",
+      feat1_desc: "Every heading, metric card, and instruction features a high-visibility speaker icon. Tap once to hear everything in Hindi, Punjabi, Telugu, or English.",
+      feat2_title: "Triple-Coded Clarity",
+      feat2_desc: "Never rely on color alone. Crowdedness, gate availability, and weather hazards use distinct shapes (circle/diamond/triangle) and face expressions.",
+      feat3_title: "Direct Voice AI Assistant",
+      feat3_desc: "Press the bottom-right floating microphone and speak naturally. Say 'Wheat for tomorrow morning' and the system automatically creates your pass.",
+      voice_modal_listening: "Listening to your voice...",
+      voice_modal_hint: "Try saying: 'Book Wheat for Tomorrow Morning'"
+    },
+    hi: {
+      govtech_portal_tag: "स्मार्ट किसान मंडी पोर्टल 2026",
+      audio_tour_btn: "आवाज में सहायता सुनें",
+      live_telemetry_status: "मंडी गेट चालू है",
+      sih_badge: "स्मार्ट मंडी स्लॉट प्रणाली",
+      hero_title: "सीधी फसल बुकिंग। मंडी गेट पर शून्य इंतज़ार।",
+      hero_desc: "अनपढ़ किसान भाइयों के लिए विशेष आवाज और चित्र आधारित पोर्टल। फसल का फोटो चुनें, टोकन पास पाएं और तय समय पर बिना लाइन के सीधे अंदर आएं।",
+      mandi_load_indicator: "मंडी में लाइव भीड़ की स्थिति",
+      auto_refresh_tag: "अभी अपडेट किया",
+      gate_a_name: "गेट 01 - गेहूं",
+      wait_time_fast: "तेज़: 12 मिनट इंतज़ार",
+      gate_b_name: "गेट 02 - धान",
+      wait_time_mod: "मध्यम: 38 मिनट इंतज़ार",
+      gate_c_name: "गेट 03 - कपास",
+      wait_time_high: "भीड़: 90 मिनट इंतज़ार",
+      cta_book_slot: "अभी पास बुक करें",
+      cta_voice_assist: "बोलकर बुक करें",
+      pass_preview_title: "डिजिटल मंडी गेट पास",
+      pass_preview_sub: "भारत सरकार द्वारा प्रमाणित",
+      farmer_label: "किसान का नाम",
+      status_approved: "स्लॉट आरक्षित",
+      commodity_crop: "फसल (जिंस)",
+      crop_wheat_name: "गेहूं (शरबती)",
+      volume_weight: "अनुमानित वजन",
+      allocated_slot: "आवंटित समय",
+      morning_slot_time: "सुबह 08:00 - 11:00",
+      bay_assignment: "खाली शेड नंबर",
+      booking_eyebrow: "सरल बुकिंग चरण",
+      booking_title: "चित्र देखकर तुरंत स्लॉट और पास बनाएं",
+      booking_subtitle: "लिखने की कोई ज़रूरत नहीं। फसल की फोटो पर क्लिक करें, सूरज के समय पर दबाएं और अपना गेट पास तैयार पाएं।",
+      live_sync_status: "मंडी से सीधा संपर्क",
+      step1_crop_select: "1. अपनी फसल का चित्र चुनें",
+      crop_wheat: "गेहूं",
+      crop_paddy: "धान",
+      crop_mustard: "सरसों",
+      crop_cotton: "कपास",
+      step2_time_select: "2. आने का दिन और सूरज का समय चुनें",
+      date_today: "आज",
+      date_tomorrow: "कल",
+      date_day_after: "परसों",
+      slot_fast: "कम भीड़",
+      slot_morning: "सुबह का सूरज",
+      slot_mod: "मध्यम",
+      slot_afternoon: "दोपहर की धूप",
+      slot_slow: "भारी भीड़",
+      slot_evening: "शाम का समय",
+      step3_vehicle_select: "3. वाहन चुनें",
+      vehicle_tractor: "ट्रैक्टर ट्रॉली",
+      vehicle_truck: "बड़ा ट्रक",
+      vehicle_pickup: "छोटा पिकअप",
+      receipt_live_pass: "तैयार गेट पास रसीद",
+      token_id_label: "पास नंबर",
+      commodity_selected: "फसल:",
+      date_selected: "तारीख:",
+      time_selected: "समय:",
+      transport_selected: "गाड़ी:",
+      assigned_dock_gate: "आवंटित गेट:",
+      btn_confirm_download: "पास फोन में सेव करें",
+      btn_listen_pass: "पास को बोलकर सुनें",
+      solution_eyebrow: "पुरानी मंडी बनाम नया सिस्टम",
+      solution_title: "मंडी में बिचौलियों और लंबी कतारों का अंत",
+      legacy_mandi_badge: "पुरानी मंडी की समस्या",
+      legacy_heading: "सड़कों पर 14-14 घंटे का लंबा जाम",
+      legacy_point_1: "किसान बिना भोजन-पानी के रात भर ट्रैक्टर में फंसे रहते थे और डीज़ल जलता था।",
+      legacy_point_2: "थक जाने पर बिचौलिए किसानों से प्रति क्विंटल 300 रुपये तक कम भाव देते थे।",
+      legacy_point_3: "अचानक बारिश होने पर खुले में बोरियां भीगकर खराब हो जाती थीं।",
+      smart_portal_badge: "स्मार्ट पोर्टल समाधान",
+      smart_heading: "केवल 20 मिनट में गेट एंट्री और तुलाई",
+      smart_point_1: "डिजिटल गेट पास से ट्रैक्टर सीधे सही तौल कांटे और खाली शेड में पहुंचता है।",
+      smart_point_2: "बोलकर या मिस्ड कॉल देकर भी अनपढ़ किसान अपना स्लॉट तय कर सकते हैं।",
+      smart_point_3: "भीड़ होने पर सिस्टम पास वाली दूसरी मंडी में खाली स्लॉट तुरंत दिखा देता है।",
+      arch_eyebrow: "तकनीकी ढांचा",
+      arch_title: "कम इंटरनेट में भी सबसे तेज़ चलने वाला सिस्टम",
+      arch_step1_title: "किसान का सीधा चुनाव",
+      arch_step1_desc: "चित्र देखकर या आवाज से बिना पढ़े-लिखे बुकिंग।",
+      arch_step1_tech: "वॉइस और सरल स्क्रीन",
+      arch_step2_title: "स्मार्ट कतार प्रबंधन",
+      arch_step2_desc: "एक समय पर सीमित गाड़ियां ताकि जाम न लगे।",
+      arch_step2_tech: "क्लाउड लोड बैलेंसर",
+      arch_step3_title: "गेट पर नंबर स्कैन",
+      arch_step3_desc: "कैमरा 2 सेकंड में ट्रैक्टर नंबर पहचानकर गेट खोल देता है।",
+      arch_step3_tech: "स्वचालित कैमरा स्कैन",
+      arch_step4_title: "सीधा बैंक खाते में भुगतान",
+      arch_step4_desc: "तुलाई होते ही सरकारी एमएसपी का पैसा सीधे आधार से जुड़े बैंक खाते में।",
+      arch_step4_tech: "डीबीटी बैंक ट्रांसफर",
+      feasibility_eyebrow: "जमीनी सच्चाई",
+      feasibility_title: "हर गांव और मंडी के लिए तैयार",
+      offline_first_title: "धीमे 2G इंटरनेट पर भी चालू",
+      offline_first_desc: "यह पोर्टल कमजोर नेटवर्क में भी बिना रुके काम करता है।",
+      apmc_integration_title: "ई-नाम (e-NAM) से जुड़ा",
+      apmc_integration_desc: "मंडी के मौजूदा तौल कांटों से सीधा जुड़ा हुआ।",
+      voice_first_title: "अनपढ़ भाइयों के लिए 100% आसान",
+      voice_first_desc: "फोटो देखकर और बोलकर कोई भी 1 मिनट में पास बना सकता है।",
+      impact_eyebrow: "किसानों को फायदा",
+      impact_title: "सीधा आर्थिक और समय का लाभ",
+      metric1_label: "इंतज़ार में कमी",
+      metric1_sub: "14 घंटे की जगह सिर्फ 22 मिनट",
+      metric2_label: "प्रति चक्कर बचत",
+      metric2_sub: "ट्रैक्टर डीज़ल व रुकने का खर्चा बचा",
+      metric3_label: "मजबूरी में कम भाव पर बिक्री",
+      metric3_sub: "पूरा सरकारी समर्थन मूल्य गारंटी",
+      metric4_label: "क्विंटल अनाज का प्रबंधन",
+      metric4_sub: "मंडी में समय पर सुगम उठान",
+      features_eyebrow: "सबके लिए सुलभ",
+      features_title: "भारत के हर किसान भाई के लिए",
+      feat1_title: "हर जगह आवाज का बटन",
+      feat1_desc: "स्पीकर बटन दबाते ही सारी जानकारी हिंदी में सुनाई देगी।",
+      feat2_title: "चित्र और रंगों का स्पष्ट संकेत",
+      feat2_desc: "हरा, पीला और लाल रंग के साथ चेहरे के भाव जिससे बिना पढ़े समझ आ जाए।",
+      feat3_title: "आवाज से बुकिंग सहायक",
+      feat3_desc: "माइक बटन दबाकर सिर्फ बोलें: गेहूं कल सुबह, पास तुरंत बन जाएगा।",
+      voice_modal_listening: "आपकी आवाज सुन रहे हैं...",
+      voice_modal_hint: "बोलें: 'कल सुबह गेहूं के लिए पास बनाओ'"
+    },
+    pa: {
+      govtech_portal_tag: "ਸਮਾਰਟ ਕਿਸਾਨ ਮੰਡੀ ਪੋਰਟਲ 2026",
+      audio_tour_btn: "ਅਵਾਜ਼ ਵਿੱਚ ਸੁਣੋ",
+      live_telemetry_status: "ਮੰਡੀ ਗੇਟ ਚਾਲੂ ਹੈ",
+      sih_badge: "ਸਮਾਰਟ ਮੰਡੀ ਸਲਾਟ ਸਿਸਟਮ",
+      hero_title: "ਸਿੱਧੀ ਫ਼ਸਲ ਬੁਕਿੰਗ। ਮੰਡੀ ਗੇਟ 'ਤੇ ਕੋਈ ਉਡੀਕ ਨਹੀਂ।",
+      hero_desc: "ਅਣਪੜ੍ਹ ਕਿਸਾਨ ਵੀਰਾਂ ਲਈ ਵਿਸ਼ੇਸ਼ ਅਵਾਜ਼ ਅਤੇ ਫੋਟੋਆਂ ਵਾਲਾ ਪੋਰਟਲ। ਫ਼ਸਲ ਦੀ ਫੋਟੋ ਚੁਣੋ, ਪਾਸ ਲਵੋ ਅਤੇ ਬਿਨਾਂ ਲਾਈਨ ਤੋਂ ਸਿੱਧੇ ਅੰਦਰ ਆਓ।",
+      mandi_load_indicator: "ਮੰਡੀ ਵਿੱਚ ਭੀੜ ਦੀ ਤਾਜ਼ਾ ਸਥਿਤੀ",
+      auto_refresh_tag: "ਹੁਣੇ ਅੱਪਡੇਟ ਹੋਇਆ",
+      gate_a_name: "ਗੇਟ 01 - ਕਣਕ",
+      wait_time_fast: "ਤੇਜ਼: 12 ਮਿੰਟ ਉਡੀਕ",
+      gate_b_name: "ਗੇਟ 02 - ਝੋਨਾ",
+      wait_time_mod: "ਦਰਮਿਆਨਾ: 38 ਮਿੰਟ",
+      gate_c_name: "ਗੇਟ 03 - ਨਰਮਾ/ਕਪਾਹ",
+      wait_time_high: "ਭਾਰੀ ਭੀੜ: 90 ਮਿੰਟ",
+      cta_book_slot: "ਤੁਰੰਤ ਗੇਟ ਪਾਸ ਬਣਾਓ",
+      cta_voice_assist: "ਬੋਲ ਕੇ ਬੁੱਕ ਕਰੋ",
+      pass_preview_title: "ਡਿਜੀਟਲ ਮੰਡੀ ਗੇਟ ਟੋਕਨ",
+      pass_preview_sub: "ਭਾਰਤ ਸਰਕਾਰ ਵੱਲੋਂ ਪ੍ਰਮਾਣਿਤ",
+      farmer_label: "ਕਿਸਾਨ ਦਾ ਨਾਂ",
+      status_approved: "ਸਲਾਟ ਪੱਕਾ ਹੋਇਆ",
+      commodity_crop: "ਫ਼ਸਲ (ਜਿਣਸ)",
+      crop_wheat_name: "ਕਣਕ (ਸ਼ਰਬਤੀ)",
+      volume_weight: "ਅੰਦਾਜ਼ਨ ਵਜ਼ਨ",
+      allocated_slot: "ਮਿਲਿਆ ਸਮਾਂ",
+      morning_slot_time: "ਸਵੇਰੇ 08:00 - 11:00",
+      bay_assignment: "ਖਾਲੀ ਸ਼ੈੱਡ ਨੰਬਰ",
+      booking_eyebrow: "ਸੌਖੇ ਕਦਮ",
+      booking_title: "ਫੋਟੋ ਵੇਖ ਕੇ ਗੇਟ ਪਾਸ ਬਣਾਓ",
+      booking_subtitle: "ਕੁਝ ਵੀ ਲਿਖਣ ਦੀ ਲੋੜ ਨਹੀਂ। ਫ਼ਸਲ ਦੀ ਫੋਟੋ ਦਬਾਓ, ਸੂਰਜ ਦਾ ਸਮਾਂ ਚੁਣੋ ਅਤੇ ਪਾਸ ਹਾਸਲ ਕਰੋ।",
+      live_sync_status: "ਮੰਡੀ ਨਾਲ ਸਿੱਧਾ ਜੋੜ",
+      step1_crop_select: "1. ਆਪਣੀ ਫ਼ਸਲ ਦੀ ਫੋਟੋ ਚੁਣੋ",
+      crop_wheat: "ਕਣਕ",
+      crop_paddy: "ਝੋਨਾ",
+      crop_mustard: "ਸਰ੍ਹੋਂ",
+      crop_cotton: "ਨਰਮਾ/ਕਪਾਹ",
+      step2_time_select: "2. ਆਉਣ ਦਾ ਦਿਨ ਅਤੇ ਸੂਰਜ ਵੇਲਾ ਚੁਣੋ",
+      date_today: "ਅੱਜ",
+      date_tomorrow: "ਭਲਕੇ",
+      date_day_after: "ਪਰਸੋਂ",
+      slot_fast: "ਘੱਟ ਭੀੜ",
+      slot_morning: "ਸਵੇਰ ਦਾ ਚੜ੍ਹਦਾ ਸੂਰਜ",
+      slot_mod: "ਦਰਮਿਆਨਾ",
+      slot_afternoon: "ਦੁਪਹਿਰ ਦਾ ਵੇਲਾ",
+      slot_slow: "ਭਾਰੀ ਭੀੜ",
+      slot_evening: "ਸ਼ਾਮ ਦਾ ਵੇਲਾ",
+      step3_vehicle_select: "3. ਵਾਹਨ ਚੁਣੋ",
+      vehicle_tractor: "ਟਰੈਕਟਰ ਟਰਾਲੀ",
+      vehicle_truck: "ਵੱਡਾ ਟਰੱਕ",
+      vehicle_pickup: "ਛੋਟਾ ਪਿਕਅੱਪ",
+      receipt_live_pass: "ਤਿਆਰ ਗੇਟ ਪਾਸ ਰਸੀਦ",
+      token_id_label: "ਪਾਸ ਨੰਬਰ",
+      commodity_selected: "ਫ਼ਸਲ:",
+      date_selected: "ਤਾਰੀਖ:",
+      time_selected: "ਸਮਾਂ:",
+      transport_selected: "ਗੱਡੀ:",
+      assigned_dock_gate: "ਗੇਟ ਨੰਬਰ:",
+      btn_confirm_download: "ਪਾਸ ਫੋਨ 'ਚ ਰੱਖੋ",
+      btn_listen_pass: "ਪਾਸ ਬੋਲ ਕੇ ਸੁਣੋ",
+      solution_eyebrow: "ਪੁਰਾਣੀ ਮੰਡੀ ਬਨਾਮ ਨਵਾਂ ਢਾਂਚਾ",
+      solution_title: "ਲੰਮੀਆਂ ਲਾਈਨਾਂ ਅਤੇ ਖੱਜਲ-ਖ਼ੁਆਰੀ ਦਾ ਖ਼ਾਤਮਾ",
+      legacy_mandi_badge: "ਪੁਰਾਣੀ ਸਮੱਸਿਆ",
+      legacy_heading: "ਸੜਕਾਂ 'ਤੇ 14 ਘੰਟੇ ਟਰਾਲੀਆਂ ਦਾ ਜਾਮ",
+      legacy_point_1: "ਕਿਸਾਨ ਭੁੱਖੇ-ਤਿਹਾਏ ਸੜਕਾਂ 'ਤੇ ਖੜ੍ਹੇ ਰਹਿੰਦੇ ਸਨ ਅਤੇ ਡੀਜ਼ਲ ਬਲਦਾ ਸੀ।",
+      legacy_point_2: "ਥੱਕੇ ਕਿਸਾਨਾਂ ਤੋਂ ਵਪਾਰੀ ਘੱਟ ਰੇਟ 'ਤੇ ਫ਼ਸਲ ਖ਼ਰੀਦਦੇ ਸਨ।",
+      legacy_point_3: "ਅਚਾਨਕ ਮੀਂਹ ਪੈਣ ਨਾਲ ਬੋਰੀਆਂ ਖ਼ਰਾਬ ਹੋ ਜਾਂਦੀਆਂ ਸਨ।",
+      smart_portal_badge: "ਸਮਾਰਟ ਹੱਲ",
+      smart_heading: "ਸਿਰਫ਼ 20 ਮਿੰਟਾਂ ਵਿੱਚ ਗੇਟ ਅੰਦਰ ਦਾਖ਼ਲਾ",
+      smart_point_1: "ਪਾਸ ਨਾਲ ਟਰੈਕਟਰ ਸਿੱਧਾ ਕੰਡੇ ਅਤੇ ਖਾਲੀ ਸ਼ੈੱਡ ਤੱਕ ਪਹੁੰਚਦਾ ਹੈ।",
+      smart_point_2: "ਬੋਲ ਕੇ ਵੀ ਕਿਸਾਨ ਆਸਾਨੀ ਨਾਲ ਸਮਾਂ ਬੁੱਕ ਕਰ ਸਕਦੇ ਹਨ।",
+      smart_point_3: "ਨੇੜੇ ਦੀਆਂ ਦੂਜੀਆਂ ਮੰਡੀਆਂ ਵਿੱਚ ਖਾਲੀ ਥਾਂ ਦੀ ਤੁਰੰਤ ਜਾਣਕਾਰੀ।",
+      arch_eyebrow: "ਤਕਨੀਕੀ ਢਾਂਚਾ",
+      arch_title: "ਘੱਟ ਇੰਟਰਨੈੱਟ 'ਤੇ ਵੀ ਤੇਜ਼",
+      arch_step1_title: "ਕਿਸਾਨ ਚੋਣ",
+      arch_step1_desc: "ਅਵਾਜ਼ ਜਾਂ ਫੋਟੋ ਦਬਾ ਕੇ ਬੁਕਿੰਗ।",
+      arch_step1_tech: "ਵੌਇਸ ਬੋਟ",
+      arch_step2_title: "ਲੋਡ ਸੰਤੁਲਨ",
+      arch_step2_desc: "ਇੱਕੋ ਵੇਲੇ ਸੀਮਤ ਟਰਾਲੀਆਂ ਤਾਂ ਜੋ ਜਾਮ ਨਾ ਲੱਗੇ।",
+      arch_step2_tech: "ਆਟੋਮੈਟਿਕ ਕਤਾਰ",
+      arch_step3_title: "ਕੈਮਰਾ ਸਕੈਨ",
+      arch_step3_desc: "ਗੇਟ 'ਤੇ ਨੰਬਰ ਪਲੇਟ ਪਛਾਣ ਕੇ ਤੁਰੰਤ ਖੁੱਲ੍ਹਦਾ ਬੂਹਾ।",
+      arch_step3_tech: "ਸਮਾਰਟ ਕੈਮਰਾ",
+      arch_step4_title: "ਖਾਤੇ ਵਿੱਚ ਸਿੱਧੇ ਪੈਸੇ",
+      arch_step4_desc: "ਤੋਲ ਹੁੰਦੇ ਹੀ ਐੱਮ.ਐੱਸ.ਪੀ ਦਾ ਪੈਸਾ ਬੈਂਕ ਖਾਤੇ ਵਿੱਚ।",
+      arch_step4_tech: "ਡੀ.ਬੀ.ਟੀ ਭੁਗਤਾਨ",
+      feasibility_eyebrow: "ਜ਼ਮੀਨੀ ਹਕੀਕਤ",
+      feasibility_title: "ਪਿੰਡਾਂ ਅਤੇ ਮੰਡੀਆਂ ਲਈ ਤਿਆਰ",
+      offline_first_title: "2G ਇੰਟਰਨੈੱਟ 'ਤੇ ਕਾਰਗਰ",
+      offline_first_desc: "ਕਮਜ਼ੋਰ ਨੈੱਟਵਰਕ ਵਿੱਚ ਵੀ ਬਿਨਾਂ ਰੁਕੇ ਚੱਲਦਾ ਹੈ।",
+      apmc_integration_title: "ਈ-ਨਾਮ ਨਾਲ ਜੁੜਿਆ",
+      apmc_integration_desc: "ਮੌਜੂਦਾ ਸਰਕਾਰੀ ਮੰਡੀ ਕੰਡਿਆਂ ਨਾਲ ਸਿੱਧਾ ਲਿੰਕ।",
+      voice_first_title: "ਅਣਪੜ੍ਹਾਂ ਲਈ 100% ਸੌਖਾ",
+      voice_first_desc: "ਕੋਈ ਵੀ ਕਿਸਾਨ ਫੋਟੋ ਦੇਖ ਕੇ 60 ਸਕਿੰਟਾਂ ਵਿੱਚ ਪਾਸ ਬਣਾ ਲਵੇਗਾ।",
+      impact_eyebrow: "ਵੱਡਾ ਲਾਭ",
+      impact_title: "ਕਿਸਾਨਾਂ ਦੀ ਆਮਦਨ ਅਤੇ ਸਮੇਂ ਦੀ ਬਚਤ",
+      metric1_label: "ਉਡੀਕ ਸਮੇਂ ਵਿੱਚ ਕਟੌਤੀ",
+      metric1_sub: "14 ਘੰਟਿਆਂ ਤੋਂ ਘੱਟ ਕੇ 22 ਮਿੰਟ",
+      metric2_label: "ਪ੍ਰਤੀ ਗੇੜਾ ਬਚਤ",
+      metric2_sub: "ਡੀਜ਼ਲ ਅਤੇ ਖ਼ਰਚੇ ਦੀ ਬਚਤ",
+      metric3_label: "ਮਜਬੂਰੀ ਵਿੱਚ ਵਿਕਰੀ",
+      metric3_sub: "ਸਰਕਾਰੀ ਮੁੱਲ ਦੀ ਪੂਰੀ ਗਰੰਟੀ",
+      metric4_label: "ਕੁਇੰਟਲ ਅਨਾਜ ਪ੍ਰਬੰਧਨ",
+      metric4_sub: "ਮੰਡੀ ਵਿੱਚ ਨਿਰਵਿਘਨ ਕਾਰਜ",
+      features_eyebrow: "ਸਾਰਿਆਂ ਲਈ",
+      features_title: "ਹਰ ਕਿਸਾਨ ਵੀਰ ਲਈ ਤਿਆਰ",
+      feat1_title: "ਹਰ ਥਾਂ ਸਪੀਕਰ ਬਟਨ",
+      feat1_desc: "ਬਟਨ ਦਬਾਓ ਅਤੇ ਪੰਜਾਬੀ ਵਿੱਚ ਸੁਣੋ।",
+      feat2_title: "ਰੰਗ ਅਤੇ ਆਕਾਰ",
+      feat2_desc: "ਹਰੇ, ਪੀਲੇ ਅਤੇ ਲਾਲ ਚਿੰਨ੍ਹ ਨਾਲ ਸੌਖੀ ਸਮਝ।",
+      feat3_title: "ਬੋਲ ਕੇ ਬੁਕਿੰਗ",
+      feat3_desc: "ਮਾਈਕ ਫੜ ਕੇ ਬੋਲੋ: ਭਲਕੇ ਸਵੇਰੇ ਕਣਕ, ਪਾਸ ਹਾਜ਼ਰ ਹੋਵੇਗਾ।",
+      voice_modal_listening: "ਤੁਹਾਡੀ ਅਵਾਜ਼ ਸੁਣ ਰਹੇ ਹਾਂ...",
+      voice_modal_hint: "ਬੋਲੋ: 'ਭਲਕੇ ਸਵੇਰੇ ਕਣਕ ਦਾ ਪਾਸ ਬਣਾਓ'"
+    },
+    te: {
+      govtech_portal_tag: "స్మార్ట్ రైతు మార్కెట్ పోర్టల్ 2026",
+      audio_tour_btn: "వాయిస్ సహాయం వినండి",
+      live_telemetry_status: "మార్కెట్ యార్డ్ తెరిచి ఉంది",
+      sih_badge: "స్మార్ట్ మార్కెట్ స్లాట్ ఇంజిన్",
+      hero_title: "నేరుగా ధాన్యం బుకింగ్. మార్కెట్ గేటు వద్ద సున్నా వేచి ఉండే సమయం.",
+      hero_desc: "నిరక్షరాస్యులైన రైతుల కోసం ప్రత్యేక వాయిస్ మరియు చిత్ర ఆధారిత గేట్‌వే. పంట చిత్రాన్ని ఎంచుకోండి, గేట్ పాస్ పొందండి మరియు నిర్ణీత సమయంలో నేరుగా రండి.",
+      mandi_load_indicator: "మార్కెట్లో ప్రత్యక్ష రద్దీ స్థితి",
+      auto_refresh_tag: "ఇప్పుడే అప్‌డేట్ చేయబడింది",
+      gate_a_name: "గేట్ 01 - గోధుమలు",
+      wait_time_fast: "వేగంగా: 12 నిమిషాలు",
+      gate_b_name: "గేట్ 02 - వరి ధాన్యం",
+      wait_time_mod: "మధ్యస్థం: 38 నిమిషాలు",
+      gate_c_name: "గేట్ 03 - పత్తి",
+      wait_time_high: "రద్దీ: 90 నిమిషాలు",
+      cta_book_slot: "వెంటనే గేట్ పాస్ బుక్ చేయండి",
+      cta_voice_assist: "మాట్లాడి బుక్ చేయండి",
+      pass_preview_title: "డిజిటల్ మార్కెట్ గేట్ టోకెన్",
+      pass_preview_sub: "భారత ప్రభుత్వం ధృవీకరించినది",
+      farmer_label: "రైతు పేరు",
+      status_approved: "స్లాట్ ఖరారైంది",
+      commodity_crop: "పంట రకం",
+      crop_wheat_name: "గోధుమలు",
+      volume_weight: "అంచనా బరువు",
+      allocated_slot: "కేటాయించిన సమయం",
+      morning_slot_time: "ఉదయం 08:00 - 11:00",
+      bay_assignment: "కేటాయించిన షెడ్",
+      booking_eyebrow: "సులభమైన దశలు",
+      booking_title: "బొమ్మలు చూసి వెంటనే గేట్ పాస్ పొందండి",
+      booking_subtitle: "టైప్ చేయాల్సిన అవసరం లేదు. పంట బొమ్మపై నొక్కండి, సూర్యుని సమయాన్ని ఎంచుకోండి మరియు గేట్ పాస్ సిద్ధం చేసుకోండి.",
+      live_sync_status: "మార్కెట్ సమకాలీకరణ",
+      step1_crop_select: "1. మీ పంట బొమ్మను ఎంచుకోండి",
+      crop_wheat: "గోధుమలు",
+      crop_paddy: "వరి ధాన్యం",
+      crop_mustard: "ఆవాలు",
+      crop_cotton: "పత్తి",
+      step2_time_select: "2. వచ్చే రోజు మరియు సూర్యుని సమయం",
+      date_today: "ఈరోజు",
+      date_tomorrow: "రేపు",
+      date_day_after: "ఎల్లుండి",
+      slot_fast: "తక్కువ రద్దీ",
+      slot_morning: "ఉదయపు ఎండ",
+      slot_mod: "మధ్యస్థం",
+      slot_afternoon: "మధ్యాహ్నపు ఎండ",
+      slot_slow: "భారీ రద్దీ",
+      slot_evening: "సాయంత్రం",
+      step3_vehicle_select: "3. వాహనం ఎంచుకోండి",
+      vehicle_tractor: "ట్రాక్టర్ ట్రాలీ",
+      vehicle_truck: "భారీ లారీ",
+      vehicle_pickup: "చిన్న పికప్",
+      receipt_live_pass: "సిద్ధమైన గేట్ పాస్ రసీదు",
+      token_id_label: "పాస్ నంబర్",
+      commodity_selected: "పంట:",
+      date_selected: "తేదీ:",
+      time_selected: "సమయం:",
+      transport_selected: "వాహనం:",
+      assigned_dock_gate: "గేట్ నంబర్:",
+      btn_confirm_download: "పాస్ ఫోన్‌లో సేవ్ చేయండి",
+      btn_listen_pass: "పాస్ వివరాలు వినండి",
+      solution_eyebrow: "పాత మార్కెట్ వర్సెస్ కొత్త విధానం",
+      solution_title: "రద్దీ మరియు మధ్యవర్తుల దోపిడీకి ముగింపు",
+      legacy_mandi_badge: "పాత సమస్య",
+      legacy_heading: "రోడ్డుపై 14 గంటల ట్రాఫిక్ జామ్",
+      legacy_point_1: "రైతులు అన్నపానీయాలు లేకుండా రాత్రంతా రోడ్డుపై వేచి ఉండాల్సి వచ్చేది.",
+      legacy_point_2: "అలసిపోయిన రైతుల నుండి వ్యాపారులు తక్కువ ధరకు కొనేవారు.",
+      legacy_point_3: "ఆకస్మిక వర్షాలకు ధాన్యం తడిసి పాడైపోయేది.",
+      smart_portal_badge: "స్మార్ట్ పరిష్కారం",
+      smart_heading: "కేవలం 20 నిమిషాల్లో గేట్ ఎంట్రీ మరియు కాటా",
+      smart_point_1: "డిజిటల్ పాస్‌తో నేరుగా నిర్దేశిత కాటా మరియు షెడ్డు వద్దకు వాహనం వెళుతుంది.",
+      smart_point_2: "నిరక్షరాస్యులైన రైతులు మాట్లాడి లేదా ఫోన్ ద్వారా కూడా బుక్ చేసుకోవచ్చు.",
+      smart_point_3: "సమీప మార్కెట్లలో ఖాళీగా ఉన్న స్లాట్లను సిస్టమ్ వెంటనే సూచిస్తుంది.",
+      arch_eyebrow: "సాంకేతిక విధానం",
+      arch_title: "తక్కువ ఇంటర్నెట్‌లోనూ అత్యంత వేగంగా పనిచేస్తుంది",
+      arch_step1_title: "రైతు ఎంపిక",
+      arch_step1_desc: "చిత్రాలు మరియు వాయిస్ ద్వారా సులభ బుకింగ్.",
+      arch_step1_tech: "వాయిస్ & సులభ ఇంటర్‌ఫేస్",
+      arch_step2_title: "క్యూ నిర్వహణ",
+      arch_step2_desc: "రద్దీ లేకుండా పరిమిత వాహనాల అనుమతి.",
+      arch_step2_tech: "స్మార్ట్ లోడ్ బ్యాలెన్సర్",
+      arch_step3_title: "నంబర్ ప్లేట్ స్కానింగ్",
+      arch_step3_desc: "కెమెరా 2 సెకన్లలో వాహనం గుర్తించి గేటు తెరుస్తుంది.",
+      arch_step3_tech: "స్మార్ట్ కెమెరా స్కానింగ్",
+      arch_step4_title: "నేరుగా బ్యాంకు ఖాతాలోకి నగదు",
+      arch_step4_desc: "కాటా పూర్తవగానే మద్దతు ధర నేరుగా ఆధార్ లింక్డ్ బ్యాంక్ ఖాతాలో జమవుతుంది.",
+      arch_step4_tech: "డిబిటి చెల్లింపు",
+      feasibility_eyebrow: "ఆచరణ సాధ్యం",
+      feasibility_title: "ప్రతి పల్లెకు అనుకూలం",
+      offline_first_title: "2G నెట్‌వర్క్‌లోనూ పనిచేస్తుంది",
+      offline_first_desc: "ఇంటర్నెట్ బలహీనంగా ఉన్నప్పటికీ అంతరాయం లేకుండా పనిచేస్తుంది.",
+      apmc_integration_title: "ఈ-నామ్ (e-NAM)తో అనుసంధానం",
+      apmc_integration_desc: "ప్రస్తుత మార్కెట్ యార్డ్ కాటాలతో నేరుగా అనుసంధానం.",
+      voice_first_title: "నిరక్షరాస్యులకు 100% అనుకూలం",
+      voice_first_desc: "ఎవరైనా రైతు బొమ్మలు చూసి 1 నిమిషంలో పాస్ బుక్ చేయవచ్చు.",
+      impact_eyebrow: "రైతులకు ప్రయోజనం",
+      impact_title: "సమయం మరియు ధనం భారీగా ఆదా",
+      metric1_label: "వేచి ఉండే సమయం తగ్గుదల",
+      metric1_sub: "14 గంటల నుండి 22 నిమిషాలకు తగ్గింది",
+      metric2_label: "ప్రతి ట్రిప్పుకు ఆదా",
+      metric2_sub: "ట్రాక్టర్ డీజిల్ మరియు బస ఖర్చులు ఆదా",
+      metric3_label: "తక్కువ ధరకు అమ్ముకోవాల్సిన అవసరం లేదు",
+      metric3_sub: "పూర్తి మద్దతు ధర గ్యారెంటీ",
+      metric4_label: "క్వింటాళ్ల ధాన్యం నిర్వహణ",
+      metric4_sub: "మార్కెట్లో క్రమబద్ధమైన కొనుగోళ్లు",
+      features_eyebrow: "అందరికీ సమాన ప్రవేశం",
+      features_title: "భారతీయ రైతులందరి కోసం",
+      feat1_title: "ప్రతి చోటా స్పీకర్ బటన్",
+      feat1_desc: "బటన్ నొక్కగానే మొత్తం సమాచారం తెలుగులో వినబడుతుంది.",
+      feat2_title: "రంగులు మరియు ఆకారాల స్పష్టత",
+      feat2_desc: "ఆకుపచ్చ, పసుపు, ఎరుపు రంగులు మరియు ముఖ కవళికలతో సులభ గ్రహింపు.",
+      feat3_title: "వాయిస్ అసిస్టెంట్",
+      feat3_desc: "మైక్ బటన్ నొక్కి మాట్లాడండి: రేపు ఉదయం వరి ధాన్యం, పాస్ వెంటనే వస్తుంది.",
+      voice_modal_listening: "మీ మాటలను వింటున్నాము...",
+      voice_modal_hint: "చెప్పండి: 'రేపు ఉదయం వరి ధాన్యం గేట్ పాస్ బుక్ చేయి'"
+    }
+  };
+
+  let currentLang = 'en';
+
+  // Global Text-to-Speech Helper
+  function speakText(text, langCode = currentLang) {
+    if (!('speechSynthesis' in window)) {
+      alert("Speech audio is not supported in this browser.");
+      return;
+    }
+    window.speechSynthesis.cancel(); // Stop any pending speech
+    const utterance = new SpeechSynthesisUtterance(text);
+    
+    // Set appropriate BCP 47 language tag
+    if (langCode === 'hi') utterance.lang = 'hi-IN';
+    else if (langCode === 'pa') utterance.lang = 'pa-IN';
+    else if (langCode === 'te') utterance.lang = 'te-IN';
+    else utterance.lang = 'en-IN';
+
+    utterance.rate = 0.95; // Slightly slower for clarity
+    window.speechSynthesis.speak(utterance);
+  }
+
+  // Universal Speaker click handler for sections/cards
+  function speakElementText(elementId) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    const text = el.innerText || el.textContent;
+    speakText(text);
+  }
+
+  // Switch whole UI language with data-i18n replacement
+  function setGlobalLanguage(lang) {
+    currentLang = lang;
+    const langNames = {
+      en: "English (EN)",
+      hi: "हिंदी (HI)",
+      pa: "ਪੰਜਾਬੀ (PA)",
+      te: "తెలుగు (TE)"
+    };
+    
+    document.getElementById('currentLangLabel').innerText = langNames[lang] || "English";
+
+    // Update all elements containing data-i18n attribute
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(elem => {
+      const key = elem.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key]) {
+        elem.innerText = translations[lang][key];
+      }
+    });
+
+    toggleLangModal(false);
+
+    // Audio confirmation in selected native tongue
+    const greetings = {
+      en: "Smart Farmer Portal set to English.",
+      hi: "स्मार्ट किसान पोर्टल में आपका स्वागत है। भाषा हिंदी चुनी गई है।",
+      pa: "ਸਮਾਰਟ ਕਿਸਾਨ ਪੋਰਟਲ ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ। ਪੰਜਾਬੀ ਭਾਸ਼ਾ ਚੁਣੀ ਗਈ ਹੈ।",
+      te: "స్మార్ట్ రైతు పోర్టల్‌కు స్వాగతం. తెలుగు భాష ఎంపిక చేయబడింది."
+    };
+    speakText(greetings[lang] || greetings.en, lang);
+  }
+
+  function playLangSample(lang) {
+    const samples = {
+      en: "Hello farmer. Welcome to the Smart Mandi Allocation Portal.",
+      hi: "नमस्ते किसान भाई। स्मार्ट मंडी पोर्टल में आपका स्वागत है।",
+      pa: "ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ ਕਿਸਾਨ ਵੀਰੋ। ਸਮਾਰਟ ਮੰਡੀ ਪੋਰਟਲ ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ।",
+      te: "నమస్కారం రైతు సోదరులారా. స్మార్ట్ మార్కెట్ యార్డ్ పోర్టల్‌కు స్వాగతం."
+    };
+    speakText(samples[lang], lang);
+  }
+
+  function toggleLangModal(show) {
+    const modal = document.getElementById('languageModal');
+    if (show) {
+      modal.classList.remove('hidden');
+    } else {
+      modal.classList.add('hidden');
+    }
+  }
+
+  document.getElementById('langModalBtn').addEventListener('click', () => toggleLangModal(true));
+  document.getElementById('globalAudioTourBtn').addEventListener('click', () => {
+    const tourIntro = {
+      en: "Welcome to Smart Mandi portal. Scroll down to choose your crop icon, pick your sun arrival slot, and click the orange button to get your gate pass. You can also tap any speaker icon to listen.",
+      hi: "स्मार्ट मंडी पोर्टल में आपका स्वागत है। नीचे जाकर अपनी फसल का फोटो चुनें, सूरज का समय चुनें और नारंगी बटन दबाकर अपना गेट पास पाएं। किसी भी बटन की जानकारी सुनने के लिए स्पीकर पर दबाएं।",
+      pa: "ਸਮਾਰਟ ਮੰਡੀ ਪੋਰਟਲ ਵਿੱਚ ਜੀ ਆਇਆਂ ਨੂੰ। ਹੇਠਾਂ ਜਾ ਕੇ ਆਪਣੀ ਫ਼ਸਲ ਚੁਣੋ, ਸੂਰਜ ਦਾ ਸਮਾਂ ਚੁਣੋ ਅਤੇ ਸੰਤਰੀ ਬਟਨ ਦਬਾ ਕੇ ਗੇਟ ਪਾਸ ਪ੍ਰਾਪਤ ਕਰੋ।",
+      te: "స్మార్ట్ మార్కెట్ పోర్టల్‌కు స్వాగతం. క్రింద మీ పంట బొమ్మను మరియు సమయాన్ని ఎంచుకుని ఆరెంజ్ బటన్ నొక్కి గేట్ పాస్ పొందండి."
+    };
+    speakText(tourIntro[currentLang] || tourIntro.en);
+  });
+
+  // Simulator State Management
+  let bookingState = {
+    cropKey: 'wheat',
+    cropName: 'Wheat (Gehun)',
+    cropEmoji: '🌾',
+    date: 'Today (18 Oct)',
+    slot: 'Morning (06:00 - 11:00 AM)',
+    gate: 'Gate 01 (Bay 04)',
+    vehicle: 'Tractor Trolley'
+  };
+
+  function selectCrop(key, name, msp, emoji) {
+    bookingState.cropKey = key;
+    bookingState.cropName = name;
+    bookingState.cropEmoji = emoji;
+    
+    document.getElementById('disp-crop').innerText = name;
+    document.getElementById('disp-crop-emoji').innerText = emoji;
+
+    // Visual selection feedback
+    document.querySelectorAll('.crop-btn').forEach(btn => {
+      btn.classList.remove('bg-secondary-container', 'shadow-md');
+      btn.classList.add('bg-surface-container');
+    });
+    const selectedBtn = document.querySelector(`.crop-btn[data-crop="${key}"]`);
+    if (selectedBtn) {
+      selectedBtn.classList.add('bg-secondary-container', 'shadow-md');
+      selectedBtn.classList.remove('bg-surface-container');
+    }
+
+    speakText(`${name} selected. MSP is ${msp}`);
+  }
+
+  function selectDate(dateLabel, dateStr) {
+    bookingState.date = `${dateLabel} (${dateStr})`;
+    document.getElementById('disp-date').innerText = bookingState.date;
+
+    document.querySelectorAll('.date-btn').forEach(btn => {
+      btn.classList.remove('bg-secondary-container', 'text-on-secondary-container');
+      btn.classList.add('bg-surface-container', 'text-on-surface');
+    });
+    const target = document.querySelector(`.date-btn[data-date="${dateLabel}"]`);
+    if (target) {
+      target.classList.add('bg-secondary-container', 'text-on-secondary-container');
+      target.classList.remove('bg-surface-container', 'text-on-surface');
+    }
+    speakText(`Arrival date chosen: ${dateLabel}`);
+  }
+
+  function selectSlot(slotStr, loadStr, gateStr) {
+    bookingState.slot = slotStr;
+    bookingState.gate = `${gateStr} (Bay 04)`;
+
+    document.getElementById('disp-slot').innerText = slotStr;
+    document.getElementById('disp-gate').innerText = bookingState.gate;
+
+    document.querySelectorAll('.slot-btn').forEach(btn => {
+      btn.classList.remove('bg-secondary-container/50', 'ring-2', 'ring-secondary');
+    });
+
+    const trigger = event?.currentTarget;
+    if (trigger) {
+      trigger.classList.add('bg-secondary-container/50', 'ring-2', 'ring-secondary');
+    }
+
+    speakText(`${slotStr}. ${loadStr} at ${gateStr}`);
+  }
+
+  function selectVehicle(name, capacity, emoji) {
+    bookingState.vehicle = `${emoji} ${name}`;
+    document.getElementById('disp-vehicle').innerText = bookingState.vehicle;
+
+    document.querySelectorAll('.vehicle-btn').forEach(btn => {
+      btn.classList.remove('bg-secondary-container', 'shadow-md');
+    });
+    const trigger = event?.currentTarget;
+    if (trigger) {
+      trigger.classList.add('bg-secondary-container', 'shadow-md');
+    }
+
+    speakText(`Vehicle selected: ${name}`);
+  }
+
+  function speakCropOptions() {
+    const text = {
+      en: "Step 1: Choose Wheat, Paddy Rice, Mustard, or Cotton.",
+      hi: "पहला चरण: गेहूं, धान, सरसों या कपास में से अपनी फसल चुनें।",
+      pa: "ਪਹਿਲਾ ਕਦਮ: ਕਣਕ, ਝੋਨਾ, ਸਰ੍ਹੋਂ ਜਾਂ ਨਰਮਾ ਕਪਾਹ ਵਿੱਚੋਂ ਫ਼ਸਲ ਚੁਣੋ।",
+      te: "మొదటి దశ: గోధుమలు, వరి ధాన్యం, ఆవాలు లేదా పత్తిని ఎంచుకోండి."
+    };
+    speakText(text[currentLang] || text.en);
+  }
+
+  function readOutPassDetails() {
+    const summary = {
+      en: `Your Mandi Gate Token APMC 26032 is ready. Crop is ${bookingState.cropName}. Arrival date is ${bookingState.date}. Time window is ${bookingState.slot}. Report to ${bookingState.gate}.`,
+      hi: `आपका मंडी गेट टोकन तैयार है। फसल ${bookingState.cropName} है। तारीख ${bookingState.date} है। समय ${bookingState.slot} है। कृपया ${bookingState.gate} पर आएं।`,
+      pa: `ਤੁਹਾਡਾ ਮੰਡੀ ਗੇਟ ਪਾਸ ਤਿਆਰ ਹੈ। ਫ਼ਸਲ ${bookingState.cropName} ਹੈ। ਆਉਣ ਦਾ ਸਮਾਂ ${bookingState.slot} ਹੈ। ${bookingState.gate} 'ਤੇ ਪਹੁੰਚੋ।`,
+      te: `మీ మార్కెట్ యార్డ్ గేట్ పాస్ సిద్ధమైంది. పంట ${bookingState.cropName}. వచ్చే సమయం ${bookingState.slot}. దయచేసి ${bookingState.gate} వద్దకు రండి.`
+    };
+    speakText(summary[currentLang] || summary.en);
+  }
+
+  function confirmPassAction() {
+    const randId = 'APMC-' + Math.floor(10000 + Math.random() * 90000);
+    document.getElementById('disp-token-id').innerText = randId;
+    const confirmNotice = {
+      en: `Pass confirmed! Serial number ${randId} saved and sent via SMS to farmer mobile.`,
+      hi: `पास पक्का हो गया है! टोकन नंबर ${randId} आपके मोबाइल पर भेज दिया गया है।`,
+      pa: `ਪਾਸ ਪੱਕਾ ਹੋ ਗਿਆ ਹੈ! ਟੋਕਨ ਨੰਬਰ ${randId} ਫੋਨ 'ਤੇ ਭੇਜ ਦਿੱਤਾ ਗਿਆ ਹੈ।`,
+      te: `గేట్ పాస్ ఖరారైంది! టోకెన్ నంబర్ ${randId} మీ మొబైల్‌కు పంపబడింది.`
+    };
+    alert(confirmNotice[currentLang] || confirmNotice.en);
+    readOutPassDetails();
+  }
+
+  // Functional Web Speech API Voice Recognition with Fallback Simulation
+  let speechRecognizer = null;
+
+  function triggerVoiceBookingSession() {
+    const modal = document.getElementById('voiceModal');
+    modal.classList.remove('hidden');
+    const transcriptBox = document.getElementById('voiceTranscriptBox');
+    transcriptBox.innerText = translations[currentLang]?.voice_modal_listening || "Listening...";
+
+    // Check for native browser SpeechRecognition support
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      try {
+        speechRecognizer = new SpeechRecognition();
+        speechRecognizer.continuous = false;
+        speechRecognizer.interimResults = false;
+
+        const langCodes = { en: 'en-IN', hi: 'hi-IN', pa: 'pa-IN', te: 'te-IN' };
+        speechRecognizer.lang = langCodes[currentLang] || 'hi-IN';
+
+        speechRecognizer.onresult = function(event) {
+          const spoken = event.results[0][0].transcript;
+          transcriptBox.innerText = `"${spoken}"`;
+          handleVoiceCommand(spoken.toLowerCase());
+        };
+
+        speechRecognizer.onerror = function(err) {
+          transcriptBox.innerText = 'Voice captured or timed out. Tap simulation button below.';
+        };
+
+        speechRecognizer.start();
+      } catch (e) {
+        transcriptBox.innerText = 'Voice listening active. Tap a quick simulation button.';
+      }
+    } else {
+      transcriptBox.innerText = 'Microphone API unavailable. Click quick buttons below to test!';
+    }
+  }
+
+  function handleVoiceCommand(cmd) {
+    setTimeout(() => {
+      if (cmd.includes('wheat') || cmd.includes('गेहूं') || cmd.includes('ਕਣਕ') || cmd.includes('గోధుమ')) {
+        simulateVoiceBookingWheat();
+      } else {
+        simulateVoiceBookingPaddy();
+      }
+    }, 900);
+  }
+
+  function simulateVoiceBookingWheat() {
+    selectCrop('wheat', 'Wheat (Gehun)', '₹ 2,275/Qtl', '🌾');
+    selectDate('Tomorrow', '19 Oct');
+    selectSlot('Morning (06:00 - 11:00 AM)', 'Low Queue', 'Gate 01');
+    closeVoiceModal();
+    readOutPassDetails();
+  }
+
+  function simulateVoiceBookingPaddy() {
+    selectCrop('paddy', 'Paddy Rice (Dhan)', '₹ 2,183/Qtl', '🍚');
+    selectDate('Today', '18 Oct');
+    selectSlot('Afternoon (11:00 AM - 03:00 PM)', 'Moderate Queue', 'Gate 02');
+    closeVoiceModal();
+    readOutPassDetails();
+  }
+
+  function closeVoiceModal() {
+    if (speechRecognizer) {
+      try { speechRecognizer.stop(); } catch(e) {}
+    }
+    document.getElementById('voiceModal').classList.add('hidden');
+  }
+
+  // Pre-initialize default selection visually
+  window.addEventListener('DOMContentLoaded', () => {
+    selectCrop('wheat', 'Wheat (Gehun)', '₹ 2,275/Qtl', '🌾');
+  });
+</script></main><footer class="w-full bg-primary-container text-on-primary py-space-md px-space-md mb-20"><div class="flex flex-col sm:flex-row items-center justify-between gap-space-xs text-center sm:text-left"><span class="font-section-eyebrow text-section-eyebrow uppercase tracking-widest text-inverse-primary">SMART INDIA HACKATHON 2026 • STACK OVERFLOW(ED)</span><span class="font-label-md text-label-md text-surface-dim">Govtech Agri-Logistics Infrastructure © 2026</span></div></footer><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]" data-active-classes="text-secondary"><div class="h-16 px-space-md flex items-center justify-around"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] text-secondary" data-path="overview" href="#hero"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-label-md text-label-md">Overview</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] text-on-surface-variant hover:text-on-surface" data-path="solution" href="#solution"><span class="material-symbols-outlined text-[20px]">verified</span><span class="font-label-md text-label-md">Solution</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] text-on-surface-variant hover:text-on-surface" data-path="architecture" href="#architecture"><span class="material-symbols-outlined text-[20px]">hub</span><span class="font-label-md text-label-md">Stack</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] text-on-surface-variant hover:text-on-surface" data-path="impact" href="#impact"><span class="material-symbols-outlined text-[20px]">monitoring</span><span class="font-label-md text-label-md">Impact</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] text-on-surface-variant hover:text-on-surface" data-path="features" href="#features"><span class="material-symbols-outlined text-[20px]">tune</span><span class="font-label-md text-label-md">Features</span></a></div></nav></body></html>
