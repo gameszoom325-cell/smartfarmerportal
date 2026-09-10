@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+
+<html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Smart Farmer Portal - Verified Farmer Login &amp; Mandi Pass</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
 tailwind.config = {
   darkMode: "class",
@@ -47,934 +47,900 @@ tailwind.config = {
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 </style>
 </head>
-<body class="bg-surface font-sans text-on-surface antialiased min-h-screen flex flex-col">
-
-<!-- Top Fixed Header -->
-<header class="fixed top-0 w-full z-40 bg-surface-container-lowest/95 backdrop-blur-md border-b border-surface-container-high shadow-sm">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
-    <!-- Brand Emblem & Title -->
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-primary-container text-white flex items-center justify-center font-bold text-xl shadow-sm">
-        🌾
-      </div>
-      <div class="flex flex-col">
-        <span class="text-lg font-extrabold text-primary tracking-tight leading-none">Smart Farmer Portal</span>
-        <span class="text-xs uppercase font-bold tracking-wider text-secondary mt-0.5" data-i18n="tag_apmc">APMC Mandi Scheduling • SIH #26032</span>
-      </div>
-    </div>
-
-    <!-- Nav Links (Desktop) -->
-    <nav class="hidden md:flex items-center gap-1 bg-surface-container-low px-3 py-1.5 rounded-full border border-surface-container">
-      <a href="#hero" class="px-3 py-1 rounded-full text-xs font-bold text-primary bg-surface-container-lowest shadow-sm" data-i18n="nav_hero">Hero</a>
-      <a href="#booking" class="px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant hover:text-primary" data-i18n="nav_booking">Slot Booking</a>
-      <a href="#solution" class="px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant hover:text-primary" data-i18n="nav_solution">Solution</a>
-      <a href="#architecture" class="px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant hover:text-primary" data-i18n="nav_architecture">Architecture</a>
-      <a href="#impact" class="px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant hover:text-primary" data-i18n="nav_impact">Impact</a>
-    </nav>
-
-    <!-- Header Right: Language Switcher & Farmer Auth Profile Button -->
-    <div class="flex items-center gap-2 sm:gap-3">
-      <!-- Language Trigger -->
-      <button onclick="openLanguageModal()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-secondary hover:bg-surface-container-high text-xs font-bold transition-all" title="Change Language / भाषा बदलें">
-        <span class="material-symbols-outlined text-[16px]">translate</span>
-        <span id="currentLangDisplay">English</span>
-      </button>
-
-      <!-- Dynamic Farmer Account & Verification Button -->
-      <div id="authHeaderContainer">
-        <!-- Rendered dynamically by script: login button or farmer badge -->
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- Main Page Container -->
-<main class="flex-1 w-full pt-24 pb-20">
-  
-  <!-- Sub-Header Multilingual Banner Strip -->
-  <div class="w-full bg-primary-container text-white px-4 py-2 border-b border-primary">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs">
-      <div class="flex items-center gap-2">
-        <span class="px-2 py-0.5 rounded-full bg-secondary text-white font-bold text-[10px]">SIH 2026</span>
-        <span class="text-surface-dim font-medium" data-i18n="sub_banner_text">Government of India APMC Direct Procurement Portal • Illiterate-Friendly</span>
-      </div>
-      <div class="flex items-center gap-3">
-        <button onclick="speakSummary()" class="flex items-center gap-1 text-secondary-container hover:text-white font-semibold">
-          <span class="material-symbols-outlined text-[16px]">record_voice_over</span>
-          <span data-i18n="btn_voice_guide">Voice Guide</span>
-        </button>
-        <span class="flex items-center gap-1 text-emerald-400 font-semibold">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          <span>Khanna Mandi Online</span>
-        </span>
-      </div>
-    </div>
-  </div>
-
-  <!-- HERO SECTION -->
-  <section id="hero" class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-      
-      <!-- Left Hero Column -->
-      <div class="lg:col-span-7 flex flex-col items-start text-left space-y-4">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container/60 text-secondary font-bold text-xs">
-          <span class="material-symbols-outlined text-[16px]">verified</span>
-          <span data-i18n="hero_badge">Zero Waiting Mandi Dock System</span>
-        </div>
-
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight leading-tight" data-i18n="hero_heading">
-          Direct Grain Booking. Zero Waiting At The Mandi Gate.
-        </h1>
-
-        <p class="text-base sm:text-lg text-on-surface-variant max-w-2xl leading-relaxed" data-i18n="hero_subheading">
-          An illiterate-friendly voice and icon driven procurement gateway. Select your crop with visual badges, secure a verified dock gate pass, and arrive directly at scheduled unloading times.
-        </p>
-
-        <!-- Triple-Coded Live Yard Load Bar -->
-        <div class="w-full p-4 rounded-2xl bg-surface-container-low border border-surface-container shadow-sm space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold uppercase tracking-wider text-primary flex items-center gap-1.5" data-i18n="yard_status_title">
-              <span class="material-symbols-outlined text-[16px] text-secondary">speed</span>
-              Live Mandi Gate Status
-            </span>
-            <span class="text-[11px] text-outline" data-i18n="updated_just_now">Live sync: Khanna Yard</span>
-          </div>
-
-          <!-- Triple Coded Indicator Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-            <div class="flex items-center gap-3 p-2.5 rounded-xl bg-surface-container-lowest border border-emerald-100 shadow-sm">
-              <div class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
-                <span class="material-symbols-outlined text-[20px]">sentiment_very_satisfied</span>
-              </div>
-              <div>
-                <span class="text-xs font-bold text-primary block" data-i18n="gate_1_label">Gate 01 - Wheat</span>
-                <span class="text-[11px] font-semibold text-emerald-700" data-i18n="gate_1_time">Fast: 12 min wait</span>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-3 p-2.5 rounded-xl bg-surface-container-lowest border border-amber-100 shadow-sm">
-              <div class="w-9 h-9 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-bold">
-                <span class="material-symbols-outlined text-[20px]">sentiment_neutral</span>
-              </div>
-              <div>
-                <span class="text-xs font-bold text-primary block" data-i18n="gate_2_label">Gate 02 - Paddy</span>
-                <span class="text-[11px] font-semibold text-amber-700" data-i18n="gate_2_time">Moderate: 35 min</span>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-3 p-2.5 rounded-xl bg-surface-container-lowest border border-rose-100 shadow-sm">
-              <div class="w-9 h-9 rounded-md bg-rose-100 text-rose-800 flex items-center justify-center font-bold">
-                <span class="material-symbols-outlined text-[20px]">sentiment_dissatisfied</span>
-              </div>
-              <div>
-                <span class="text-xs font-bold text-primary block" data-i18n="gate_3_label">Gate 03 - Cotton</span>
-                <span class="text-[11px] font-semibold text-rose-700" data-i18n="gate_3_time">Rush: 85 min wait</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Primary Call to Actions -->
-        <div class="flex flex-wrap items-center gap-3 pt-2">
-          <button onclick="handleInstantBooking()" class="px-6 py-3 rounded-xl bg-on-tertiary-container hover:bg-tertiary-container text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2">
-            <span class="material-symbols-outlined text-[20px]">confirmation_number</span>
-            <span data-i18n="btn_instant_booking">Instant Gate Booking</span>
-          </button>
-          
-          <button onclick="triggerVoiceAssistant()" class="px-6 py-3 rounded-xl bg-surface-container hover:bg-surface-container-high text-primary font-bold text-sm border border-surface-container-high transition-all flex items-center gap-2">
-            <span class="material-symbols-outlined text-[20px] text-secondary">mic</span>
-            <span data-i18n="btn_voice_booking">Speak To Book</span>
-          </button>
-
-          <button onclick="speakHeroContent()" class="p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-secondary transition-all" title="Listen to Overview">
-            <span class="material-symbols-outlined text-[20px]">volume_up</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Right Hero Column: Live Gate Token Preview -->
-      <div class="lg:col-span-5 flex flex-col">
-        <div class="w-full rounded-3xl bg-primary-container text-white p-6 shadow-xl border border-secondary/20 relative overflow-hidden">
-          <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
-            <div class="flex items-center gap-2.5">
-              <span class="p-2 rounded-xl bg-secondary text-white">
-                <span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
-              </span>
-              <div>
-                <h3 class="font-bold text-base text-white" data-i18n="gate_pass_title">Express Mandi Gate Token</h3>
-                <span class="text-xs text-secondary-container" data-i18n="gate_pass_govt">Govt of India APMC Verified</span>
-              </div>
-            </div>
-            <button onclick="speakPassText()" class="text-secondary-container hover:text-white" title="Read Pass Aloud">
-              <span class="material-symbols-outlined text-[20px]">volume_up</span>
-            </button>
-          </div>
-
-          <!-- Pass Inner White Card -->
-          <div class="bg-surface-container-lowest text-on-surface rounded-2xl p-5 shadow-sm space-y-4">
-            <div class="flex items-center justify-between border-b border-surface-container pb-3">
-              <div>
-                <span class="text-[10px] uppercase font-bold text-outline tracking-wider block" data-i18n="farmer_label">Farmer Beneficiary</span>
-                <span class="font-extrabold text-base text-primary" id="cardFarmerName">Sardar Harinder Singh</span>
-              </div>
-              <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold flex items-center gap-1">
-                <span class="material-symbols-outlined text-[14px]">check_circle</span>
-                <span data-i18n="dock_reserved_tag">DOCK RESERVED</span>
-              </span>
-            </div>
-
-            <div class="grid grid-cols-2 gap-2 text-xs">
-              <div class="p-2.5 rounded-xl bg-surface-container-low">
-                <span class="text-[10px] uppercase text-outline font-semibold block" data-i18n="lbl_crop">Crop / Jinsi</span>
-                <span class="font-bold text-primary text-sm flex items-center gap-1 mt-0.5">
-                  <span id="cardCropEmoji">🌾</span> <span id="cardCropName">Wheat (Sharbati)</span>
-                </span>
-              </div>
-
-              <div class="p-2.5 rounded-xl bg-surface-container-low">
-                <span class="text-[10px] uppercase text-outline font-semibold block" data-i18n="lbl_weight">Expected Load</span>
-                <span class="font-bold text-secondary text-sm mt-0.5 block" id="cardWeight">85 Quintals</span>
-              </div>
-
-              <div class="p-2.5 rounded-xl bg-surface-container-low">
-                <span class="text-[10px] uppercase text-outline font-semibold block" data-i18n="lbl_window">Arrival Window</span>
-                <span class="font-bold text-primary text-sm mt-0.5 flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[16px] text-amber-500">wb_sunny</span>
-                  <span id="cardWindow">08:00 AM - 11:00 AM</span>
-                </span>
-              </div>
-
-              <div class="p-2.5 rounded-xl bg-surface-container-low">
-                <span class="text-[10px] uppercase text-outline font-semibold block" data-i18n="lbl_bay">Assigned Dock</span>
-                <span class="font-bold text-on-tertiary-container text-sm mt-0.5 block" id="cardBay">Dock Bay #04</span>
-              </div>
-            </div>
-
-            <!-- Authentic Token QR Box -->
-            <div class="flex items-center justify-between p-3 rounded-xl bg-surface-container border border-dashed border-secondary/30">
-              <div class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-lg bg-primary text-white flex items-center justify-center p-1 font-mono text-[9px] text-center font-bold">
-                  QR TOKEN
-                </div>
-                <div>
-                  <span class="font-bold text-xs text-primary block" id="cardTokenSerial">PB-02-AK-9811</span>
-                  <span class="text-[10px] text-outline font-mono">TOKEN #26032-APMC-92</span>
-                </div>
-              </div>
-              <span class="material-symbols-outlined text-[28px] text-secondary">verified_user</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- STEP-BY-STEP VISUAL SLOT BOOKING (INTERACTIVE) -->
-  <section id="booking" class="w-full bg-surface-container-low py-12 px-4 sm:px-6 border-y border-surface-container">
-    <div class="max-w-7xl mx-auto space-y-8">
-      
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-secondary" data-i18n="booking_eyebrow">STEP-BY-STEP SLOTTING</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-primary" data-i18n="booking_title">Visual Slot Generator &amp; Gate Pass</h2>
-          <p class="text-sm text-on-surface-variant max-w-xl mt-1" data-i18n="booking_sub">
-            No typing required. Tap the picture of your crop, pick the arrival sun time, choose your vehicle, and produce an authentic gate pass.
-          </p>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="px-3 py-1 rounded-full bg-surface-container-lowest text-primary text-xs font-bold flex items-center gap-1 shadow-sm">
-            <span class="material-symbols-outlined text-[16px] text-secondary">flash_on</span>
-            <span data-i18n="instant_sync">Instant Yard Sync</span>
-          </span>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <!-- Interactive Form Controls (8 Cols) -->
-        <div class="lg:col-span-8 space-y-6">
-          
-          <!-- Step 1: Crop Selection -->
-          <div class="p-6 rounded-3xl bg-surface-container-lowest shadow-sm border border-surface-container space-y-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">1</span>
-                <span class="text-base font-bold text-primary" data-i18n="step_1_crop">Select Harvest / Crop (फसल चुनें)</span>
-              </div>
-              <button onclick="speakCrops()" class="text-secondary hover:text-primary">
-                <span class="material-symbols-outlined text-[18px]">volume_up</span>
-              </button>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <button type="button" onclick="selectCrop('wheat', 'Wheat (Gehun)', '₹ 2,275/Qtl', '🌾')" class="crop-btn p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-transparent focus:border-secondary flex flex-col items-center text-center transition-all group">
-                <span class="text-4xl mb-1 group-hover:scale-110 transition-transform">🌾</span>
-                <span class="text-sm font-bold text-primary" data-i18n="crop_wheat">Wheat</span>
-                <span class="text-xs text-secondary font-medium">गेहूं / ਕਣਕ</span>
-                <span class="text-[10px] text-outline mt-1 font-semibold">MSP ₹2,275</span>
-              </button>
-
-              <button type="button" onclick="selectCrop('paddy', 'Paddy Rice (Dhan)', '₹ 2,183/Qtl', '🍚')" class="crop-btn p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-transparent focus:border-secondary flex flex-col items-center text-center transition-all group">
-                <span class="text-4xl mb-1 group-hover:scale-110 transition-transform">🍚</span>
-                <span class="text-sm font-bold text-primary" data-i18n="crop_paddy">Paddy Rice</span>
-                <span class="text-xs text-secondary font-medium">धान / ਝੋਨਾ</span>
-                <span class="text-[10px] text-outline mt-1 font-semibold">MSP ₹2,183</span>
-              </button>
-
-              <button type="button" onclick="selectCrop('mustard', 'Mustard (Sarson)', '₹ 5,650/Qtl', '🌼')" class="crop-btn p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-transparent focus:border-secondary flex flex-col items-center text-center transition-all group">
-                <span class="text-4xl mb-1 group-hover:scale-110 transition-transform">🌼</span>
-                <span class="text-sm font-bold text-primary" data-i18n="crop_mustard">Mustard</span>
-                <span class="text-xs text-secondary font-medium">सरसों / ਸਰ੍ਹੋਂ</span>
-                <span class="text-[10px] text-outline mt-1 font-semibold">MSP ₹5,650</span>
-              </button>
-
-              <button type="button" onclick="selectCrop('cotton', 'Cotton (Kapas)', '₹ 7,020/Qtl', '☁️')" class="crop-btn p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-transparent focus:border-secondary flex flex-col items-center text-center transition-all group">
-                <span class="text-4xl mb-1 group-hover:scale-110 transition-transform">☁️</span>
-                <span class="text-sm font-bold text-primary" data-i18n="crop_cotton">Cotton</span>
-                <span class="text-xs text-secondary font-medium">कपास / ਕਪਾਹ</span>
-                <span class="text-[10px] text-outline mt-1 font-semibold">MSP ₹7,020</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Step 2: Arrival Sun Phase & Date -->
-          <div class="p-6 rounded-3xl bg-surface-container-lowest shadow-sm border border-surface-container space-y-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">2</span>
-                <span class="text-base font-bold text-primary" data-i18n="step_2_time">Choose Arrival Sun Phase &amp; Date (आने का समय)</span>
-              </div>
-              <button onclick="speakTimes()" class="text-secondary hover:text-primary">
-                <span class="material-symbols-outlined text-[18px]">volume_up</span>
-              </button>
-            </div>
-
-            <!-- Date Selectors -->
-            <div class="grid grid-cols-3 gap-3">
-              <button type="button" onclick="selectDate('Today', '18 Oct')" class="date-btn p-3 rounded-xl bg-secondary-container text-on-secondary-container font-bold text-center border-2 border-secondary">
-                <span class="text-xs uppercase block" data-i18n="date_today">Today</span>
-                <span class="text-sm font-extrabold">18 Oct</span>
-              </button>
-              <button type="button" onclick="selectDate('Tomorrow', '19 Oct')" class="date-btn p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-bold text-center border-2 border-transparent">
-                <span class="text-xs uppercase block" data-i18n="date_tomorrow">Tomorrow</span>
-                <span class="text-sm font-extrabold">19 Oct</span>
-              </button>
-              <button type="button" onclick="selectDate('Day After', '20 Oct')" class="date-btn p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-bold text-center border-2 border-transparent">
-                <span class="text-xs uppercase block" data-i18n="date_after">Day After</span>
-                <span class="text-sm font-extrabold">20 Oct</span>
-              </button>
-            </div>
-
-            <!-- Sun Phase Cards with Triple Coded Traffic -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <button type="button" onclick="selectSlot('Morning Rise (06:00 - 11:00 AM)', 'Gate 01')" class="slot-btn p-3.5 rounded-2xl bg-surface-container-low hover:bg-secondary-container/30 border-2 border-transparent focus:border-secondary flex flex-col text-left transition-all">
-                <div class="flex items-center justify-between mb-2">
-                  <span class="material-symbols-outlined text-amber-500 text-[26px]">wb_twilight</span>
-                  <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold">Fast</span>
-                </div>
-                <span class="text-sm font-bold text-primary" data-i18n="slot_morning">Morning Rise</span>
-                <span class="text-xs text-on-surface-variant">06:00 AM - 11:00 AM</span>
-                <span class="text-[10px] text-secondary font-semibold mt-1">Gate 01 Ready</span>
-              </button>
-
-              <button type="button" onclick="selectSlot('Midday Sun (11:00 AM - 03:00 PM)', 'Gate 02')" class="slot-btn p-3.5 rounded-2xl bg-surface-container-low hover:bg-secondary-container/30 border-2 border-transparent focus:border-secondary flex flex-col text-left transition-all">
-                <div class="flex items-center justify-between mb-2">
-                  <span class="material-symbols-outlined text-orange-500 text-[26px]">wb_sunny</span>
-                  <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[11px] font-bold">Medium</span>
-                </div>
-                <span class="text-sm font-bold text-primary" data-i18n="slot_midday">Midday Sun</span>
-                <span class="text-xs text-on-surface-variant">11:00 AM - 03:00 PM</span>
-                <span class="text-[10px] text-secondary font-semibold mt-1">Gate 02 Ready</span>
-              </button>
-
-              <button type="button" onclick="selectSlot('Evening Sunset (03:00 PM - 07:00 PM)', 'Gate 03')" class="slot-btn p-3.5 rounded-2xl bg-surface-container-low hover:bg-secondary-container/30 border-2 border-transparent focus:border-secondary flex flex-col text-left transition-all">
-                <div class="flex items-center justify-between mb-2">
-                  <span class="material-symbols-outlined text-indigo-400 text-[26px]">bedtime</span>
-                  <span class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 text-[11px] font-bold">Rush</span>
-                </div>
-                <span class="text-sm font-bold text-primary" data-i18n="slot_evening">Evening Sunset</span>
-                <span class="text-xs text-on-surface-variant">03:00 PM - 07:00 PM</span>
-                <span class="text-[10px] text-secondary font-semibold mt-1">Gate 03 Peak</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Step 3: Vehicle Type -->
-          <div class="p-6 rounded-3xl bg-surface-container-lowest shadow-sm border border-surface-container space-y-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">3</span>
-                <span class="text-base font-bold text-primary" data-i18n="step_3_vehicle">Select Transport Vehicle (वाहन चुनें)</span>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-3 gap-3">
-              <button type="button" onclick="selectVehicle('Tractor Trolley', '40-80 Qtl', '🚜')" class="vehicle-btn p-3.5 rounded-2xl bg-surface-container-low hover:bg-secondary-container/30 border-2 border-secondary flex flex-col items-center text-center transition-all">
-                <span class="text-3xl mb-1">🚜</span>
-                <span class="text-xs font-bold text-primary" data-i18n="veh_tractor">Tractor Trolley</span>
-                <span class="text-[10px] text-on-surface-variant">40-80 Qtl</span>
-              </button>
-
-              <button type="button" onclick="selectVehicle('Heavy Truck', '100-250 Qtl', '🚛')" class="vehicle-btn p-3.5 rounded-2xl bg-surface-container-low hover:bg-secondary-container/30 border-2 border-transparent flex flex-col items-center text-center transition-all">
-                <span class="text-3xl mb-1">🚛</span>
-                <span class="text-xs font-bold text-primary" data-i18n="veh_truck">Heavy Truck</span>
-                <span class="text-[10px] text-on-surface-variant">100-250 Qtl</span>
-              </button>
-
-              <button type="button" onclick="selectVehicle('Mini Pickup', '15-30 Qtl', '🛻')" class="vehicle-btn p-3.5 rounded-2xl bg-surface-container-low hover:bg-secondary-container/30 border-2 border-transparent flex flex-col items-center text-center transition-all">
-                <span class="text-3xl mb-1">🛻</span>
-                <span class="text-xs font-bold text-primary" data-i18n="veh_pickup">Mini Pickup</span>
-                <span class="text-[10px] text-on-surface-variant">15-30 Qtl</span>
-              </button>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Generated Gate Pass Output (4 Cols Sticky) -->
-        <div class="lg:col-span-4 flex flex-col">
-          <div class="sticky top-28 p-6 rounded-3xl bg-surface-container-lowest shadow-lg border border-surface-container space-y-4">
-            <div class="flex items-center justify-between border-b border-surface-container pb-3">
-              <span class="font-extrabold text-base text-primary" data-i18n="live_pass_heading">Live Gate Token</span>
-              <button onclick="readOutPassDetails()" class="p-1.5 rounded-full bg-secondary-container text-secondary hover:bg-secondary hover:text-white transition-all" title="Listen to Gate Pass">
-                <span class="material-symbols-outlined text-[18px]">volume_up</span>
-              </button>
-            </div>
-
-            <!-- Pass Summary Box -->
-            <div class="p-4 rounded-2xl bg-surface-container border-2 border-dashed border-secondary/40 space-y-3">
-              <div class="flex items-center justify-between">
-                <div>
-                  <span class="text-[10px] font-bold uppercase text-outline" data-i18n="lbl_serial">Serial ID</span>
-                  <span class="text-xs font-mono font-bold text-primary block" id="dispSerial">APMC-26032-841</span>
-                </div>
-                <div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center text-xl font-bold" id="dispCropIcon">
-                  🌾
-                </div>
-              </div>
-
-              <div class="space-y-1.5 text-xs">
-                <div class="flex justify-between">
-                  <span class="text-on-surface-variant" data-i18n="lbl_farmer_short">Farmer:</span>
-                  <span class="font-bold text-primary" id="dispFarmer">Sardar Harinder Singh</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-on-surface-variant" data-i18n="lbl_crop_short">Crop:</span>
-                  <span class="font-bold text-primary" id="dispCrop">Wheat (Gehun)</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-on-surface-variant" data-i18n="lbl_date_short">Arrival Date:</span>
-                  <span class="font-bold text-primary" id="dispDate">Today (18 Oct)</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-on-surface-variant" data-i18n="lbl_window_short">Window:</span>
-                  <span class="font-bold text-secondary" id="dispSlot">Morning Rise</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-on-surface-variant" data-i18n="lbl_transport_short">Transport:</span>
-                  <span class="font-bold text-primary" id="dispVehicle">Tractor Trolley</span>
-                </div>
-                <div class="flex justify-between border-t border-surface-container-high pt-1.5">
-                  <span class="text-on-surface-variant" data-i18n="lbl_dock_short">Assigned Gate:</span>
-                  <span class="font-bold text-on-tertiary-container" id="dispGate">Gate 01 (Bay 04)</span>
-                </div>
-              </div>
-
-              <!-- Fake QR Representation -->
-              <div class="w-full py-2 bg-surface-container-lowest rounded-xl flex items-center justify-center">
-                <svg class="w-20 h-20 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm10-2h8v8h-8V2zm2 2v4h4V4h-4zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm14 0h4v4h-4v-4zm-4 4h4v4h-4v-4zm-4-4h4v4h-4v-4zm4-4h4v4h-4v-4zm4 4h2v2h-2v-2z"></path>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Primary Action Button: Requires Login -->
-            <button onclick="handleSaveGatePass()" class="w-full py-3.5 rounded-2xl bg-on-tertiary-container hover:bg-tertiary-container text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
-              <span class="material-symbols-outlined text-[20px]">save_alt</span>
-              <span data-i18n="btn_save_pass">Save SMS &amp; Gate Pass</span>
-            </button>
-
-            <button onclick="readOutPassDetails()" class="w-full py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-secondary font-bold text-xs transition-all flex items-center justify-center gap-1.5">
-              <span class="material-symbols-outlined text-[16px]">record_voice_over</span>
-              <span data-i18n="btn_listen_pass">Read Pass In My Language</span>
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Problem vs Solution Matrix -->
-  <section id="solution" class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 space-y-6">
-    <div class="flex items-center justify-between">
-      <div>
-        <span class="text-xs font-bold uppercase tracking-wider text-secondary" data-i18n="sol_eyebrow">BEFORE &amp; AFTER SMART MANDI</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-primary" data-i18n="sol_heading">Eradicating Mandi Congestion &amp; Exploitation</h2>
-      </div>
-      <button onclick="speakSolutionMatrix()" class="p-2 rounded-xl bg-surface-container text-secondary hover:text-primary">
-        <span class="material-symbols-outlined text-[20px]">volume_up</span>
-      </button>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Legacy Distress Card -->
-      <div class="p-6 rounded-3xl bg-surface-container-low border border-rose-100 shadow-sm space-y-3">
-        <div class="flex items-center justify-between">
-          <span class="px-3 py-1 rounded-full bg-rose-100 text-rose-800 text-xs font-bold flex items-center gap-1">
-            <span class="w-2 h-2 rounded-full bg-rose-600"></span>
-            Legacy Mandi Bottleneck
-          </span>
-          <span class="material-symbols-outlined text-rose-500 text-[24px]">warning</span>
-        </div>
-        <h3 class="text-lg font-bold text-primary" data-i18n="legacy_title">Unorganized 14-Hour Roadside Queues</h3>
-        <ul class="space-y-2.5 text-xs sm:text-sm text-on-surface-variant">
-          <li class="flex items-start gap-2">
-            <span class="material-symbols-outlined text-rose-500 text-[18px] shrink-0 mt-0.5">cancel</span>
-            <span data-i18n="legacy_1">Farmers burn diesel idling in 3 km tractor queues outside yards without food or water.</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="material-symbols-outlined text-rose-500 text-[18px] shrink-0 mt-0.5">cancel</span>
-            <span data-i18n="legacy_2">Middlemen exploit farmer exhaustion to discount price by up to ₹300/quintal.</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="material-symbols-outlined text-rose-500 text-[18px] shrink-0 mt-0.5">cancel</span>
-            <span data-i18n="legacy_3">Sudden unseasonal rains ruin grain sacks exposed on open tarmac roads.</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Smart Solution Card -->
-      <div class="p-6 rounded-3xl bg-primary text-white shadow-md space-y-3">
-        <div class="flex items-center justify-between">
-          <span class="px-3 py-1 rounded-full bg-emerald-900/60 text-emerald-300 text-xs font-bold flex items-center gap-1">
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            SIH 2026 Engine
-          </span>
-          <span class="material-symbols-outlined text-secondary-container text-[24px]">verified</span>
-        </div>
-        <h3 class="text-lg font-bold text-white" data-i18n="smart_title">Guaranteed 20-Minute Dock Allocation</h3>
-        <ul class="space-y-2.5 text-xs sm:text-sm text-surface-dim">
-          <li class="flex items-start gap-2">
-            <span class="material-symbols-outlined text-emerald-400 text-[18px] shrink-0 mt-0.5">check_circle</span>
-            <span data-i18n="smart_1">Automated gate pass routes vehicle directly to designated weighbridge and unloading bay.</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="material-symbols-outlined text-emerald-400 text-[18px] shrink-0 mt-0.5">check_circle</span>
-            <span data-i18n="smart_2">Multi-lingual voice bot schedules slots over basic phone call (IVR) or one-tap web buttons.</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="material-symbols-outlined text-emerald-400 text-[18px] shrink-0 mt-0.5">check_circle</span>
-            <span data-i18n="smart_3">Dynamic load balancing redistributes surplus arrivals across neighboring APMC yards.</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Technical Architecture -->
-  <section id="architecture" class="w-full bg-surface-container-low py-12 px-4 sm:px-6 border-y border-surface-container">
-    <div class="max-w-7xl mx-auto space-y-6">
-      <div>
-        <span class="text-xs font-bold uppercase tracking-wider text-secondary" data-i18n="arch_eyebrow">TECH BLUEPRINT</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-primary" data-i18n="arch_heading">Robust, Low-Bandwidth Architecture</h2>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container space-y-2">
-          <span class="text-xs font-extrabold text-secondary">01. EDGE INPUT</span>
-          <h4 class="font-bold text-base text-primary" data-i18n="arch_1_title">Farmer Voice &amp; Icons</h4>
-          <p class="text-xs text-on-surface-variant" data-i18n="arch_1_desc">WebSpeech API, icon touch cards, or regional IVR phone lines.</p>
-        </div>
-
-        <div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container space-y-2">
-          <span class="text-xs font-extrabold text-secondary">02. LOAD BALANCER</span>
-          <h4 class="font-bold text-base text-primary" data-i18n="arch_2_title">Token Concurrency</h4>
-          <p class="text-xs text-on-surface-variant" data-i18n="arch_2_desc">FIFO token bucket guarantees zero gate overbooking during peak harvest.</p>
-        </div>
-
-        <div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container space-y-2">
-          <span class="text-xs font-extrabold text-secondary">03. ANPR SCAN</span>
-          <h4 class="font-bold text-base text-primary" data-i18n="arch_3_title">Automated Dock Entry</h4>
-          <p class="text-xs text-on-surface-variant" data-i18n="arch_3_desc">OCR cameras scan tractor number plates and match instant QR tokens in 1.4s.</p>
-        </div>
-
-        <div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container space-y-2">
-          <span class="text-xs font-extrabold text-secondary">04. DBT SETTLEMENT</span>
-          <h4 class="font-bold text-base text-primary" data-i18n="arch_4_title">Direct Bank Payout</h4>
-          <p class="text-xs text-on-surface-variant" data-i18n="arch_4_desc">Weighbridge slips trigger instant Aadhaar-linked MSP bank transfers.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Impact & Metrics -->
-  <section id="impact" class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 space-y-6">
-    <div>
-      <span class="text-xs font-bold uppercase tracking-wider text-secondary" data-i18n="impact_eyebrow">FIELD VALIDATION</span>
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-primary" data-i18n="impact_heading">Measurable Socio-Economic Transformation</h2>
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="p-5 rounded-2xl bg-surface-container-lowest border border-surface-container shadow-sm text-center">
-        <span class="text-3xl sm:text-4xl font-extrabold text-on-tertiary-container block">-78%</span>
-        <span class="text-xs sm:text-sm font-bold text-primary block mt-1" data-i18n="metric_1_lbl">Gate Waiting Delay</span>
-        <span class="text-[11px] text-outline" data-i18n="metric_1_sub">From 14 hrs to 22 mins</span>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-surface-container-lowest border border-surface-container shadow-sm text-center">
-        <span class="text-3xl sm:text-4xl font-extrabold text-secondary block">₹1,420</span>
-        <span class="text-xs sm:text-sm font-bold text-primary block mt-1" data-i18n="metric_2_lbl">Saved Per Trip</span>
-        <span class="text-[11px] text-outline" data-i18n="metric_2_sub">Diesel &amp; lodging savings</span>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-surface-container-lowest border border-surface-container shadow-sm text-center">
-        <span class="text-3xl sm:text-4xl font-extrabold text-emerald-700 block">0%</span>
-        <span class="text-xs sm:text-sm font-bold text-primary block mt-1" data-i18n="metric_3_lbl">Distress Crop Sales</span>
-        <span class="text-[11px] text-outline" data-i18n="metric_3_sub">Guaranteed MSP protection</span>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-surface-container-lowest border border-surface-container shadow-sm text-center">
-        <span class="text-3xl sm:text-4xl font-extrabold text-primary block">12.8M</span>
-        <span class="text-xs sm:text-sm font-bold text-primary block mt-1" data-i18n="metric_4_lbl">Quintals Handled</span>
-        <span class="text-[11px] text-outline" data-i18n="metric_4_sub">Simulated target</span>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- Floating Voice Assistant Microphone Button (64x64px) -->
-<button onclick="triggerVoiceAssistant()" aria-label="AI Voice Booking Assistant" class="fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full bg-on-tertiary-container hover:bg-tertiary-container text-white shadow-2xl flex items-center justify-center transition-transform hover:scale-105 active:scale-95" title="Click to speak and book slot">
-  <span class="material-symbols-outlined text-[32px]">mic</span>
-  <span class="absolute -top-1 -right-1 flex h-4 w-4">
-    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-    <span class="relative inline-flex rounded-full h-4 w-4 bg-orange-500"></span>
-  </span>
-</button>
-
-<!-- ============================================== -->
-<!-- 1. FARMER DEMO LOGIN & OTP VERIFICATION MODAL -->
-<!-- ============================================== -->
-<div id="farmerLoginModal" class="fixed inset-0 z-50 bg-primary/80 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
-  <div class="w-full max-w-lg bg-surface-container-lowest rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col gap-5 my-auto relative animate-in fade-in zoom-in-95 duration-200">
-    
-    <!-- Optional Intercept Notice -->
-    <div id="loginInterceptBanner" class="hidden p-3 rounded-2xl bg-secondary-container/50 border border-secondary/30 text-on-secondary-container text-xs font-semibold flex items-center gap-2">
-      <span class="material-symbols-outlined text-[18px] text-secondary">verified_user</span>
-      <span data-i18n="login_intercept_msg">Please verify your mobile number to reserve your mandi gate slot.</span>
-    </div>
-
-    <!-- Modal Header -->
-    <div class="flex items-center justify-between border-b border-surface-container pb-3">
-      <div class="flex items-center gap-2.5">
-        <div class="w-10 h-10 rounded-2xl bg-secondary-container text-secondary flex items-center justify-center font-bold">
-          <span class="material-symbols-outlined text-[24px]">agriculture</span>
-        </div>
-        <div>
-          <h3 class="text-lg sm:text-xl font-extrabold text-primary leading-tight" data-i18n="farmer_login_title">Farmer Login / किसान लॉगिन</h3>
-          <span class="text-[10px] uppercase font-bold tracking-wider text-secondary block" data-i18n="login_sub_badge">SIH 2026 APMC KISAN VERIFICATION</span>
-        </div>
-      </div>
-      <div class="flex items-center gap-1">
-        <button onclick="speakLoginHelp()" class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high text-secondary" title="Read instructions aloud">
-          <span class="material-symbols-outlined text-[20px]">volume_up</span>
-        </button>
-        <button onclick="closeFarmerLoginModal()" class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface" title="Close dialog">
-          <span class="material-symbols-outlined text-[20px]">close</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- STEP 1: ENTER MOBILE NUMBER -->
-    <div id="loginStepMobile" class="flex flex-col gap-4">
-      <div>
-        <p class="text-xs sm:text-sm text-on-surface-variant" data-i18n="enter_mobile_desc">Enter your 10-digit mobile number to verify and get instant mandi pass access.</p>
-      </div>
-
-      <!-- Mobile Input with +91 Prefix -->
-      <div class="flex flex-col gap-1">
-        <label class="text-xs font-bold text-primary" data-i18n="lbl_mobile_num">Mobile Number / मोबाइल नंबर</label>
-        <div class="flex items-center bg-surface-container-low rounded-2xl border-2 border-surface-container-high focus-within:border-secondary transition-all px-4 py-2.5 shadow-inner">
-          <span class="text-base font-extrabold text-secondary flex items-center gap-1 mr-3 border-r border-surface-container pr-3">
-            🇮🇳 +91
-          </span>
-          <input type="tel" id="loginMobileInput" maxlength="10" inputmode="numeric" placeholder="98765 43210" value="9876543210" class="w-full bg-transparent text-xl font-extrabold text-primary outline-none tracking-wider placeholder:text-outline/40"/>
-        </div>
-      </div>
-
-      <!-- Judge / Demo Simulation Pill -->
-      <div class="p-3 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-center justify-between gap-2">
-        <div class="flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-amber-600 text-[18px]">info</span>
-          <span class="font-medium" data-i18n="demo_mode_note">Demo mode: OTP verification is simulated for SIH 2026.</span>
-        </div>
-        <button onclick="document.getElementById('loginMobileInput').value='9876543210'; speakNotification('Default demo number entered');" class="px-2.5 py-1 rounded-lg bg-amber-200 hover:bg-amber-300 text-amber-950 font-bold text-[11px] transition-all">Default</button>
-      </div>
-
-      <!-- Send OTP Action -->
-      <button id="sendOtpBtn" onclick="handleSendOtp()" class="w-full py-3.5 rounded-2xl bg-on-tertiary-container hover:bg-tertiary-container text-white font-bold text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
-        <span class="material-symbols-outlined text-[20px]">sms</span>
-        <span data-i18n="btn_send_otp">Send OTP / ओटीपी भेजें</span>
-      </button>
-    </div>
-
-    <!-- STEP 2: FAKE OTP ENTRY -->
-    <div id="loginStepOtp" class="hidden flex-col gap-4">
-      <div class="flex items-center justify-between">
-        <div>
-          <p class="text-xs text-on-surface-variant">
-            <span data-i18n="otp_sent_to">OTP sent to</span> <strong class="text-primary font-bold" id="otpSentDisplayNumber">+91 98765 43210</strong>
-          </p>
-        </div>
-        <button onclick="backToMobileStep()" class="text-xs font-bold text-secondary hover:underline flex items-center gap-0.5">
-          <span class="material-symbols-outlined text-[14px]">edit</span>
-          <span data-i18n="btn_change_num">Change</span>
-        </button>
-      </div>
-
-      <!-- Prominent Judge Demo OTP Card -->
-      <div class="p-4 rounded-2xl bg-secondary-container/50 border-2 border-secondary/40 flex flex-col gap-2">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-1.5 text-secondary">
-            <span class="material-symbols-outlined text-[18px]">mark_email_read</span>
-            <span class="text-[10px] font-extrabold uppercase tracking-wider">JUDGE DEMO OTP CODE</span>
-          </div>
-          <span class="px-2 py-0.5 rounded-full bg-secondary text-white text-[10px] font-bold">Fast Evaluation</span>
-        </div>
-        <div class="flex items-center justify-between">
-          <div>
-            <span id="demoGeneratedOtpCode" class="text-3xl font-mono font-extrabold tracking-widest text-primary">482731</span>
-            <span class="block text-[11px] text-on-surface-variant" data-i18n="otp_expires_timer">Expires in 5:00 minutes</span>
-          </div>
-          <button onclick="autoFillDemoOtp()" class="px-3.5 py-2 rounded-xl bg-secondary hover:bg-secondary/90 text-white text-xs font-bold shadow transition-all flex items-center gap-1">
-            <span class="material-symbols-outlined text-[16px]">touch_app</span>
-            <span data-i18n="btn_autofill_otp">1-Tap Auto-fill</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- 6 Segments OTP Input Grid -->
-      <div class="flex flex-col gap-1.5">
-        <div class="flex items-center justify-between">
-          <label class="text-xs font-bold text-primary" data-i18n="lbl_enter_otp">Enter 6-digit OTP / 6 अंकों का ओटीपी दर्ज करें</label>
-          <button onclick="speakOtpCode()" class="text-secondary hover:text-primary">
-            <span class="material-symbols-outlined text-[16px]">volume_up</span>
-          </button>
-        </div>
-        <div class="grid grid-cols-6 gap-2" id="otpBoxContainer">
-          <input type="text" maxlength="1" inputmode="numeric" class="otp-box w-full aspect-square text-center text-xl font-extrabold bg-surface-container-low border-2 border-surface-container-high rounded-xl focus:border-secondary focus:bg-white outline-none text-primary transition-all"/>
-          <input type="text" maxlength="1" inputmode="numeric" class="otp-box w-full aspect-square text-center text-xl font-extrabold bg-surface-container-low border-2 border-surface-container-high rounded-xl focus:border-secondary focus:bg-white outline-none text-primary transition-all"/>
-          <input type="text" maxlength="1" inputmode="numeric" class="otp-box w-full aspect-square text-center text-xl font-extrabold bg-surface-container-low border-2 border-surface-container-high rounded-xl focus:border-secondary focus:bg-white outline-none text-primary transition-all"/>
-          <input type="text" maxlength="1" inputmode="numeric" class="otp-box w-full aspect-square text-center text-xl font-extrabold bg-surface-container-low border-2 border-surface-container-high rounded-xl focus:border-secondary focus:bg-white outline-none text-primary transition-all"/>
-          <input type="text" maxlength="1" inputmode="numeric" class="otp-box w-full aspect-square text-center text-xl font-extrabold bg-surface-container-low border-2 border-surface-container-high rounded-xl focus:border-secondary focus:bg-white outline-none text-primary transition-all"/>
-          <input type="text" maxlength="1" inputmode="numeric" class="otp-box w-full aspect-square text-center text-xl font-extrabold bg-surface-container-low border-2 border-surface-container-high rounded-xl focus:border-secondary focus:bg-white outline-none text-primary transition-all"/>
-        </div>
-        <!-- Error Message Box -->
-        <div id="otpErrorBox" class="hidden p-2.5 rounded-xl bg-error-container text-on-error-container text-xs font-semibold flex items-center gap-1.5 mt-1">
-          <span class="material-symbols-outlined text-[18px]">error</span>
-          <span id="otpErrorMsg">Incorrect OTP. Please enter the demo code shown above.</span>
-        </div>
-      </div>
-
-      <!-- Verify Button & Resend -->
-      <div class="flex flex-col gap-2 pt-1">
-        <button id="verifyOtpBtn" onclick="handleVerifyOtp()" class="w-full py-3.5 rounded-2xl bg-on-tertiary-container hover:bg-tertiary-container text-white font-bold text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
-          <span class="material-symbols-outlined text-[20px]">verified</span>
-          <span data-i18n="btn_verify_otp">Verify OTP &amp; Continue / सत्यापित करें</span>
-        </button>
-
-        <div class="flex items-center justify-between text-xs text-on-surface-variant px-1 pt-1">
-          <span id="resendCountdownText">Resend in 30s</span>
-          <button id="resendOtpTriggerBtn" onclick="handleResendOtp()" class="font-bold text-secondary hover:underline">Resend Demo OTP</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- STEP 3: SUCCESS STATE -->
-    <div id="loginStepSuccess" class="hidden flex-col items-center text-center gap-4 py-4">
-      <div class="w-20 h-20 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center relative">
-        <span class="material-symbols-outlined text-[48px]">check_circle</span>
-      </div>
-      <div class="space-y-1">
-        <h3 class="text-xl font-extrabold text-primary" data-i18n="auth_success_title">Verification Successful / सत्यापन सफल!</h3>
-        <p class="text-base font-bold text-secondary" data-i18n="auth_welcome_farmer">Welcome, Sardar Harinder Singh</p>
-        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
-          <span class="material-symbols-outlined text-[16px]">verified_user</span>
-          <span data-i18n="auth_aadhaar_status">Aadhaar e-KYC Verified (Demo)</span>
-        </span>
-      </div>
-      <p class="text-xs text-on-surface-variant">Returning to your mandi booking portal...</p>
-    </div>
-
-  </div>
-</div>
-
-<!-- ============================================== -->
-<!-- 2. FARMER VERIFIED PROFILE SHEET MODAL -->
-<!-- ============================================== -->
-<div id="farmerProfileModal" class="fixed inset-0 z-50 bg-primary/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-  <div class="w-full max-w-md bg-surface-container-lowest rounded-3xl p-6 shadow-2xl flex flex-col gap-4 relative animate-in fade-in zoom-in-95 duration-200">
-    <div class="flex items-center justify-between border-b border-surface-container pb-3">
-      <div class="flex items-center gap-2.5">
-        <div class="w-12 h-12 rounded-2xl bg-primary text-white flex items-center justify-center font-bold text-2xl">
+<body class="bg-surface font-sans text-on-surface antialiased min-h-screen">
+<!-- ======================================================= -->
+<!-- FULL-SCREEN GATEKEEPER LOGIN VIEW (#farmer-login-view) -->
+<!-- ======================================================= -->
+<div class="w-full min-h-screen bg-gradient-to-b from-surface-container-low via-surface to-surface flex flex-col justify-between relative z-50" id="farmer-login-view">
+<!-- Gatekeeper Login Top Header -->
+<header class="w-full bg-surface-container-lowest/90 backdrop-blur-md border-b border-surface-container-high py-4 px-4 sm:px-8 shadow-sm">
+<div class="max-w-6xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-2xl bg-primary-container text-white flex items-center justify-center font-bold text-2xl shadow-sm">
           🌾
         </div>
-        <div>
-          <h3 class="text-base font-extrabold text-primary leading-tight" id="profileFarmerName">Sardar Harinder Singh</h3>
-          <span class="text-xs text-secondary font-mono" id="profileFarmerPhone">+91 98XXXXXX11</span>
-        </div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-lg font-extrabold text-primary tracking-tight leading-none">Smart Farmer Portal</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-secondary text-[10px] font-bold">SIH #26032</span>
+</div>
+<span class="text-xs text-secondary font-medium block mt-0.5" data-i18n="tag_apmc">APMC Mandi Scheduling • Direct Farmer Gate</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-secondary hover:bg-surface-container-high text-xs font-bold transition-all" onclick="openLanguageModal()" title="Change Language / भाषा बदलें">
+<span class="material-symbols-outlined text-[16px]">translate</span>
+<span id="loginLangDisplay">English</span>
+</button>
+<button class="p-2 rounded-full bg-surface-container text-secondary hover:bg-surface-container-high" onclick="speakLoginWelcomePrompt()" title="Listen Audio Guidance">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Login Content Card Area -->
+<main class="w-full max-w-xl mx-auto px-4 py-8 sm:py-12 flex-1 flex flex-col justify-center">
+<div class="w-full bg-surface-container-lowest rounded-3xl p-6 sm:p-9 shadow-xl border border-surface-container relative overflow-hidden">
+<!-- Top Decorative Accent -->
+<div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-secondary via-on-tertiary-container to-emerald-500"></div>
+<!-- STEP A: MOBILE NUMBER ENTRY -->
+<div class="space-y-6" id="gatekeeperStepMobile">
+<!-- Hero Visual Badge & Greetings -->
+<div class="flex flex-col items-center text-center space-y-2">
+<div class="w-20 h-20 rounded-3xl bg-secondary-container/40 text-primary flex items-center justify-center text-4xl shadow-inner mb-1 border border-secondary-container">
+            👨‍🌾🚜
+          </div>
+<div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-extrabold tracking-wide uppercase">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span data-i18n="gk_badge_kisan">Official Kisan Gatekeeper</span>
+</div>
+<h1 class="text-2xl sm:text-3xl font-extrabold text-primary tracking-tight" data-i18n="gk_welcome_farmer">
+            Welcome, Farmer
+          </h1>
+<p class="text-xs sm:text-sm text-on-surface-variant max-w-md" data-i18n="gk_login_sub">
+            Login to access your farming services, mandi slots, and express gate passes.
+          </p>
+</div>
+<!-- Phone Number Field -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<label class="text-xs font-bold text-primary flex items-center gap-1" data-i18n="lbl_mobile_num">
+<span>Mobile Number / मोबाइल नंबर</span>
+</label>
+<button class="text-secondary hover:text-primary flex items-center gap-0.5 text-xs font-semibold" onclick="speakPhoneFieldHint()">
+<span class="material-symbols-outlined text-[15px]">volume_up</span>
+<span class="text-[11px]" data-i18n="btn_listen">Listen</span>
+</button>
+</div>
+<div class="flex items-center bg-surface-container-low rounded-2xl border-2 border-surface-container-high focus-within:border-secondary transition-all px-4 py-3 shadow-inner">
+<span class="text-base font-extrabold text-secondary flex items-center gap-1.5 mr-3 border-r border-surface-container pr-3">
+<span>🇮🇳</span>
+<span>+91</span>
+</span>
+<input class="w-full bg-transparent text-xl font-extrabold text-primary outline-none tracking-wider placeholder:text-outline/40" id="gatekeeperMobileInput" inputmode="numeric" maxlength="10" placeholder="98765 43210" type="tel" value="9876543210"/>
+<button class="text-outline hover:text-primary" onclick="document.getElementById('gatekeeperMobileInput').value=''; document.getElementById('gatekeeperMobileInput').focus();" type="button">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+</button>
+</div>
+</div>
+<!-- Demo Quick Fill Chip -->
+<div class="p-3.5 rounded-2xl bg-amber-50/80 border border-amber-200 text-amber-950 text-xs flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-700 text-[18px] shrink-0">info</span>
+<span class="text-[11px] sm:text-xs font-medium" data-i18n="demo_mode_note">Demo mode — OTP verification is simulated for SIH 2026.</span>
+</div>
+<button class="px-2.5 py-1.5 rounded-xl bg-amber-200 hover:bg-amber-300 text-amber-900 font-extrabold text-[11px] whitespace-nowrap shadow-sm transition-all flex items-center gap-1" onclick="fillTestFarmerMobile()" type="button">
+<span class="material-symbols-outlined text-[14px]">touch_app</span>
+<span data-i18n="btn_quick_fill">Quick Fill Demo</span>
+</button>
+</div>
+<!-- Primary Action: Send OTP -->
+<button class="w-full py-4 rounded-2xl bg-on-tertiary-container hover:bg-tertiary-container text-white font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 group active:scale-[0.99]" id="gatekeeperSendOtpBtn" onclick="handleGatekeeperSendOtp()">
+<span class="material-symbols-outlined text-[22px] group-hover:translate-x-0.5 transition-transform">sms</span>
+<span data-i18n="btn_send_otp">Send OTP / ओटीपी भेजें</span>
+</button>
+<!-- Illiterate Friendly Audio Assistant Strip -->
+<div class="pt-1 flex items-center justify-center">
+<button class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-secondary text-xs font-bold transition-all" onclick="speakGatekeeperGuide()">
+<span class="material-symbols-outlined text-[16px]">record_voice_over</span>
+<span data-i18n="btn_audio_help">Voice Guide for Farmers (बोलकर निर्देश सुनें)</span>
+</button>
+</div>
+</div>
+<!-- STEP B: FAKE OTP ENTRY (DEMO ONLY) -->
+<div class="hidden flex-col space-y-5" id="gatekeeperStepOtp">
+<div class="flex items-center justify-between border-b border-surface-container pb-3">
+<div>
+<span class="text-[10px] font-extrabold uppercase tracking-wider text-secondary" data-i18n="lbl_step_2_tag">STEP 2 OF 2 • MOBILE VERIFICATION</span>
+<h2 class="text-lg font-extrabold text-primary" data-i18n="lbl_enter_otp_heading">Enter 6-Digit OTP</h2>
+<p class="text-xs text-on-surface-variant mt-0.5">
+<span data-i18n="otp_sent_to">OTP sent to</span> <strong class="text-primary font-bold" id="gatekeeperSentDisplayNum">+91 98765 43210</strong>
+</p>
+</div>
+<button class="px-3 py-1.5 rounded-xl bg-surface-container text-secondary text-xs font-bold hover:bg-surface-container-high flex items-center gap-1" onclick="gatekeeperBackToMobile()">
+<span class="material-symbols-outlined text-[14px]">edit</span>
+<span data-i18n="btn_edit_num">Edit</span>
+</button>
+</div>
+<!-- Prominent Judge Demo OTP Card -->
+<div class="p-4 rounded-2xl bg-secondary-container/50 border-2 border-secondary/40 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="text-[10px] font-extrabold uppercase tracking-wider">HACKATHON DEMO OTP</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary text-white text-[10px] font-extrabold">Instant Test</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<span class="text-3xl sm:text-4xl font-mono font-extrabold tracking-widest text-primary" id="gatekeeperDemoOtpDisplay">591428</span>
+<span class="block text-[11px] text-on-surface-variant font-medium mt-0.5" data-i18n="otp_expires_timer">Expires in 5:00 minutes</span>
+</div>
+<button class="px-3.5 py-2.5 rounded-xl bg-secondary hover:bg-secondary/90 text-white text-xs font-bold shadow-md transition-all flex items-center gap-1.5 active:scale-95" onclick="autoFillGatekeeperOtp()">
+<span class="material-symbols-outlined text-[16px]">touch_app</span>
+<span data-i18n="btn_autofill_otp">1-Tap Auto-fill</span>
+</button>
+</div>
+</div>
+<!-- 6 Segments OTP Input Grid -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<label class="text-xs font-bold text-primary" data-i18n="lbl_enter_otp">Enter 6-digit OTP / 6 अंकों का ओटीपी दर्ज करें</label>
+<button class="text-secondary hover:text-primary flex items-center gap-1 text-xs font-semibold" onclick="speakCurrentDemoOtp()">
+<span class="material-symbols-outlined text-[16px]">volume_up</span>
+<span class="text-[11px]" data-i18n="btn_read_otp">Read OTP</span>
+</button>
+</div>
+<div class="grid grid-cols-6 gap-2" id="gatekeeperOtpGrid">
+<input class="gk-otp-box w-full aspect-square text-center text-xl sm:text-2xl font-extrabold bg-surface-container-low border-2 border-surface-container-high rounded-2xl focus:border-secondary focus:bg-white outline-none text-primary transition-all" inputmode="numeric" maxlength="1" type="text"/>
+<input class="gk-otp-box w-full aspect-square text-center text-xl sm:text-2xl font-extrabold bg-surface-container-low border-2 border-surface-container-high rounded-2xl focus:border-secondary focus:bg-white outline-none text-primary transition-all" inputmode="numeric" maxlength="1" type="text"/>
+<input class="gk-otp-box w-full aspect-square text-center text-xl sm:text-2xl font-extrabold bg-surface-container-low border-2 border-surface-container-high rounded-2xl focus:border-secondary focus:bg-white outline-none text-primary transition-all" inputmode="numeric" maxlength="1" type="text"/>
+<input class="gk-otp-box w-full aspect-square text-center text-xl sm:text-2xl font-extrabold bg-surface-container-low border-2 border-surface-container-high rounded-2xl focus:border-secondary focus:bg-white outline-none text-primary transition-all" inputmode="numeric" maxlength="1" type="text"/>
+<input class="gk-otp-box w-full aspect-square text-center text-xl sm:text-2xl font-extrabold bg-surface-container-low border-2 border-surface-container-high rounded-2xl focus:border-secondary focus:bg-white outline-none text-primary transition-all" inputmode="numeric" maxlength="1" type="text"/>
+<input class="gk-otp-box w-full aspect-square text-center text-xl sm:text-2xl font-extrabold bg-surface-container-low border-2 border-surface-container-high rounded-2xl focus:border-secondary focus:bg-white outline-none text-primary transition-all" inputmode="numeric" maxlength="1" type="text"/>
+</div>
+<!-- Error Message Banner -->
+<div class="hidden p-3 rounded-2xl bg-error-container text-on-error-container text-xs font-bold flex items-center gap-2 mt-1" id="gatekeeperOtpErrorBox">
+<span class="material-symbols-outlined text-[18px]">error</span>
+<span id="gatekeeperOtpErrorMsg">Incorrect OTP. Please enter the demo code shown above.</span>
+</div>
+</div>
+<!-- Verify & Resend Controls -->
+<div class="space-y-3 pt-1">
+<button class="w-full py-4 rounded-2xl bg-on-tertiary-container hover:bg-tertiary-container text-white font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 active:scale-[0.99]" id="gatekeeperVerifyBtn" onclick="handleGatekeeperVerifyOtp()">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+<span data-i18n="btn_verify_otp">Verify OTP &amp; Enter Portal</span>
+</button>
+<div class="flex items-center justify-between text-xs text-on-surface-variant px-1">
+<span id="gatekeeperResendTimerText">Resend in 30s</span>
+<button class="font-bold text-secondary hover:underline" id="gatekeeperResendBtn" onclick="handleGatekeeperResendOtp()">
+              Resend Demo OTP
+            </button>
+</div>
+</div>
+</div>
+<!-- STEP C: LOGIN SUCCESS STATE CARD -->
+<div class="hidden flex-col items-center text-center space-y-4 py-8" id="gatekeeperStepSuccess">
+<div class="w-20 h-20 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-4xl shadow-md animate-bounce">
+<span class="material-symbols-outlined text-[48px]">check_circle</span>
+</div>
+<div class="space-y-1">
+<h3 class="text-2xl font-extrabold text-primary" data-i18n="auth_success_title">✓ Login Successful / लॉगिन सफल</h3>
+<p class="text-base font-bold text-secondary" data-i18n="auth_welcome_farmer">Welcome, Sardar Harinder Singh</p>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold mt-1">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+<span data-i18n="auth_aadhaar_status">Aadhaar e-KYC Verified (PB-02-KHN-26032)</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-xs text-on-surface-variant">
+<div class="w-3 h-3 border-2 border-secondary border-t-transparent rounded-full animate-spin"></div>
+<span>Redirecting to your Mandi Gate pass gateway...</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Login Footer -->
+<footer class="w-full bg-surface-container-low border-t border-surface-container py-4 px-4 text-center text-xs text-outline">
+<div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+<span>SMART INDIA HACKATHON 2026 • PROBLEM STATEMENT #26032</span>
+<span>Ministry of Agriculture &amp; Farmers Welfare • APMC Mandi Logistics</span>
+</div>
+</footer>
+</div>
+<!-- ======================================================= -->
+<!-- MAIN APPLICATION SHELL & CONTENT (#main-portal-view)   -->
+<!-- (Hidden by default until authenticated)                -->
+<!-- ======================================================= -->
+<div class="hidden min-h-screen flex flex-col" id="main-portal-view">
+<!-- Top Fixed Header -->
+<header class="fixed top-0 w-full z-40 bg-surface-container-lowest/95 backdrop-blur-md border-b border-surface-container-high shadow-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
+<!-- Brand Emblem & Title -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container text-white flex items-center justify-center font-bold text-xl shadow-sm">
+        🌾
       </div>
-      <button onclick="closeFarmerProfileModal()" class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface">
-        <span class="material-symbols-outlined text-[20px]">close</span>
-      </button>
-    </div>
-
-    <div class="space-y-2.5">
-      <div class="p-3.5 rounded-2xl bg-surface-container-low flex items-center justify-between">
-        <div class="flex flex-col">
-          <span class="text-[10px] uppercase font-bold text-outline" data-i18n="prof_verification_status">Verification Status</span>
-          <span class="text-xs font-bold text-emerald-700 flex items-center gap-1 mt-0.5">
-            <span class="material-symbols-outlined text-[16px]">verified</span>
-            <span data-i18n="prof_status_val">Verified / प्रमाणित</span>
+<div class="flex flex-col">
+<span class="text-lg font-extrabold text-primary tracking-tight leading-none">Smart Farmer Portal</span>
+<span class="text-xs uppercase font-bold tracking-wider text-secondary mt-0.5" data-i18n="tag_apmc">APMC Mandi Scheduling • SIH #26032</span>
+</div>
+</div>
+<!-- Nav Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-1 bg-surface-container-low px-3 py-1.5 rounded-full border border-surface-container">
+<a class="px-3 py-1 rounded-full text-xs font-bold text-primary bg-surface-container-lowest shadow-sm" data-i18n="nav_hero" href="#hero">Hero</a>
+<a class="px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant hover:text-primary" data-i18n="nav_booking" href="#booking">Slot Booking</a>
+<a class="px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant hover:text-primary" data-i18n="nav_solution" href="#solution">Solution</a>
+<a class="px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant hover:text-primary" data-i18n="nav_architecture" href="#architecture">Architecture</a>
+<a class="px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant hover:text-primary" data-i18n="nav_impact" href="#impact">Impact</a>
+</nav>
+<!-- Header Right: Language Switcher & Farmer Auth Profile Button -->
+<div class="flex items-center gap-2 sm:gap-3">
+<!-- Language Trigger -->
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-secondary hover:bg-surface-container-high text-xs font-bold transition-all" onclick="openLanguageModal()" title="Change Language / भाषा बदलें">
+<span class="material-symbols-outlined text-[16px]">translate</span>
+<span id="currentLangDisplay">English</span>
+</button>
+<!-- Dynamic Farmer Account & Verification Button -->
+<div id="authHeaderContainer">
+<!-- Rendered dynamically by script: login button or farmer badge -->
+</div>
+</div>
+</div>
+</header>
+<!-- Main Page Container -->
+<main class="flex-1 w-full pt-24 pb-20">
+<!-- Sub-Header Multilingual Banner Strip -->
+<div class="w-full bg-primary-container text-white px-4 py-2 border-b border-primary">
+<div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-secondary text-white font-bold text-[10px]">SIH 2026</span>
+<span class="text-surface-dim font-medium" data-i18n="sub_banner_text">Government of India APMC Direct Procurement Portal • Illiterate-Friendly</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-1 text-secondary-container hover:text-white font-semibold" onclick="speakSummary()">
+<span class="material-symbols-outlined text-[16px]">record_voice_over</span>
+<span data-i18n="btn_voice_guide">Voice Guide</span>
+</button>
+<span class="flex items-center gap-1 text-emerald-400 font-semibold">
+<span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+<span>Khanna Mandi Online</span>
+</span>
+</div>
+</div>
+</div>
+<!-- HERO SECTION -->
+<section class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12" id="hero">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<!-- Left Hero Column -->
+<div class="lg:col-span-7 flex flex-col items-start text-left space-y-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container/60 text-secondary font-bold text-xs">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span data-i18n="hero_badge">Zero Waiting Mandi Dock System</span>
+</div>
+<h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight leading-tight" data-i18n="hero_heading">
+          Direct Grain Booking. Zero Waiting At The Mandi Gate.
+        </h1>
+<p class="text-base sm:text-lg text-on-surface-variant max-w-2xl leading-relaxed" data-i18n="hero_subheading">
+          An illiterate-friendly voice and icon driven procurement gateway. Select your crop with visual badges, secure a verified dock gate pass, and arrive directly at scheduled unloading times.
+        </p>
+<!-- Triple-Coded Live Yard Load Bar -->
+<div class="w-full p-4 rounded-2xl bg-surface-container-low border border-surface-container shadow-sm space-y-2">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold uppercase tracking-wider text-primary flex items-center gap-1.5" data-i18n="yard_status_title">
+<span class="material-symbols-outlined text-[16px] text-secondary">speed</span>
+              Live Mandi Gate Status
+            </span>
+<span class="text-[11px] text-outline" data-i18n="updated_just_now">Live sync: Khanna Yard</span>
+</div>
+<!-- Triple Coded Indicator Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+<div class="flex items-center gap-3 p-2.5 rounded-xl bg-surface-container-lowest border border-emerald-100 shadow-sm">
+<div class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">sentiment_very_satisfied</span>
+</div>
+<div>
+<span class="text-xs font-bold text-primary block" data-i18n="gate_1_label">Gate 01 - Wheat</span>
+<span class="text-[11px] font-semibold text-emerald-700" data-i18n="gate_1_time">Fast: 12 min wait</span>
+</div>
+</div>
+<div class="flex items-center gap-3 p-2.5 rounded-xl bg-surface-container-lowest border border-amber-100 shadow-sm">
+<div class="w-9 h-9 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">sentiment_neutral</span>
+</div>
+<div>
+<span class="text-xs font-bold text-primary block" data-i18n="gate_2_label">Gate 02 - Paddy</span>
+<span class="text-[11px] font-semibold text-amber-700" data-i18n="gate_2_time">Moderate: 35 min</span>
+</div>
+</div>
+<div class="flex items-center gap-3 p-2.5 rounded-xl bg-surface-container-lowest border border-rose-100 shadow-sm">
+<div class="w-9 h-9 rounded-md bg-rose-100 text-rose-800 flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">sentiment_dissatisfied</span>
+</div>
+<div>
+<span class="text-xs font-bold text-primary block" data-i18n="gate_3_label">Gate 03 - Cotton</span>
+<span class="text-[11px] font-semibold text-rose-700" data-i18n="gate_3_time">Rush: 85 min wait</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Primary Call to Actions -->
+<div class="flex flex-wrap items-center gap-3 pt-2">
+<button class="px-6 py-3 rounded-xl bg-on-tertiary-container hover:bg-tertiary-container text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2" onclick="handleInstantBooking()">
+<span class="material-symbols-outlined text-[20px]">confirmation_number</span>
+<span data-i18n="btn_instant_booking">Instant Gate Booking</span>
+</button>
+<button class="px-6 py-3 rounded-xl bg-surface-container hover:bg-surface-container-high text-primary font-bold text-sm border border-surface-container-high transition-all flex items-center gap-2" onclick="triggerVoiceAssistant()">
+<span class="material-symbols-outlined text-[20px] text-secondary">mic</span>
+<span data-i18n="btn_voice_booking">Speak To Book</span>
+</button>
+<button class="p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-secondary transition-all" onclick="speakHeroContent()" title="Listen to Overview">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+</div>
+</div>
+<!-- Right Hero Column: Live Gate Token Preview -->
+<div class="lg:col-span-5 flex flex-col">
+<div class="w-full rounded-3xl bg-primary-container text-white p-6 shadow-xl border border-secondary/20 relative overflow-hidden">
+<div class="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
+<div class="flex items-center gap-2.5">
+<span class="p-2 rounded-xl bg-secondary text-white">
+<span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
+</span>
+<div>
+<h3 class="font-bold text-base text-white" data-i18n="gate_pass_title">Express Mandi Gate Token</h3>
+<span class="text-xs text-secondary-container" data-i18n="gate_pass_govt">Govt of India APMC Verified</span>
+</div>
+</div>
+<button class="text-secondary-container hover:text-white" onclick="speakPassText()" title="Read Pass Aloud">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+</div>
+<!-- Pass Inner White Card -->
+<div class="bg-surface-container-lowest text-on-surface rounded-2xl p-5 shadow-sm space-y-4">
+<div class="flex items-center justify-between border-b border-surface-container pb-3">
+<div>
+<span class="text-[10px] uppercase font-bold text-outline tracking-wider block" data-i18n="farmer_label">Farmer Beneficiary</span>
+<span class="font-extrabold text-base text-primary" id="cardFarmerName">Sardar Harinder Singh</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span data-i18n="dock_reserved_tag">DOCK RESERVED</span>
+</span>
+</div>
+<div class="grid grid-cols-2 gap-2 text-xs">
+<div class="p-2.5 rounded-xl bg-surface-container-low">
+<span class="text-[10px] uppercase text-outline font-semibold block" data-i18n="lbl_crop">Crop / Jinsi</span>
+<span class="font-bold text-primary text-sm flex items-center gap-1 mt-0.5">
+<span id="cardCropEmoji">🌾</span> <span id="cardCropName">Wheat (Sharbati)</span>
+</span>
+</div>
+<div class="p-2.5 rounded-xl bg-surface-container-low">
+<span class="text-[10px] uppercase text-outline font-semibold block" data-i18n="lbl_weight">Expected Load</span>
+<span class="font-bold text-secondary text-sm mt-0.5 block" id="cardWeight">85 Quintals</span>
+</div>
+<div class="p-2.5 rounded-xl bg-surface-container-low">
+<span class="text-[10px] uppercase text-outline font-semibold block" data-i18n="lbl_window">Arrival Window</span>
+<span class="font-bold text-primary text-sm mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-amber-500">wb_sunny</span>
+<span id="cardWindow">08:00 AM - 11:00 AM</span>
+</span>
+</div>
+<div class="p-2.5 rounded-xl bg-surface-container-low">
+<span class="text-[10px] uppercase text-outline font-semibold block" data-i18n="lbl_bay">Assigned Dock</span>
+<span class="font-bold text-on-tertiary-container text-sm mt-0.5 block" id="cardBay">Dock Bay #04</span>
+</div>
+</div>
+<!-- Authentic Token QR Box -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container border border-dashed border-secondary/30">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-primary text-white flex items-center justify-center p-1 font-mono text-[9px] text-center font-bold">
+                  QR TOKEN
+                </div>
+<div>
+<span class="font-bold text-xs text-primary block" id="cardTokenSerial">PB-02-AK-9811</span>
+<span class="text-[10px] text-outline font-mono">TOKEN #26032-APMC-92</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[28px] text-secondary">verified_user</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- STEP-BY-STEP VISUAL SLOT BOOKING (INTERACTIVE) -->
+<section class="w-full bg-surface-container-low py-12 px-4 sm:px-6 border-y border-surface-container" id="booking">
+<div class="max-w-7xl mx-auto space-y-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="text-xs font-bold uppercase tracking-wider text-secondary" data-i18n="booking_eyebrow">STEP-BY-STEP SLOTTING</span>
+<h2 class="text-2xl sm:text-3xl font-extrabold text-primary" data-i18n="booking_title">Visual Slot Generator &amp; Gate Pass</h2>
+<p class="text-sm text-on-surface-variant max-w-xl mt-1" data-i18n="booking_sub">
+            No typing required. Tap the picture of your crop, pick the arrival sun time, choose your vehicle, and produce an authentic gate pass.
+          </p>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded-full bg-surface-container-lowest text-primary text-xs font-bold flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">flash_on</span>
+<span data-i18n="instant_sync">Instant Yard Sync</span>
+</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Interactive Form Controls (8 Cols) -->
+<div class="lg:col-span-8 space-y-6">
+<!-- Step 1: Crop Selection -->
+<div class="p-6 rounded-3xl bg-surface-container-lowest shadow-sm border border-surface-container space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">1</span>
+<span class="text-base font-bold text-primary" data-i18n="step_1_crop">Select Harvest / Crop (फसल चुनें)</span>
+</div>
+<button class="text-secondary hover:text-primary" onclick="speakCrops()">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<button class="crop-btn p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-transparent focus:border-secondary flex flex-col items-center text-center transition-all group" onclick="selectCrop('wheat', 'Wheat (Gehun)', '₹ 2,275/Qtl', '🌾')" type="button">
+<span class="text-4xl mb-1 group-hover:scale-110 transition-transform">🌾</span>
+<span class="text-sm font-bold text-primary" data-i18n="crop_wheat">Wheat</span>
+<span class="text-xs text-secondary font-medium">गेहूं / ਕਣਕ</span>
+<span class="text-[10px] text-outline mt-1 font-semibold">MSP ₹2,275</span>
+</button>
+<button class="crop-btn p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-transparent focus:border-secondary flex flex-col items-center text-center transition-all group" onclick="selectCrop('paddy', 'Paddy Rice (Dhan)', '₹ 2,183/Qtl', '🍚')" type="button">
+<span class="text-4xl mb-1 group-hover:scale-110 transition-transform">🍚</span>
+<span class="text-sm font-bold text-primary" data-i18n="crop_paddy">Paddy Rice</span>
+<span class="text-xs text-secondary font-medium">धान / ਝੋਨਾ</span>
+<span class="text-[10px] text-outline mt-1 font-semibold">MSP ₹2,183</span>
+</button>
+<button class="crop-btn p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-transparent focus:border-secondary flex flex-col items-center text-center transition-all group" onclick="selectCrop('mustard', 'Mustard (Sarson)', '₹ 5,650/Qtl', '🌼')" type="button">
+<span class="text-4xl mb-1 group-hover:scale-110 transition-transform">🌼</span>
+<span class="text-sm font-bold text-primary" data-i18n="crop_mustard">Mustard</span>
+<span class="text-xs text-secondary font-medium">सरसों / ਸਰ੍ਹੋਂ</span>
+<span class="text-[10px] text-outline mt-1 font-semibold">MSP ₹5,650</span>
+</button>
+<button class="crop-btn p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-transparent focus:border-secondary flex flex-col items-center text-center transition-all group" onclick="selectCrop('cotton', 'Cotton (Kapas)', '₹ 7,020/Qtl', '☁️')" type="button">
+<span class="text-4xl mb-1 group-hover:scale-110 transition-transform">☁️</span>
+<span class="text-sm font-bold text-primary" data-i18n="crop_cotton">Cotton</span>
+<span class="text-xs text-secondary font-medium">कपास / ਕਪਾਹ</span>
+<span class="text-[10px] text-outline mt-1 font-semibold">MSP ₹7,020</span>
+</button>
+</div>
+</div>
+<!-- Step 2: Arrival Sun Phase & Date -->
+<div class="p-6 rounded-3xl bg-surface-container-lowest shadow-sm border border-surface-container space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">2</span>
+<span class="text-base font-bold text-primary" data-i18n="step_2_time">Choose Arrival Sun Phase &amp; Date (आने का समय)</span>
+</div>
+<button class="text-secondary hover:text-primary" onclick="speakTimes()">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+<!-- Date Selectors -->
+<div class="grid grid-cols-3 gap-3">
+<button class="date-btn p-3 rounded-xl bg-secondary-container text-on-secondary-container font-bold text-center border-2 border-secondary" onclick="selectDate('Today', '18 Oct')" type="button">
+<span class="text-xs uppercase block" data-i18n="date_today">Today</span>
+<span class="text-sm font-extrabold">18 Oct</span>
+</button>
+<button class="date-btn p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-bold text-center border-2 border-transparent" onclick="selectDate('Tomorrow', '19 Oct')" type="button">
+<span class="text-xs uppercase block" data-i18n="date_tomorrow">Tomorrow</span>
+<span class="text-sm font-extrabold">19 Oct</span>
+</button>
+<button class="date-btn p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-bold text-center border-2 border-transparent" onclick="selectDate('Day After', '20 Oct')" type="button">
+<span class="text-xs uppercase block" data-i18n="date_after">Day After</span>
+<span class="text-sm font-extrabold">20 Oct</span>
+</button>
+</div>
+<!-- Sun Phase Cards with Triple Coded Traffic -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<button class="slot-btn p-3.5 rounded-2xl bg-surface-container-low hover:bg-secondary-container/30 border-2 border-transparent focus:border-secondary flex flex-col text-left transition-all" onclick="selectSlot('Morning Rise (06:00 - 11:00 AM)', 'Gate 01')" type="button">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-amber-500 text-[26px]">wb_twilight</span>
+<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold">Fast</span>
+</div>
+<span class="text-sm font-bold text-primary" data-i18n="slot_morning">Morning Rise</span>
+<span class="text-xs text-on-surface-variant">06:00 AM - 11:00 AM</span>
+<span class="text-[10px] text-secondary font-semibold mt-1">Gate 01 Ready</span>
+</button>
+<button class="slot-btn p-3.5 rounded-2xl bg-surface-container-low hover:bg-secondary-container/30 border-2 border-transparent focus:border-secondary flex flex-col text-left transition-all" onclick="selectSlot('Midday Sun (11:00 AM - 03:00 PM)', 'Gate 02')" type="button">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-orange-500 text-[26px]">wb_sunny</span>
+<span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[11px] font-bold">Medium</span>
+</div>
+<span class="text-sm font-bold text-primary" data-i18n="slot_midday">Midday Sun</span>
+<span class="text-xs text-on-surface-variant">11:00 AM - 03:00 PM</span>
+<span class="text-[10px] text-secondary font-semibold mt-1">Gate 02 Ready</span>
+</button>
+<button class="slot-btn p-3.5 rounded-2xl bg-surface-container-low hover:bg-secondary-container/30 border-2 border-transparent focus:border-secondary flex flex-col text-left transition-all" onclick="selectSlot('Evening Sunset (03:00 PM - 07:00 PM)', 'Gate 03')" type="button">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-indigo-400 text-[26px]">bedtime</span>
+<span class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 text-[11px] font-bold">Rush</span>
+</div>
+<span class="text-sm font-bold text-primary" data-i18n="slot_evening">Evening Sunset</span>
+<span class="text-xs text-on-surface-variant">03:00 PM - 07:00 PM</span>
+<span class="text-[10px] text-secondary font-semibold mt-1">Gate 03 Peak</span>
+</button>
+</div>
+</div>
+<!-- Step 3: Vehicle Type -->
+<div class="p-6 rounded-3xl bg-surface-container-lowest shadow-sm border border-surface-container space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">3</span>
+<span class="text-base font-bold text-primary" data-i18n="step_3_vehicle">Select Transport Vehicle (वाहन चुनें)</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<button class="vehicle-btn p-3.5 rounded-2xl bg-surface-container-low hover:bg-secondary-container/30 border-2 border-secondary flex flex-col items-center text-center transition-all" onclick="selectVehicle('Tractor Trolley', '40-80 Qtl', '🚜')" type="button">
+<span class="text-3xl mb-1">🚜</span>
+<span class="text-xs font-bold text-primary" data-i18n="veh_tractor">Tractor Trolley</span>
+<span class="text-[10px] text-on-surface-variant">40-80 Qtl</span>
+</button>
+<button class="vehicle-btn p-3.5 rounded-2xl bg-surface-container-low hover:bg-secondary-container/30 border-2 border-transparent flex flex-col items-center text-center transition-all" onclick="selectVehicle('Heavy Truck', '100-250 Qtl', '🚛')" type="button">
+<span class="text-3xl mb-1">🚛</span>
+<span class="text-xs font-bold text-primary" data-i18n="veh_truck">Heavy Truck</span>
+<span class="text-[10px] text-on-surface-variant">100-250 Qtl</span>
+</button>
+<button class="vehicle-btn p-3.5 rounded-2xl bg-surface-container-low hover:bg-secondary-container/30 border-2 border-transparent flex flex-col items-center text-center transition-all" onclick="selectVehicle('Mini Pickup', '15-30 Qtl', '🛻')" type="button">
+<span class="text-3xl mb-1">🛻</span>
+<span class="text-xs font-bold text-primary" data-i18n="veh_pickup">Mini Pickup</span>
+<span class="text-[10px] text-on-surface-variant">15-30 Qtl</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Generated Gate Pass Output (4 Cols Sticky) -->
+<div class="lg:col-span-4 flex flex-col">
+<div class="sticky top-28 p-6 rounded-3xl bg-surface-container-lowest shadow-lg border border-surface-container space-y-4">
+<div class="flex items-center justify-between border-b border-surface-container pb-3">
+<span class="font-extrabold text-base text-primary" data-i18n="live_pass_heading">Live Gate Token</span>
+<button class="p-1.5 rounded-full bg-secondary-container text-secondary hover:bg-secondary hover:text-white transition-all" onclick="readOutPassDetails()" title="Listen to Gate Pass">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+<!-- Pass Summary Box -->
+<div class="p-4 rounded-2xl bg-surface-container border-2 border-dashed border-secondary/40 space-y-3">
+<div class="flex items-center justify-between">
+<div>
+<span class="text-[10px] font-bold uppercase text-outline" data-i18n="lbl_serial">Serial ID</span>
+<span class="text-xs font-mono font-bold text-primary block" id="dispSerial">APMC-26032-841</span>
+</div>
+<div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center text-xl font-bold" id="dispCropIcon">
+                  🌾
+                </div>
+</div>
+<div class="space-y-1.5 text-xs">
+<div class="flex justify-between">
+<span class="text-on-surface-variant" data-i18n="lbl_farmer_short">Farmer:</span>
+<span class="font-bold text-primary" id="dispFarmer">Sardar Harinder Singh</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant" data-i18n="lbl_crop_short">Crop:</span>
+<span class="font-bold text-primary" id="dispCrop">Wheat (Gehun)</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant" data-i18n="lbl_date_short">Arrival Date:</span>
+<span class="font-bold text-primary" id="dispDate">Today (18 Oct)</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant" data-i18n="lbl_window_short">Window:</span>
+<span class="font-bold text-secondary" id="dispSlot">Morning Rise</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant" data-i18n="lbl_transport_short">Transport:</span>
+<span class="font-bold text-primary" id="dispVehicle">Tractor Trolley</span>
+</div>
+<div class="flex justify-between border-t border-surface-container-high pt-1.5">
+<span class="text-on-surface-variant" data-i18n="lbl_dock_short">Assigned Gate:</span>
+<span class="font-bold text-on-tertiary-container" id="dispGate">Gate 01 (Bay 04)</span>
+</div>
+</div>
+<!-- Fake QR Representation -->
+<div class="w-full py-2 bg-surface-container-lowest rounded-xl flex items-center justify-center">
+<svg class="w-20 h-20 text-primary" fill="currentColor" viewbox="0 0 24 24">
+<path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm10-2h8v8h-8V2zm2 2v4h4V4h-4zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm14 0h4v4h-4v-4zm-4 4h4v4h-4v-4zm-4-4h4v4h-4v-4zm4-4h4v4h-4v-4zm4 4h2v2h-2v-2z"></path>
+</svg>
+</div>
+</div>
+<!-- Primary Action Button -->
+<button class="w-full py-3.5 rounded-2xl bg-on-tertiary-container hover:bg-tertiary-container text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2" onclick="handleSaveGatePass()">
+<span class="material-symbols-outlined text-[20px]">save_alt</span>
+<span data-i18n="btn_save_pass">Save SMS &amp; Gate Pass</span>
+</button>
+<button class="w-full py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-secondary font-bold text-xs transition-all flex items-center justify-center gap-1.5" onclick="readOutPassDetails()">
+<span class="material-symbols-outlined text-[16px]">record_voice_over</span>
+<span data-i18n="btn_listen_pass">Read Pass In My Language</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Problem vs Solution Matrix -->
+<section class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 space-y-6" id="solution">
+<div class="flex items-center justify-between">
+<div>
+<span class="text-xs font-bold uppercase tracking-wider text-secondary" data-i18n="sol_eyebrow">BEFORE &amp; AFTER SMART MANDI</span>
+<h2 class="text-2xl sm:text-3xl font-extrabold text-primary" data-i18n="sol_heading">Eradicating Mandi Congestion &amp; Exploitation</h2>
+</div>
+<button class="p-2 rounded-xl bg-surface-container text-secondary hover:text-primary" onclick="speakSolutionMatrix()">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Legacy Distress Card -->
+<div class="p-6 rounded-3xl bg-surface-container-low border border-rose-100 shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<span class="px-3 py-1 rounded-full bg-rose-100 text-rose-800 text-xs font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-rose-600"></span>
+            Legacy Mandi Bottleneck
           </span>
-        </div>
-        <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">Govt e-KYC</span>
-      </div>
-
-      <div class="p-3.5 rounded-2xl bg-surface-container-low flex items-center justify-between">
-        <div class="flex flex-col">
-          <span class="text-[10px] uppercase font-bold text-outline" data-i18n="prof_kisan_id">Kisan ID &amp; Mandi Yard</span>
-          <span class="text-xs font-bold text-primary mt-0.5">PB-02-KHN-26032</span>
-          <span class="text-[11px] text-secondary">APMC Khanna Main Yard (PB-02)</span>
-        </div>
-        <button onclick="speakFarmerProfile()" class="p-2 rounded-full bg-surface-container text-secondary hover:text-primary">
-          <span class="material-symbols-outlined text-[18px]">volume_up</span>
-        </button>
-      </div>
-
-      <div class="p-3.5 rounded-2xl bg-surface-container-low flex items-center justify-between">
-        <div class="flex flex-col">
-          <span class="text-[10px] uppercase font-bold text-outline" data-i18n="prof_dbt_acc">Direct DBT Account</span>
-          <span class="text-xs font-bold text-primary mt-0.5">State Bank •••• 4091</span>
-          <span class="text-[11px] text-emerald-700">Aadhaar Linked Direct Settlement</span>
-        </div>
-        <span class="material-symbols-outlined text-emerald-600">account_balance</span>
-      </div>
-    </div>
-
-    <div class="flex flex-col gap-2 pt-2">
-      <button onclick="speakFarmerProfile()" class="w-full py-3 rounded-xl bg-surface-container hover:bg-surface-container-high text-secondary font-bold text-xs transition-all flex items-center justify-center gap-2">
-        <span class="material-symbols-outlined text-[18px]">record_voice_over</span>
-        <span data-i18n="btn_read_profile">Read Profile Aloud</span>
-      </button>
-      <button onclick="handleFarmerLogout()" class="w-full py-3 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-bold text-xs transition-all flex items-center justify-center gap-2">
-        <span class="material-symbols-outlined text-[18px]">logout</span>
-        <span data-i18n="btn_logout">Logout / लॉगआउट</span>
-      </button>
-    </div>
-  </div>
+<span class="material-symbols-outlined text-rose-500 text-[24px]">warning</span>
 </div>
-
-<!-- ============================================== -->
-<!-- 3. FULL-SCREEN MULTILINGUAL LANGUAGE PICKER -->
-<!-- ============================================== -->
-<div id="languageModal" class="fixed inset-0 z-50 bg-primary/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-  <div class="w-full max-w-xl bg-surface-container-lowest rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col gap-4">
-    <div class="flex items-center justify-between border-b border-surface-container pb-3">
-      <div>
-        <h3 class="text-lg font-extrabold text-primary">Select Preferred Language / भाषा चुनें</h3>
-        <p class="text-xs text-on-surface-variant">Tap a language card to listen and translate the portal</p>
-      </div>
-      <button onclick="closeLanguageModal()" class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface">
-        <span class="material-symbols-outlined text-[20px]">close</span>
-      </button>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      <button onclick="setLanguage('en')" class="p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-surface-container text-left flex items-center justify-between transition-all group">
-        <div>
-          <span class="text-base font-bold text-primary block">English</span>
-          <span class="text-xs text-outline">Default interface</span>
-        </div>
-        <span class="material-symbols-outlined text-secondary text-[24px]">language</span>
-      </button>
-
-      <button onclick="setLanguage('hi')" class="p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-surface-container text-left flex items-center justify-between transition-all group">
-        <div>
-          <span class="text-base font-bold text-primary block">हिंदी (Hindi)</span>
-          <span class="text-xs text-outline">संपूर्ण पोर्टल हिंदी में</span>
-        </div>
-        <span class="text-xl">🇮🇳</span>
-      </button>
-
-      <button onclick="setLanguage('pa')" class="p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-surface-container text-left flex items-center justify-between transition-all group">
-        <div>
-          <span class="text-base font-bold text-primary block">ਪੰਜਾਬੀ (Punjabi)</span>
-          <span class="text-xs text-outline">ਕਣਕ ਤੇ ਝੋਨਾ ਮੰਡੀ ਸਲਾਟ</span>
-        </div>
-        <span class="text-xl">🌾</span>
-      </button>
-
-      <button onclick="setLanguage('te')" class="p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-surface-container text-left flex items-center justify-between transition-all group">
-        <div>
-          <span class="text-base font-bold text-primary block">తెలుగు (Telugu)</span>
-          <span class="text-xs text-outline">మార్కెట్ యార్డ్ బుకింగ్</span>
-        </div>
-        <span class="text-xl">🏛️</span>
-      </button>
-    </div>
-  </div>
+<h3 class="text-lg font-bold text-primary" data-i18n="legacy_title">Unorganized 14-Hour Roadside Queues</h3>
+<ul class="space-y-2.5 text-xs sm:text-sm text-on-surface-variant">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-rose-500 text-[18px] shrink-0 mt-0.5">cancel</span>
+<span data-i18n="legacy_1">Farmers burn diesel idling in 3 km tractor queues outside yards without food or water.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-rose-500 text-[18px] shrink-0 mt-0.5">cancel</span>
+<span data-i18n="legacy_2">Middlemen exploit farmer exhaustion to discount price by up to ₹300/quintal.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-rose-500 text-[18px] shrink-0 mt-0.5">cancel</span>
+<span data-i18n="legacy_3">Sudden unseasonal rains ruin grain sacks exposed on open tarmac roads.</span>
+</li>
+</ul>
 </div>
-
-<!-- ============================================== -->
-<!-- 4. VOICE ASSISTANT MODAL (SPEECH-TO-TEXT SIM) -->
-<!-- ============================================== -->
-<div id="voiceModal" class="fixed inset-0 z-50 bg-primary/85 backdrop-blur-md hidden flex items-center justify-center p-4">
-  <div class="w-full max-w-md bg-surface-container-lowest rounded-3xl p-6 shadow-2xl flex flex-col items-center text-center gap-4">
-    <div class="w-20 h-20 rounded-full bg-on-tertiary-container/10 flex items-center justify-center relative">
-      <span class="material-symbols-outlined text-[44px] text-on-tertiary-container animate-pulse">mic</span>
-    </div>
-    <div class="space-y-1">
-      <h3 class="text-lg font-bold text-primary" data-i18n="voice_listening">Listening to your voice...</h3>
-      <p class="text-xs text-on-surface-variant" data-i18n="voice_hint">Try saying: "Book Wheat for Tomorrow Morning"</p>
-    </div>
-    <div id="voiceTranscriptBox" class="w-full p-3 bg-surface-container rounded-xl text-xs sm:text-sm text-primary italic min-h-[48px] flex items-center justify-center">
-      "Listening..."
-    </div>
-    <div class="flex items-center gap-2 w-full">
-      <button onclick="simulateVoiceBooking('wheat')" class="flex-1 py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container text-primary text-xs font-bold">
-        Simulate (Wheat)
-      </button>
-      <button onclick="simulateVoiceBooking('paddy')" class="flex-1 py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container text-primary text-xs font-bold">
-        Simulate (Paddy)
-      </button>
-    </div>
-    <button onclick="closeVoiceModal()" class="text-xs text-on-surface-variant hover:text-primary py-1">
-      Cancel / बंद करें
-    </button>
-  </div>
+<!-- Smart Solution Card -->
+<div class="p-6 rounded-3xl bg-primary text-white shadow-md space-y-3">
+<div class="flex items-center justify-between">
+<span class="px-3 py-1 rounded-full bg-emerald-900/60 text-emerald-300 text-xs font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            SIH 2026 Engine
+          </span>
+<span class="material-symbols-outlined text-secondary-container text-[24px]">verified</span>
 </div>
-
+<h3 class="text-lg font-bold text-white" data-i18n="smart_title">Guaranteed 20-Minute Dock Allocation</h3>
+<ul class="space-y-2.5 text-xs sm:text-sm text-surface-dim">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-400 text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span data-i18n="smart_1">Automated gate pass routes vehicle directly to designated weighbridge and unloading bay.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-400 text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span data-i18n="smart_2">Multi-lingual voice bot schedules slots over basic phone call (IVR) or one-tap web buttons.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-400 text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span data-i18n="smart_3">Dynamic load balancing redistributes surplus arrivals across neighboring APMC yards.</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Technical Architecture -->
+<section class="w-full bg-surface-container-low py-12 px-4 sm:px-6 border-y border-surface-container" id="architecture">
+<div class="max-w-7xl mx-auto space-y-6">
+<div>
+<span class="text-xs font-bold uppercase tracking-wider text-secondary" data-i18n="arch_eyebrow">TECH BLUEPRINT</span>
+<h2 class="text-2xl sm:text-3xl font-extrabold text-primary" data-i18n="arch_heading">Robust, Low-Bandwidth Architecture</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container space-y-2">
+<span class="text-xs font-extrabold text-secondary">01. EDGE INPUT</span>
+<h4 class="font-bold text-base text-primary" data-i18n="arch_1_title">Farmer Voice &amp; Icons</h4>
+<p class="text-xs text-on-surface-variant" data-i18n="arch_1_desc">WebSpeech API, icon touch cards, or regional IVR phone lines.</p>
+</div>
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container space-y-2">
+<span class="text-xs font-extrabold text-secondary">02. LOAD BALANCER</span>
+<h4 class="font-bold text-base text-primary" data-i18n="arch_2_title">Token Concurrency</h4>
+<p class="text-xs text-on-surface-variant" data-i18n="arch_2_desc">FIFO token bucket guarantees zero gate overbooking during peak harvest.</p>
+</div>
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container space-y-2">
+<span class="text-xs font-extrabold text-secondary">03. ANPR SCAN</span>
+<h4 class="font-bold text-base text-primary" data-i18n="arch_3_title">Automated Dock Entry</h4>
+<p class="text-xs text-on-surface-variant" data-i18n="arch_3_desc">OCR cameras scan tractor number plates and match instant QR tokens in 1.4s.</p>
+</div>
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container space-y-2">
+<span class="text-xs font-extrabold text-secondary">04. DBT SETTLEMENT</span>
+<h4 class="font-bold text-base text-primary" data-i18n="arch_4_title">Direct Bank Payout</h4>
+<p class="text-xs text-on-surface-variant" data-i18n="arch_4_desc">Weighbridge slips trigger instant Aadhaar-linked MSP bank transfers.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Impact & Metrics -->
+<section class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 space-y-6" id="impact">
+<div>
+<span class="text-xs font-bold uppercase tracking-wider text-secondary" data-i18n="impact_eyebrow">FIELD VALIDATION</span>
+<h2 class="text-2xl sm:text-3xl font-extrabold text-primary" data-i18n="impact_heading">Measurable Socio-Economic Transformation</h2>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="p-5 rounded-2xl bg-surface-container-lowest border border-surface-container shadow-sm text-center">
+<span class="text-3xl sm:text-4xl font-extrabold text-on-tertiary-container block">-78%</span>
+<span class="text-xs sm:text-sm font-bold text-primary block mt-1" data-i18n="metric_1_lbl">Gate Waiting Delay</span>
+<span class="text-[11px] text-outline" data-i18n="metric_1_sub">From 14 hrs to 22 mins</span>
+</div>
+<div class="p-5 rounded-2xl bg-surface-container-lowest border border-surface-container shadow-sm text-center">
+<span class="text-3xl sm:text-4xl font-extrabold text-secondary block">₹1,420</span>
+<span class="text-xs sm:text-sm font-bold text-primary block mt-1" data-i18n="metric_2_lbl">Saved Per Trip</span>
+<span class="text-[11px] text-outline" data-i18n="metric_2_sub">Diesel &amp; lodging savings</span>
+</div>
+<div class="p-5 rounded-2xl bg-surface-container-lowest border border-surface-container shadow-sm text-center">
+<span class="text-3xl sm:text-4xl font-extrabold text-emerald-700 block">0%</span>
+<span class="text-xs sm:text-sm font-bold text-primary block mt-1" data-i18n="metric_3_lbl">Distress Crop Sales</span>
+<span class="text-[11px] text-outline" data-i18n="metric_3_sub">Guaranteed MSP protection</span>
+</div>
+<div class="p-5 rounded-2xl bg-surface-container-lowest border border-surface-container shadow-sm text-center">
+<span class="text-3xl sm:text-4xl font-extrabold text-primary block">12.8M</span>
+<span class="text-xs sm:text-sm font-bold text-primary block mt-1" data-i18n="metric_4_lbl">Quintals Handled</span>
+<span class="text-[11px] text-outline" data-i18n="metric_4_sub">Simulated target</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Voice Assistant Microphone Button (64x64px) -->
+<button aria-label="AI Voice Booking Assistant" class="fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full bg-on-tertiary-container hover:bg-tertiary-container text-white shadow-2xl flex items-center justify-center transition-transform hover:scale-105 active:scale-95" onclick="triggerVoiceAssistant()" title="Click to speak and book slot">
+<span class="material-symbols-outlined text-[32px]">mic</span>
+<span class="absolute -top-1 -right-1 flex h-4 w-4">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-4 w-4 bg-orange-500"></span>
+</span>
+</button>
 <!-- Footer -->
 <footer class="w-full bg-primary text-white py-6 px-4 border-t border-primary-container">
-  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-surface-dim">
-    <span>SMART INDIA HACKATHON 2026 • PROBLEM STATEMENT #26032 • TEAM STACK OVERFLOW(ED)</span>
-    <span>Ministry of Agriculture &amp; Farmers Welfare • APMC Mandi Logistics</span>
-  </div>
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-surface-dim">
+<span>SMART INDIA HACKATHON 2026 • PROBLEM STATEMENT #26032 • TEAM STACK OVERFLOW(ED)</span>
+<span>Ministry of Agriculture &amp; Farmers Welfare • APMC Mandi Logistics</span>
+</div>
 </footer>
-
+</div> <!-- End of #main-portal-view -->
 <!-- ============================================== -->
-<!-- SCRIPT: APPLICATION LOGIC, AUTH & I18N -->
+<!-- 1. FARMER VERIFIED PROFILE SHEET MODAL        -->
+<!-- ============================================== -->
+<div class="fixed inset-0 z-50 bg-primary/80 backdrop-blur-md hidden flex items-center justify-center p-4" id="farmerProfileModal">
+<div class="w-full max-w-md bg-surface-container-lowest rounded-3xl p-6 shadow-2xl flex flex-col gap-4 relative animate-in fade-in zoom-in-95 duration-200">
+<div class="flex items-center justify-between border-b border-surface-container pb-3">
+<div class="flex items-center gap-2.5">
+<div class="w-12 h-12 rounded-2xl bg-primary text-white flex items-center justify-center font-bold text-2xl">
+          🌾
+        </div>
+<div>
+<h3 class="text-base font-extrabold text-primary leading-tight" id="profileFarmerName">Sardar Harinder Singh</h3>
+<span class="text-xs text-secondary font-mono" id="profileFarmerPhone">+91 98XXXXXX11</span>
+</div>
+</div>
+<button class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface" onclick="closeFarmerProfileModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="space-y-2.5">
+<div class="p-3.5 rounded-2xl bg-surface-container-low flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-outline" data-i18n="prof_verification_status">Verification Status</span>
+<span class="text-xs font-bold text-emerald-700 flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span data-i18n="prof_status_val">Verified / प्रमाणित</span>
+</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">Govt e-KYC</span>
+</div>
+<div class="p-3.5 rounded-2xl bg-surface-container-low flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-outline" data-i18n="prof_kisan_id">Kisan ID &amp; Mandi Yard</span>
+<span class="text-xs font-bold text-primary mt-0.5">PB-02-KHN-26032</span>
+<span class="text-[11px] text-secondary">APMC Khanna Main Yard (PB-02)</span>
+</div>
+<button class="p-2 rounded-full bg-surface-container text-secondary hover:text-primary" onclick="speakFarmerProfile()">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+<div class="p-3.5 rounded-2xl bg-surface-container-low flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-outline" data-i18n="prof_dbt_acc">Direct DBT Account</span>
+<span class="text-xs font-bold text-primary mt-0.5">State Bank •••• 4091</span>
+<span class="text-[11px] text-emerald-700">Aadhaar Linked Direct Settlement</span>
+</div>
+<span class="material-symbols-outlined text-emerald-600">account_balance</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 pt-2">
+<button class="w-full py-3 rounded-xl bg-surface-container hover:bg-surface-container-high text-secondary font-bold text-xs transition-all flex items-center justify-center gap-2" onclick="speakFarmerProfile()">
+<span class="material-symbols-outlined text-[18px]">record_voice_over</span>
+<span data-i18n="btn_read_profile">Read Profile Aloud</span>
+</button>
+<button class="w-full py-3 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-bold text-xs transition-all flex items-center justify-center gap-2" onclick="handleFarmerLogout()">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+<span data-i18n="btn_logout">Logout / लॉगआउट</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ============================================== -->
+<!-- 2. FULL-SCREEN MULTILINGUAL LANGUAGE PICKER   -->
+<!-- ============================================== -->
+<div class="fixed inset-0 z-50 bg-primary/80 backdrop-blur-md hidden flex items-center justify-center p-4" id="languageModal">
+<div class="w-full max-w-xl bg-surface-container-lowest rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col gap-4">
+<div class="flex items-center justify-between border-b border-surface-container pb-3">
+<div>
+<h3 class="text-lg font-extrabold text-primary">Select Preferred Language / भाषा चुनें</h3>
+<p class="text-xs text-on-surface-variant">Tap a language card to listen and translate the portal</p>
+</div>
+<button class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface" onclick="closeLanguageModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<button class="p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-surface-container text-left flex items-center justify-between transition-all group" onclick="setLanguage('en')">
+<div>
+<span class="text-base font-bold text-primary block">English</span>
+<span class="text-xs text-outline">Default interface</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[24px]">language</span>
+</button>
+<button class="p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-surface-container text-left flex items-center justify-between transition-all group" onclick="setLanguage('hi')">
+<div>
+<span class="text-base font-bold text-primary block">हिंदी (Hindi)</span>
+<span class="text-xs text-outline">संपूर्ण पोर्टल हिंदी में</span>
+</div>
+<span class="text-xl">🇮🇳</span>
+</button>
+<button class="p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-surface-container text-left flex items-center justify-between transition-all group" onclick="setLanguage('pa')">
+<div>
+<span class="text-base font-bold text-primary block">ਪੰਜਾਬੀ (Punjabi)</span>
+<span class="text-xs text-outline">ਕਣਕ ਤੇ ਝੋਨਾ ਮੰਡੀ ਸਲਾਟ</span>
+</div>
+<span class="text-xl">🌾</span>
+</button>
+<button class="p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-surface-container text-left flex items-center justify-between transition-all group" onclick="setLanguage('te')">
+<div>
+<span class="text-base font-bold text-primary block">తెలుగు (Telugu)</span>
+<span class="text-xs text-outline">మార్కెట్ యార్డ్ బుకింగ్</span>
+</div>
+<span class="text-xl">🏛️</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ============================================== -->
+<!-- 3. VOICE ASSISTANT MODAL (SPEECH-TO-TEXT SIM) -->
+<!-- ============================================== -->
+<div class="fixed inset-0 z-50 bg-primary/85 backdrop-blur-md hidden flex items-center justify-center p-4" id="voiceModal">
+<div class="w-full max-w-md bg-surface-container-lowest rounded-3xl p-6 shadow-2xl flex flex-col items-center text-center gap-4">
+<div class="w-20 h-20 rounded-full bg-on-tertiary-container/10 flex items-center justify-center relative">
+<span class="material-symbols-outlined text-[44px] text-on-tertiary-container animate-pulse">mic</span>
+</div>
+<div class="space-y-1">
+<h3 class="text-lg font-bold text-primary" data-i18n="voice_listening">Listening to your voice...</h3>
+<p class="text-xs text-on-surface-variant" data-i18n="voice_hint">Try saying: "Book Wheat for Tomorrow Morning"</p>
+</div>
+<div class="w-full p-3 bg-surface-container rounded-xl text-xs sm:text-sm text-primary italic min-h-[48px] flex items-center justify-center" id="voiceTranscriptBox">
+      "Listening..."
+    </div>
+<div class="flex items-center gap-2 w-full">
+<button class="flex-1 py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container text-primary text-xs font-bold" onclick="simulateVoiceBooking('wheat')">
+        Simulate (Wheat)
+      </button>
+<button class="flex-1 py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container text-primary text-xs font-bold" onclick="simulateVoiceBooking('paddy')">
+        Simulate (Paddy)
+      </button>
+</div>
+<button class="text-xs text-on-surface-variant hover:text-primary py-1" onclick="closeVoiceModal()">
+      Cancel / बंद करें
+    </button>
+</div>
+</div>
+<!-- ============================================== -->
+<!-- SCRIPT: APPLICATION LOGIC, GATEKEEPER & I18N  -->
 <!-- ============================================== -->
 <script>
-  // Global Authentication & State Storage (localStorage fallback)
-  const AUTH_STORAGE_KEY = "smart_farmer_auth_state";
   let currentLang = "en";
-  let currentGeneratedOtp = "482731";
-  let resendTimerInterval = null;
-  let pendingBookingAction = false;
+  let gatekeeperCurrentOtp = "591428";
+  let gatekeeperResendTimerInterval = null;
 
   // Selected Booking State
   let currentBooking = {
@@ -987,10 +953,10 @@ tailwind.config = {
     serial: "APMC-26032-841"
   };
 
-  // Farmer Verified Profile Data
+  // Farmer Profile Default Data
   const DEMO_FARMER_PROFILE = {
     name: "Sardar Harinder Singh",
-    mobile: "+91 98XXXXXX11",
+    mobile: "+91 9876543210",
     status: "Verified",
     kisanId: "PB-02-KHN-26032",
     yard: "APMC Khanna Main Yard (PB-02)"
@@ -1088,28 +1054,33 @@ tailwind.config = {
       metric_3_sub: "Guaranteed MSP protection",
       metric_4_lbl: "Quintals Handled",
       metric_4_sub: "Simulated target",
-      login_intercept_msg: "Please verify your mobile number to reserve your mandi gate slot.",
-      farmer_login_title: "Farmer Login",
-      login_sub_badge: "SIH 2026 APMC KISAN VERIFICATION",
-      enter_mobile_desc: "Enter your 10-digit mobile number to verify and get instant mandi pass access.",
-      lbl_mobile_num: "Mobile Number",
-      demo_mode_note: "Demo mode: OTP verification is simulated for SIH 2026.",
-      btn_send_otp: "Send OTP",
+      gk_badge_kisan: "Official Kisan Gatekeeper",
+      gk_welcome_farmer: "Welcome, Farmer",
+      gk_login_sub: "Login to access your farming services, mandi slots, and express gate passes.",
+      lbl_mobile_num: "Mobile Number / मोबाइल नंबर",
+      demo_mode_note: "Demo mode — OTP verification is simulated for SIH 2026.",
+      btn_quick_fill: "Quick Fill Demo",
+      btn_send_otp: "Send OTP / ओटीपी भेजें",
+      btn_audio_help: "Voice Guide for Farmers (बोलकर निर्देश सुनें)",
+      lbl_step_2_tag: "STEP 2 OF 2 • MOBILE VERIFICATION",
+      lbl_enter_otp_heading: "Enter 6-Digit OTP",
       otp_sent_to: "OTP sent to",
-      btn_change_num: "Change Number",
+      btn_edit_num: "Edit",
       otp_expires_timer: "Expires in 5:00 minutes",
       btn_autofill_otp: "1-Tap Auto-fill",
-      lbl_enter_otp: "Enter 6-digit OTP",
-      btn_verify_otp: "Verify OTP & Continue",
-      auth_success_title: "Verification Successful!",
+      lbl_enter_otp: "Enter 6-digit OTP / 6 अंकों का ओटीपी दर्ज करें",
+      btn_read_otp: "Read OTP",
+      btn_verify_otp: "Verify OTP & Enter Portal",
+      auth_success_title: "✓ Login Successful / लॉगिन सफल",
       auth_welcome_farmer: "Welcome, Sardar Harinder Singh",
-      auth_aadhaar_status: "Aadhaar e-KYC Verified (Demo)",
+      auth_aadhaar_status: "Aadhaar e-KYC Verified (PB-02-KHN-26032)",
       prof_verification_status: "Verification Status",
-      prof_status_val: "Verified",
+      prof_status_val: "Verified / प्रमाणित",
       prof_kisan_id: "Kisan ID & Mandi Yard",
       prof_dbt_acc: "Direct DBT Account",
       btn_read_profile: "Read Profile Aloud",
-      btn_logout: "Logout"
+      btn_logout: "Logout / लॉगआउट",
+      btn_listen: "Listen"
     },
     hi: {
       tag_apmc: "एपीएमसी मंडी स्लॉट प्रणाली • एसआईएच 26032",
@@ -1201,254 +1172,225 @@ tailwind.config = {
       metric_3_sub: "पूरा सरकारी समर्थन मूल्य गारंटी",
       metric_4_lbl: "क्विंटल अनाज का प्रबंधन",
       metric_4_sub: "समय पर सुगम उठान",
-      login_intercept_msg: "मंडी गेट पास बुक करने के लिए कृपया मोबाइल नंबर सत्यापित करें।",
-      farmer_login_title: "किसान लॉगिन (ओटीपी)",
-      login_sub_badge: "SIH 2026 किसान प्रमाणीकरण",
-      enter_mobile_desc: "त्वरित स्लॉट बुकिंग और सरकारी गेट पास के लिए 10 अंकों का मोबाइल नंबर दर्ज करें।",
+      gk_badge_kisan: "आधिकारिक किसान गेटवे",
+      gk_welcome_farmer: "किसान भाई का स्वागत है",
+      gk_login_sub: "अपनी खेत-मंडी सेवाओं, स्लॉट और गेट पास के लिए लॉगिन करें।",
       lbl_mobile_num: "मोबाइल नंबर",
       demo_mode_note: "डेमो मोड: SIH 2026 के लिए ओटीपी स्वतः दिखाया गया है।",
+      btn_quick_fill: "डेमो नंबर भरें",
       btn_send_otp: "ओटीपी भेजें",
+      btn_audio_help: "बोलकर निर्देश सुनें (किसान सहायता)",
+      lbl_step_2_tag: "चरण 2: मोबाइल प्रमाणीकरण",
+      lbl_enter_otp_heading: "6 अंकों का ओटीपी दर्ज करें",
       otp_sent_to: "ओटीपी इस नंबर पर भेजा गया:",
-      btn_change_num: "नंबर बदलें",
+      btn_edit_num: "बदलें",
       otp_expires_timer: "मान्यता 5:00 मिनट",
       btn_autofill_otp: "एक-क्लिक में भरें",
       lbl_enter_otp: "6 अंकों का ओटीपी दर्ज करें",
-      btn_verify_otp: "ओटीपी सत्यापित करें",
-      auth_success_title: "सत्यापन सफल!",
+      btn_read_otp: "ओटीपी सुनें",
+      btn_verify_otp: "सत्यापित करें और प्रवेश करें",
+      auth_success_title: "✓ लॉगिन सफल!",
       auth_welcome_farmer: "स्वागत है, सरदार हरिंदर सिंह जी",
-      auth_aadhaar_status: "आधार ई-केवाईसी प्रमाणित (डेमो)",
+      auth_aadhaar_status: "आधार ई-केवाईसी प्रमाणित (PB-02-KHN-26032)",
       prof_verification_status: "सत्यापन स्थिति",
       prof_status_val: "प्रमाणित किसान",
       prof_kisan_id: "किसान आईडी व मंडी",
       prof_dbt_acc: "डीबीटी बैंक खाता",
       btn_read_profile: "प्रोफाइल बोलकर सुनें",
-      btn_logout: "लॉगआउट करें"
+      btn_logout: "लॉगआउट करें",
+      btn_listen: "सुनें"
+    },
+    pa: {
+      tag_apmc: "ਏਪੀਐਮਸੀ ਮੰਡੀ ਸ਼ਡਿਊਲਿੰਗ • SIH #26032",
+      gk_welcome_farmer: "ਜੀ ਆਇਆਂ ਨੂੰ ਕਿਸਾਨ ਵੀਰ",
+      gk_login_sub: "ਖੇਤ ਅਤੇ ਮੰਡੀ ਸੇਵਾਵਾਂ ਲਈ ਲੌਗਇਨ ਕਰੋ।",
+      btn_send_otp: "ਓਟੀਪੀ ਭੇਜੋ",
+      btn_verify_otp: "ਓਟੀਪੀ ਤਸਦੀਕ ਕਰੋ",
+      auth_success_title: "✓ ਲੌਗਇਨ ਸਫਲ",
+      auth_welcome_farmer: "ਜੀ ਆਇਆਂ ਨੂੰ, ਸਰਦਾਰ ਹਰਿੰਦਰ ਸਿੰਘ"
+    },
+    te: {
+      tag_apmc: "APMC మార్కెట్ యార్డ్ • SIH #26032",
+      gk_welcome_farmer: "రైతుకు స్వాగతం",
+      gk_login_sub: "మీ వ్యవసాయ మరియు మార్కెట్ సేవలను పొందడానికి లాగిన్ అవ్వండి.",
+      btn_send_otp: "OTP పంపండి",
+      btn_verify_otp: "ధృవీకరించండి",
+      auth_success_title: "✓ లాగిన్ విజయవంతమైంది",
+      auth_welcome_farmer: "స్వాగతం, సర్దార్ హరీందర్ సింగ్"
     }
   };
 
-  // Initialize Language and Authentication State
+  // INITIALIZATION ON PAGE LOAD
   window.addEventListener("DOMContentLoaded", () => {
-    initAuthUI();
-    setupOtpInputAutoAdvance();
+    initAuth();
+    setupGatekeeperOtpInputs();
   });
 
-  // Check login state
-  function getAuthState() {
-    try {
-      const stored = localStorage.getItem(AUTH_STORAGE_KEY);
-      return stored ? JSON.parse(stored) : null;
-    } catch(e) {
-      return null;
+  // Check login state: if 'farmer_auth' === 'true' show main portal; else show gatekeeper login
+  function initAuth() {
+    const isAuth = localStorage.getItem("farmer_auth") === "true";
+    const loginView = document.getElementById("farmer-login-view");
+    const mainView = document.getElementById("main-portal-view");
+    const farmerName = localStorage.getItem("farmer_name") || DEMO_FARMER_PROFILE.name;
+
+    if (isAuth) {
+      loginView.classList.add("hidden");
+      mainView.classList.remove("hidden");
+      renderMainPortalHeaderAuth(farmerName);
+    } else {
+      mainView.classList.add("hidden");
+      loginView.classList.remove("hidden");
+      // Reset gatekeeper view steps
+      document.getElementById("gatekeeperStepMobile").classList.remove("hidden");
+      document.getElementById("gatekeeperStepOtp").classList.add("hidden");
+      document.getElementById("gatekeeperStepOtp").classList.remove("flex");
+      document.getElementById("gatekeeperStepSuccess").classList.add("hidden");
+      document.getElementById("gatekeeperStepSuccess").classList.remove("flex");
     }
   }
 
-  function setAuthState(state) {
-    try {
-      if (state) {
-        localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(state));
-      } else {
-        localStorage.removeItem(AUTH_STORAGE_KEY);
-      }
-    } catch(e) {}
-    initAuthUI();
-  }
-
-  // Render Top Header Auth Button
-  function initAuthUI() {
+  // Render main portal top-right account button
+  function renderMainPortalHeaderAuth(farmerName) {
     const container = document.getElementById("authHeaderContainer");
-    const user = getAuthState();
+    if (!container) return;
 
-    if (user && user.isLoggedIn) {
-      // Verified Farmer State Button
-      container.innerHTML = `
-        <button onclick="openFarmerProfileModal()" class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 hover:bg-emerald-200 text-emerald-950 font-bold text-xs border border-emerald-300 shadow-sm transition-all focus:outline-none">
-          <span class="w-6 h-6 rounded-full bg-emerald-800 text-white flex items-center justify-center text-[12px]">🌾</span>
-          <span class="hidden sm:inline font-bold">${user.name || 'Sardar Harinder Singh'}</span>
-          <span class="px-1.5 py-0.2 rounded-full bg-emerald-700 text-white text-[10px] font-extrabold flex items-center gap-0.5">
-            <span class="material-symbols-outlined text-[12px]">verified</span> Verified
-          </span>
-        </button>
-      `;
-      // Also update name on pass preview
-      document.getElementById("cardFarmerName").innerText = user.name;
-      document.getElementById("dispFarmer").innerText = user.name;
-    } else {
-      // Unauthenticated State Button
-      container.innerHTML = `
-        <button onclick="openFarmerLoginModal(false)" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary hover:bg-primary/90 text-white font-bold text-xs shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-secondary">
-          <span class="material-symbols-outlined text-[16px]">account_circle</span>
-          <span data-i18n="farmer_login_btn">Farmer Login</span>
-        </button>
-      `;
-    }
+    container.innerHTML = `
+      <button onclick="openFarmerProfileModal()" class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 hover:bg-emerald-200 text-emerald-950 font-bold text-xs border border-emerald-300 shadow-sm transition-all focus:outline-none">
+        <span class="w-6 h-6 rounded-full bg-emerald-800 text-white flex items-center justify-center text-[12px]">🌾</span>
+        <span class="hidden sm:inline font-bold">${farmerName}</span>
+        <span class="px-1.5 py-0.2 rounded-full bg-emerald-700 text-white text-[10px] font-extrabold flex items-center gap-0.5">
+          <span class="material-symbols-outlined text-[12px]">verified</span> Verified
+        </span>
+      </button>
+    `;
+
+    // Also update preview text on the main portal pass
+    const cardNameEl = document.getElementById("cardFarmerName");
+    const dispFarmerEl = document.getElementById("dispFarmer");
+    if (cardNameEl) cardNameEl.innerText = farmerName;
+    if (dispFarmerEl) dispFarmerEl.innerText = farmerName;
   }
 
-  // Handle Login Interceptions
-  function handleInstantBooking() {
-    const user = getAuthState();
-    if (!user || !user.isLoggedIn) {
-      pendingBookingAction = true;
-      openFarmerLoginModal(true);
-    } else {
-      const el = document.getElementById("booking");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-      speakNotification("Welcome back Harinder Singh. Select your crop to reserve dock.");
-    }
+  // Quick fill mobile button
+  function fillTestFarmerMobile() {
+    document.getElementById("gatekeeperMobileInput").value = "9876543210";
+    speakNotification("Demo farmer mobile number 9876543210 entered.");
   }
 
-  function handleSaveGatePass() {
-    const user = getAuthState();
-    if (!user || !user.isLoggedIn) {
-      pendingBookingAction = true;
-      openFarmerLoginModal(true);
-    } else {
-      speakNotification("Gate pass APMC-26032-841 generated and SMS sent to your verified mobile number.");
-      alert("✅ Mandi Gate Pass Saved!\nSerial: APMC-26032-841\nFarmer: " + user.name + "\nDock Gate 01 Assigned. Arrive at 08:00 AM.");
-    }
-  }
-
-  // Open & Close Login Modal
-  function openFarmerLoginModal(isIntercept = false) {
-    const modal = document.getElementById("farmerLoginModal");
-    const banner = document.getElementById("loginInterceptBanner");
-    
-    if (isIntercept) {
-      banner.classList.remove("hidden");
-    } else {
-      banner.classList.add("hidden");
-    }
-
-    // Reset Steps
-    document.getElementById("loginStepMobile").classList.remove("hidden");
-    document.getElementById("loginStepOtp").classList.add("hidden");
-    document.getElementById("loginStepSuccess").classList.add("hidden");
-
-    modal.classList.remove("hidden");
-  }
-
-  function closeFarmerLoginModal() {
-    document.getElementById("farmerLoginModal").classList.add("hidden");
-    pendingBookingAction = false;
-  }
-
-  // STEP 1: SEND OTP
-  function handleSendOtp() {
-    const mobileInput = document.getElementById("loginMobileInput").value.trim();
+  // STEP A -> B: SEND OTP
+  function handleGatekeeperSendOtp() {
+    const mobileInput = document.getElementById("gatekeeperMobileInput").value.trim();
     if (!mobileInput || mobileInput.length < 10) {
       speakNotification("Please enter a valid 10-digit mobile number.");
-      document.getElementById("loginMobileInput").focus();
+      document.getElementById("gatekeeperMobileInput").focus();
       return;
     }
 
-    // Generate simulated 6 digit OTP
-    currentGeneratedOtp = Math.floor(100000 + Math.random() * 900000).toString();
-    document.getElementById("demoGeneratedOtpCode").innerText = currentGeneratedOtp;
-    document.getElementById("otpSentDisplayNumber").innerText = "+91 " + mobileInput;
+    // Generate random 6-digit OTP
+    gatekeeperCurrentOtp = Math.floor(100000 + Math.random() * 900000).toString();
+    document.getElementById("gatekeeperDemoOtpDisplay").innerText = gatekeeperCurrentOtp;
+    document.getElementById("gatekeeperSentDisplayNum").innerText = "+91 " + mobileInput;
 
-    // Clear previous boxes
-    const boxes = document.querySelectorAll(".otp-box");
-    boxes.forEach(box => box.value = "");
-    document.getElementById("otpErrorBox").classList.add("hidden");
+    // Clear previous boxes and errors
+    const boxes = document.querySelectorAll(".gk-otp-box");
+    boxes.forEach(b => b.value = "");
+    document.getElementById("gatekeeperOtpErrorBox").classList.add("hidden");
 
-    // Transition to Step 2
-    document.getElementById("loginStepMobile").classList.add("hidden");
-    document.getElementById("loginStepOtp").classList.remove("hidden");
-    document.getElementById("loginStepOtp").classList.add("flex");
+    // Transition view
+    document.getElementById("gatekeeperStepMobile").classList.add("hidden");
+    const otpStep = document.getElementById("gatekeeperStepOtp");
+    otpStep.classList.remove("hidden");
+    otpStep.classList.add("flex");
 
-    // Start 30s Countdown
-    startResendCountdown();
+    // Start 30s countdown
+    startGatekeeperCountdown();
 
-    speakNotification("Demo OTP generated. Code is: " + currentGeneratedOtp.split("").join(" "));
+    speakNotification("Your demo OTP is " + gatekeeperCurrentOtp.split("").join(" ") + ". Enter it to verify.");
     setTimeout(() => {
       if (boxes[0]) boxes[0].focus();
     }, 150);
   }
 
-  function backToMobileStep() {
-    document.getElementById("loginStepOtp").classList.add("hidden");
-    document.getElementById("loginStepMobile").classList.remove("hidden");
+  function gatekeeperBackToMobile() {
+    document.getElementById("gatekeeperStepOtp").classList.add("hidden");
+    document.getElementById("gatekeeperStepOtp").classList.remove("flex");
+    document.getElementById("gatekeeperStepMobile").classList.remove("hidden");
   }
 
-  // Auto-fill Demo OTP Button for judges
-  function autoFillDemoOtp() {
-    const boxes = document.querySelectorAll(".otp-box");
-    const digits = currentGeneratedOtp.split("");
+  // Auto fill OTP for hackathon judges
+  function autoFillGatekeeperOtp() {
+    const boxes = document.querySelectorAll(".gk-otp-box");
+    const digits = gatekeeperCurrentOtp.split("");
     boxes.forEach((box, i) => {
       box.value = digits[i] || "";
     });
-    document.getElementById("otpErrorBox").classList.add("hidden");
-    speakNotification("Demo OTP automatically filled: " + currentGeneratedOtp);
+    document.getElementById("gatekeeperOtpErrorBox").classList.add("hidden");
+    speakNotification("Demo OTP filled: " + gatekeeperCurrentOtp);
   }
 
-  // STEP 2: VERIFY OTP
-  function handleVerifyOtp() {
-    const boxes = document.querySelectorAll(".otp-box");
+  // STEP B -> C: VERIFY OTP
+  function handleGatekeeperVerifyOtp() {
+    const boxes = document.querySelectorAll(".gk-otp-box");
     let entered = "";
     boxes.forEach(b => entered += b.value.trim());
 
     if (entered.length < 6) {
-      showOtpError("Please enter all 6 digits of the OTP.");
+      showGatekeeperOtpError("Please enter all 6 digits of the OTP.");
       return;
     }
 
-    if (entered !== currentGeneratedOtp) {
-      showOtpError("Incorrect OTP. Please enter the demo code " + currentGeneratedOtp + " shown above.");
-      speakNotification("Incorrect OTP entered. Please try again.");
+    if (entered !== gatekeeperCurrentOtp) {
+      showGatekeeperOtpError("Incorrect OTP. Please enter the demo code " + gatekeeperCurrentOtp + " shown above.");
+      speakNotification("Incorrect OTP. Please check the demo code.");
       return;
     }
 
-    // Correct OTP: Proceed to STEP 3 SUCCESS
-    document.getElementById("loginStepOtp").classList.add("hidden");
-    document.getElementById("loginStepSuccess").classList.remove("hidden");
-    document.getElementById("loginStepSuccess").classList.add("flex");
+    // Success State
+    document.getElementById("gatekeeperStepOtp").classList.add("hidden");
+    document.getElementById("gatekeeperStepOtp").classList.remove("flex");
 
-    // Save Login state
-    setAuthState({
-      isLoggedIn: true,
-      name: DEMO_FARMER_PROFILE.name,
-      mobile: DEMO_FARMER_PROFILE.mobile,
-      kisanId: DEMO_FARMER_PROFILE.kisanId,
-      yard: DEMO_FARMER_PROFILE.yard
-    });
+    const successStep = document.getElementById("gatekeeperStepSuccess");
+    successStep.classList.remove("hidden");
+    successStep.classList.add("flex");
 
-    speakNotification("Verification successful. Welcome Sardar Harinder Singh.");
+    // Persist Login in localStorage
+    localStorage.setItem("farmer_auth", "true");
+    localStorage.setItem("farmer_name", DEMO_FARMER_PROFILE.name);
 
-    // Auto-close and return to page after 1.4 seconds
+    speakNotification("Login successful. Welcome Sardar Harinder Singh.");
+
+    // Transition to main portal smoothly after 1.1s
     setTimeout(() => {
-      closeFarmerLoginModal();
-      if (pendingBookingAction) {
-        pendingBookingAction = false;
-        handleSaveGatePass();
-      }
-    }, 1400);
+      initAuth();
+    }, 1100);
   }
 
-  function showOtpError(msg) {
-    const errBox = document.getElementById("otpErrorBox");
-    document.getElementById("otpErrorMsg").innerText = msg;
+  function showGatekeeperOtpError(msg) {
+    const errBox = document.getElementById("gatekeeperOtpErrorBox");
+    document.getElementById("gatekeeperOtpErrorMsg").innerText = msg;
     errBox.classList.remove("hidden");
   }
 
-  function handleResendOtp() {
-    currentGeneratedOtp = Math.floor(100000 + Math.random() * 900000).toString();
-    document.getElementById("demoGeneratedOtpCode").innerText = currentGeneratedOtp;
-    startResendCountdown();
-    speakNotification("Fresh demo OTP sent: " + currentGeneratedOtp);
+  function handleGatekeeperResendOtp() {
+    gatekeeperCurrentOtp = Math.floor(100000 + Math.random() * 900000).toString();
+    document.getElementById("gatekeeperDemoOtpDisplay").innerText = gatekeeperCurrentOtp;
+    startGatekeeperCountdown();
+    speakNotification("Fresh demo OTP sent: " + gatekeeperCurrentOtp);
   }
 
-  function startResendCountdown() {
+  function startGatekeeperCountdown() {
     let timeLeft = 30;
-    const btn = document.getElementById("resendOtpTriggerBtn");
-    const label = document.getElementById("resendCountdownText");
+    const btn = document.getElementById("gatekeeperResendBtn");
+    const label = document.getElementById("gatekeeperResendTimerText");
     btn.disabled = true;
     btn.classList.add("opacity-50");
 
-    if (resendTimerInterval) clearInterval(resendTimerInterval);
+    if (gatekeeperResendTimerInterval) clearInterval(gatekeeperResendTimerInterval);
 
-    resendTimerInterval = setInterval(() => {
+    gatekeeperResendTimerInterval = setInterval(() => {
       timeLeft--;
       if (timeLeft <= 0) {
-        clearInterval(resendTimerInterval);
+        clearInterval(gatekeeperResendTimerInterval);
         label.innerText = "Didn't receive OTP?";
         btn.disabled = false;
         btn.classList.remove("opacity-50");
@@ -1458,9 +1400,9 @@ tailwind.config = {
     }, 1000);
   }
 
-  // Setup auto-advancing segmented OTP boxes
-  function setupOtpInputAutoAdvance() {
-    const boxes = document.querySelectorAll(".otp-box");
+  // Setup auto-advancing segmented OTP boxes for gatekeeper
+  function setupGatekeeperOtpInputs() {
+    const boxes = document.querySelectorAll(".gk-otp-box");
     boxes.forEach((box, index) => {
       box.addEventListener("input", (e) => {
         if (e.target.value.length === 1 && index < boxes.length - 1) {
@@ -1472,25 +1414,51 @@ tailwind.config = {
           boxes[index - 1].focus();
         }
       });
+      box.addEventListener("paste", (e) => {
+        e.preventDefault();
+        const text = (e.clipboardData || window.clipboardData).getData("text").trim();
+        if (/^\d{6}$/.test(text)) {
+          text.split("").forEach((ch, i) => {
+            if (boxes[i]) boxes[i].value = ch;
+          });
+          if (boxes[5]) boxes[5].focus();
+        }
+      });
     });
+  }
+
+  // LOGOUT HANDLER
+  function handleFarmerLogout() {
+    localStorage.removeItem("farmer_auth");
+    localStorage.removeItem("farmer_name");
+    closeFarmerProfileModal();
+    speakNotification("Logged out successfully. Returning to login gate.");
+    initAuth();
+  }
+
+  // ACTIONS ON MAIN PORTAL
+  function handleInstantBooking() {
+    const el = document.getElementById("booking");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+    speakNotification("Select your crop to reserve dock.");
+  }
+
+  function handleSaveGatePass() {
+    const name = localStorage.getItem("farmer_name") || DEMO_FARMER_PROFILE.name;
+    speakNotification("Gate pass APMC-26032-841 generated and SMS sent to your verified mobile number.");
+    alert("✅ Mandi Gate Pass Saved!\nSerial: APMC-26032-841\nFarmer: " + name + "\nDock Gate 01 Assigned. Arrive at 08:00 AM.");
   }
 
   // PROFILE MODAL
   function openFarmerProfileModal() {
-    const user = getAuthState() || DEMO_FARMER_PROFILE;
-    document.getElementById("profileFarmerName").innerText = user.name;
-    document.getElementById("profileFarmerPhone").innerText = user.mobile;
+    const farmerName = localStorage.getItem("farmer_name") || DEMO_FARMER_PROFILE.name;
+    document.getElementById("profileFarmerName").innerText = farmerName;
+    document.getElementById("profileFarmerPhone").innerText = DEMO_FARMER_PROFILE.mobile;
     document.getElementById("farmerProfileModal").classList.remove("hidden");
   }
 
   function closeFarmerProfileModal() {
     document.getElementById("farmerProfileModal").classList.add("hidden");
-  }
-
-  function handleFarmerLogout() {
-    setAuthState(null);
-    closeFarmerProfileModal();
-    speakNotification("Logged out successfully. Authentication reset.");
   }
 
   // SELECTION HANDLERS FOR INTERACTIVE BOOKING
@@ -1539,7 +1507,12 @@ tailwind.config = {
   function setLanguage(lang) {
     currentLang = lang;
     const names = { en: "English", hi: "हिंदी", pa: "ਪੰਜਾਬੀ", te: "తెలుగు" };
-    document.getElementById("currentLangDisplay").innerText = names[lang] || "English";
+    const label = names[lang] || "English";
+    
+    const curLangDisp = document.getElementById("currentLangDisplay");
+    const loginLangDisp = document.getElementById("loginLangDisplay");
+    if (curLangDisp) curLangDisp.innerText = label;
+    if (loginLangDisp) loginLangDisp.innerText = label;
 
     // Apply translations
     const dict = translations[lang] || translations.en;
@@ -1551,7 +1524,7 @@ tailwind.config = {
     });
 
     closeLanguageModal();
-    speakNotification("Language changed to " + names[lang]);
+    speakNotification("Language changed to " + label);
   }
 
   // TEXT TO SPEECH (TTS) HELPER
@@ -1567,12 +1540,20 @@ tailwind.config = {
     window.speechSynthesis.speak(utterance);
   }
 
-  function speakOtpCode() {
-    speakNotification("Please enter demo OTP: " + currentGeneratedOtp.split("").join(" "));
+  function speakLoginWelcomePrompt() {
+    speakNotification("Welcome to Smart Farmer Portal. Please enter your mobile number and tap Send OTP to login.");
   }
 
-  function speakLoginHelp() {
-    speakNotification("Farmer login. Please enter your mobile number, then verify using the 6-digit demo code.");
+  function speakPhoneFieldHint() {
+    speakNotification("Enter your 10 digit Indian mobile number, or tap Quick Fill Demo.");
+  }
+
+  function speakGatekeeperGuide() {
+    speakNotification("Welcome Kisan. Enter your phone number, click send OTP, then enter the 6-digit code shown to access your Mandi Pass.");
+  }
+
+  function speakCurrentDemoOtp() {
+    speakNotification("Your demo OTP is " + gatekeeperCurrentOtp.split("").join(" ") + ". Enter it to verify.");
   }
 
   function speakFarmerProfile() {
@@ -1637,6 +1618,4 @@ tailwind.config = {
     }, 1200);
   }
 </script>
-
-</body>
-</html>
+</body></html>
