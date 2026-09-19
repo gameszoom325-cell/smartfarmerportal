@@ -330,54 +330,6 @@ tailwind.config = {
     </div>
   </section>
 
-  <!-- AI VOICE CALL HELPLINE -->
-  <section id="ivr-helpline" class="ivr-section py-12 px-4 sm:px-6">
-    <div class="max-w-7xl mx-auto space-y-7">
-      <div>
-        <span class="text-xs font-bold uppercase tracking-wider text-secondary" data-i18n="ivr_eyebrow">DIGITAL INCLUSION • OFFLINE ACCESS</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-primary" data-i18n="ivr_heading">AI Voice Call Helpline</h2>
-        <p class="text-sm text-on-surface-variant max-w-2xl mt-1" data-i18n="ivr_intro">Farmers without smartphones can call the toll-free helpline and complete a mandi booking using a simple keypad.</p>
-      </div>
-      <div class="ivr-layout">
-        <div class="ivr-device" aria-label="AI Voice Helpline keypad phone">
-          <div class="ivr-speaker" aria-hidden="true"></div>
-          <div id="ivrLcd" class="ivr-lcd" aria-live="polite">
-            <div class="ivr-lcd-title" data-i18n="ivr_title">AI Voice Helpline</div>
-            <div data-i18n="ivr_toll_free">Toll Free 1800-180-1551</div>
-            <div class="ivr-lcd-line"><span data-i18n="ivr_status_label">Status:</span><span id="ivrStatus" data-i18n="ivr_ready">Ready</span></div>
-            <div class="ivr-lcd-line"><span data-i18n="ivr_language">Language</span><span id="ivrDialValue" class="ivr-lcd-value">-</span></div>
-            <div class="ivr-language-row">
-              <button type="button" class="ivr-language-button" onclick="setIvrLanguage('en')" data-i18n="lang_english">English</button>
-              <button type="button" class="ivr-language-button" onclick="setIvrLanguage('hi')" data-i18n="lang_hindi">हिन्दी</button>
-              <button type="button" class="ivr-language-button" onclick="setIvrLanguage('ta')" data-i18n="lang_tamil">தமிழ்</button>
-            </div>
-            <div class="ivr-lcd-line"><span data-i18n="ivr_queue">Booking Queue</span><span id="ivrQueueValue">-</span></div>
-            <div id="ivrWave" class="ivr-wave" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-          </div>
-          <div class="ivr-keypad" role="group" aria-label="IVR keypad">
-            <button type="button" class="ivr-key ivr-call" onclick="startIvrCall()" aria-label="Call">☎</button><button type="button" class="ivr-key" onclick="pressIvrKey('back')" aria-label="Backspace">←</button><button type="button" class="ivr-key" onclick="pressIvrKey('1')">1</button>
-            <button type="button" class="ivr-key" onclick="pressIvrKey('2')">2</button><button type="button" class="ivr-key" onclick="pressIvrKey('3')">3</button><button type="button" class="ivr-key" onclick="pressIvrKey('4')">4</button>
-            <button type="button" class="ivr-key" onclick="pressIvrKey('5')">5</button><button type="button" class="ivr-key" onclick="pressIvrKey('6')">6</button><button type="button" class="ivr-key" onclick="pressIvrKey('7')">7</button>
-            <button type="button" class="ivr-key" onclick="pressIvrKey('8')">8</button><button type="button" class="ivr-key" onclick="pressIvrKey('9')">9</button><button type="button" class="ivr-key" onclick="pressIvrKey('*')">*</button>
-            <button type="button" class="ivr-key" onclick="pressIvrKey('0')">0</button><button type="button" class="ivr-key" onclick="pressIvrKey('#')">#</button><button type="button" class="ivr-key ivr-end" onclick="endIvrCall()" aria-label="End call">■</button>
-          </div>
-        </div>
-        <div>
-          <h3 class="text-xl font-extrabold text-primary" data-i18n="ivr_phone_heading">Toll-free booking for every farmer</h3>
-          <p class="text-sm text-on-surface-variant mt-2" data-i18n="ivr_phone_desc">Call the helpline from any basic phone. The AI voice service guides you through each step in your language.</p>
-          <div class="ivr-flow" aria-label="Offline booking flow">
-            <div class="ivr-flow-step" data-i18n="ivr_flow_call">Call</div><div class="ivr-flow-arrow" aria-hidden="true">↓</div>
-            <div class="ivr-flow-step" data-i18n="ivr_flow_language">Choose Language</div><div class="ivr-flow-arrow" aria-hidden="true">↓</div>
-            <div class="ivr-flow-step" data-i18n="ivr_flow_crop">Select Crop</div><div class="ivr-flow-arrow" aria-hidden="true">↓</div>
-            <div class="ivr-flow-step" data-i18n="ivr_flow_centre">Choose Centre</div><div class="ivr-flow-arrow" aria-hidden="true">↓</div>
-            <div class="ivr-flow-step" data-i18n="ivr_flow_confirm">Confirm Booking</div><div class="ivr-flow-arrow" aria-hidden="true">↓</div>
-            <div class="ivr-flow-step" data-i18n="ivr_flow_id">Receive Booking ID</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- STEP-BY-STEP VISUAL SLOT BOOKING (INTERACTIVE) -->
   <section id="booking" class="w-full bg-surface-container-low py-12 px-4 sm:px-6 border-y border-surface-container">
     <div class="max-w-7xl mx-auto space-y-8">
@@ -1033,23 +985,6 @@ tailwind.config = {
       <h3 class="text-lg font-bold text-primary" data-i18n="voice_listening">Listening to your voice...</h3>
       <p class="text-xs text-on-surface-variant" data-i18n="voice_hint">Try saying: "Book Wheat for Tomorrow Morning"</p>
     </div>
-    <div class="ivr-phone" aria-label="Government IVR keypad phone">
-      <div class="ivr-brand"><span>GOVT IVR</span><span>4G</span></div>
-      <div class="ivr-screen" aria-live="polite">
-        <div class="ivr-screen-title" data-i18n="ivr_title">AGRI VOICE PORTAL</div>
-        <div data-i18n="ivr_toll_free">1800-180-1551</div>
-        <div class="ivr-screen-row"><span data-i18n="ivr_mode">IVR MODE</span><span>●</span></div>
-        <div class="ivr-screen-row"><span data-i18n="ivr_language">Language</span><span class="ivr-screen-lang"><span>English</span><span>हिन्दी</span><span>தமிழ்</span></span></div>
-        <div class="ivr-screen-row"><span data-i18n="ivr_queue">Booking Queue</span><span data-i18n="ivr_status">Status</span></div>
-      </div>
-      <div class="ivr-keypad">
-        <button class="ivr-key ivr-call" type="button" aria-label="Call">☎</button><button class="ivr-key" type="button">←</button><button class="ivr-key" type="button">1</button>
-        <button class="ivr-key" type="button">2</button><button class="ivr-key" type="button">3</button><button class="ivr-key" type="button">4</button>
-        <button class="ivr-key" type="button">5</button><button class="ivr-key" type="button">6</button><button class="ivr-key" type="button">7</button>
-        <button class="ivr-key" type="button">8</button><button class="ivr-key" type="button">9</button><button class="ivr-key" type="button">*</button>
-        <button class="ivr-key" type="button">0</button><button class="ivr-key" type="button">#</button><button class="ivr-key ivr-end" type="button" aria-label="End call">■</button>
-      </div>
-    </div>
     <div id="voiceTranscriptBox" class="w-full p-3 bg-surface-container rounded-xl text-xs sm:text-sm text-primary italic min-h-[48px] flex items-center justify-center">
       "Listening..."
     </div>
@@ -1066,6 +1001,54 @@ tailwind.config = {
     </button>
   </div>
 </div>
+
+<!-- AI FARMER HELPLINE (IVR CALLING SYSTEM) -->
+<section id="ivr-helpline" class="ivr-section py-12 px-4 sm:px-6">
+  <div class="max-w-7xl mx-auto space-y-7">
+    <div>
+      <span class="text-xs font-bold uppercase tracking-wider text-secondary" data-i18n="ivr_eyebrow">DIGITAL INCLUSION • OFFLINE ACCESS</span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-primary" data-i18n="ivr_heading">AI Voice Call Helpline</h2>
+      <p class="text-sm text-on-surface-variant max-w-2xl mt-1" data-i18n="ivr_intro">Farmers without smartphones can call the toll-free helpline and complete a mandi booking using a simple keypad.</p>
+    </div>
+    <div class="ivr-layout">
+      <div class="ivr-device" aria-label="AI Voice Helpline keypad phone">
+        <div class="ivr-speaker" aria-hidden="true"></div>
+        <div id="ivrLcd" class="ivr-lcd" aria-live="polite">
+          <div class="ivr-lcd-title" data-i18n="ivr_title">AI Voice Helpline</div>
+          <div data-i18n="ivr_toll_free">Toll Free 1800-180-1551</div>
+          <div class="ivr-lcd-line"><span data-i18n="ivr_status_label">Status:</span><span id="ivrStatus" data-i18n="ivr_ready">Ready</span></div>
+          <div class="ivr-lcd-line"><span data-i18n="ivr_language">Language</span><span id="ivrDialValue" class="ivr-lcd-value">-</span></div>
+          <div class="ivr-language-row">
+            <button type="button" class="ivr-language-button" onclick="setIvrLanguage('en')" data-i18n="lang_english">English</button>
+            <button type="button" class="ivr-language-button" onclick="setIvrLanguage('hi')" data-i18n="lang_hindi">हिन्दी</button>
+            <button type="button" class="ivr-language-button" onclick="setIvrLanguage('ta')" data-i18n="lang_tamil">தமிழ்</button>
+          </div>
+          <div class="ivr-lcd-line"><span data-i18n="ivr_queue">Booking Queue</span><span id="ivrQueueValue">-</span></div>
+          <div id="ivrWave" class="ivr-wave" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="ivr-keypad" role="group" aria-label="IVR keypad">
+          <button type="button" class="ivr-key ivr-call" onclick="startIvrCall()" aria-label="Call">☎</button><button type="button" class="ivr-key" onclick="pressIvrKey('back')" aria-label="Backspace">←</button><button type="button" class="ivr-key" onclick="pressIvrKey('1')">1</button>
+          <button type="button" class="ivr-key" onclick="pressIvrKey('2')">2</button><button type="button" class="ivr-key" onclick="pressIvrKey('3')">3</button><button type="button" class="ivr-key" onclick="pressIvrKey('4')">4</button>
+          <button type="button" class="ivr-key" onclick="pressIvrKey('5')">5</button><button type="button" class="ivr-key" onclick="pressIvrKey('6')">6</button><button type="button" class="ivr-key" onclick="pressIvrKey('7')">7</button>
+          <button type="button" class="ivr-key" onclick="pressIvrKey('8')">8</button><button type="button" class="ivr-key" onclick="pressIvrKey('9')">9</button><button type="button" class="ivr-key" onclick="pressIvrKey('*')">*</button>
+          <button type="button" class="ivr-key" onclick="pressIvrKey('0')">0</button><button type="button" class="ivr-key" onclick="pressIvrKey('#')">#</button><button type="button" class="ivr-key ivr-end" onclick="endIvrCall()" aria-label="End call">■</button>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-xl font-extrabold text-primary" data-i18n="ivr_phone_heading">Toll-free booking for every farmer</h3>
+        <p class="text-sm text-on-surface-variant mt-2" data-i18n="ivr_phone_desc">Call the helpline from any basic phone. The AI voice service guides you through each step in your language.</p>
+        <div class="ivr-flow" aria-label="Offline booking flow">
+          <div class="ivr-flow-step" data-i18n="ivr_flow_call">Call</div><div class="ivr-flow-arrow" aria-hidden="true">↓</div>
+          <div class="ivr-flow-step" data-i18n="ivr_flow_language">Choose Language</div><div class="ivr-flow-arrow" aria-hidden="true">↓</div>
+          <div class="ivr-flow-step" data-i18n="ivr_flow_crop">Select Crop</div><div class="ivr-flow-arrow" aria-hidden="true">↓</div>
+          <div class="ivr-flow-step" data-i18n="ivr_flow_centre">Choose Centre</div><div class="ivr-flow-arrow" aria-hidden="true">↓</div>
+          <div class="ivr-flow-step" data-i18n="ivr_flow_confirm">Confirm Booking</div><div class="ivr-flow-arrow" aria-hidden="true">↓</div>
+          <div class="ivr-flow-step" data-i18n="ivr_flow_id">Receive Booking ID</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Footer -->
 <footer class="w-full bg-primary text-white py-6 px-4 border-t border-primary-container">
