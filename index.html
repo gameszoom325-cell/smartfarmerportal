@@ -43,6 +43,21 @@ tailwind.config = {
 <style>
   ::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  html { scroll-behavior: smooth; }
+  body { animation: pageIn .55s ease-out both; }
+  header { animation: navIn .65s ease-out both; }
+  section { animation: sectionIn .7s ease-out both; }
+  button, a, .crop-btn, .date-btn, .slot-btn, .vehicle-btn { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background-color .2s ease; }
+  button:hover, a:hover, .crop-btn:hover, .date-btn:hover, .slot-btn:hover, .vehicle-btn:hover { transform: translateY(-2px) scale(1.02); }
+  button:active, a:active { transform: scale(.98); }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid rgba(29,101,135,.45); outline-offset: 3px; }
+  .lang-pill-active { background: #98d6fe; color: #001326; box-shadow: 0 2px 8px rgba(29,101,135,.2); }
+  .card-reveal { animation: cardReveal .6s ease-out both; }
+  @keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes navIn { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes sectionIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes cardReveal { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
 </style>
 </head>
 <body class="bg-surface font-sans text-on-surface antialiased min-h-screen flex flex-col">
@@ -1224,6 +1239,29 @@ tailwind.config = {
       prof_dbt_acc: "डीबीटी बैंक खाता",
       btn_read_profile: "प्रोफाइल बोलकर सुनें",
       btn_logout: "लॉगआउट करें"
+    },
+    ta: {
+      tag_apmc: "APMC மண்டி நேர ஒதுக்கீடு • SIH #26032",
+      nav_hero: "முகப்பு", nav_booking: "நேர முன்பதிவு", nav_solution: "தீர்வு", nav_architecture: "தொழில்நுட்ப அமைப்பு", nav_impact: "தாக்கம்",
+      sub_banner_text: "இந்திய அரசு APMC நேரடி கொள்முதல் தளம் • கல்வியறிவு தேவையற்ற எளிய பயன்பாடு", btn_voice_guide: "குரல் வழிகாட்டி",
+      hero_badge: "காத்திருப்பில்லா மண்டி நுழைவு அமைப்பு", hero_heading: "தானியங்களை நேரடியாக முன்பதிவு செய்யுங்கள். மண்டி வாசலில் காத்திருப்பு இல்லை.",
+      hero_subheading: "விவசாயிகளுக்காக குரலும் குறியீடுகளும் கொண்ட எளிய கொள்முதல் தளம். படங்களுடன் பயிரைத் தேர்ந்தெடுத்து, சரிபார்க்கப்பட்ட நுழைவு அனுமதியைப் பெற்று, ஒதுக்கப்பட்ட நேரத்தில் நேரடியாக வாருங்கள்.",
+      yard_status_title: "மண்டி நுழைவு நேரலை நிலை", updated_just_now: "நேரலை ஒத்திசைவு: கன்னா மண்டி",
+      gate_1_label: "நுழைவு 01 - கோதுமை", gate_1_time: "விரைவு: 12 நிமிட காத்திருப்பு", gate_2_label: "நுழைவு 02 - நெல்", gate_2_time: "மிதமானது: 35 நிமிடங்கள்", gate_3_label: "நுழைவு 03 - பருத்தி", gate_3_time: "அதிக நெரிசல்: 85 நிமிட காத்திருப்பு",
+      btn_instant_booking: "உடனடி நுழைவு முன்பதிவு", btn_voice_booking: "பேசி முன்பதிவு செய்யுங்கள்", gate_pass_title: "விரைவு மண்டி நுழைவு அனுமதி", gate_pass_govt: "இந்திய அரசு APMC சரிபார்ப்பு",
+      farmer_label: "விவசாயி பயனாளர்", dock_reserved_tag: "நுழைவு ஒதுக்கப்பட்டது", lbl_crop: "பயிர் / வகை", lbl_weight: "எதிர்பார்க்கப்படும் சுமை", lbl_window: "வருகை நேர இடைவெளி", lbl_bay: "ஒதுக்கப்பட்ட தளம்",
+      booking_eyebrow: "படிப்படியான நேர ஒதுக்கீடு", booking_title: "காட்சிப்பட முன்பதிவு மற்றும் நுழைவு அனுமதி", booking_sub: "தட்டச்சு தேவையில்லை. பயிரின் படத்தைத் தேர்ந்தெடுத்து, வருகை நேரத்தையும் வாகனத்தையும் தேர்வு செய்து நுழைவு அனுமதியைப் பெறுங்கள்.", instant_sync: "மண்டியுடன் உடனடி ஒத்திசைவு",
+      step_1_crop: "1. அறுவடை / பயிரைத் தேர்ந்தெடுக்கவும்", crop_wheat: "கோதுமை", crop_paddy: "நெல்", crop_mustard: "கடுகு", crop_cotton: "பருத்தி",
+      step_2_time: "2. வருகை நேரம் மற்றும் தேதியைத் தேர்ந்தெடுக்கவும்", date_today: "இன்று", date_tomorrow: "நாளை", date_after: "மறுநாள்", slot_morning: "காலை நேரம்", slot_midday: "நண்பகல் நேரம்", slot_evening: "மாலை நேரம்",
+      step_3_vehicle: "3. போக்குவரத்து வாகனத்தைத் தேர்ந்தெடுக்கவும்", veh_tractor: "டிராக்டர் வண்டி", veh_truck: "பெரிய லாரி", veh_pickup: "சிறிய சரக்கு வாகனம்", live_pass_heading: "நேரலை நுழைவு அனுமதி",
+      lbl_serial: "வரிசை எண்", lbl_farmer_short: "விவசாயி:", lbl_crop_short: "பயிர்:", lbl_date_short: "வருகை தேதி:", lbl_window_short: "நேரம்:", lbl_transport_short: "வாகனம்:", lbl_dock_short: "ஒதுக்கப்பட்ட நுழைவு:", btn_save_pass: "SMS மற்றும் நுழைவு அனுமதியைச் சேமிக்கவும்", btn_listen_pass: "என் மொழியில் அனுமதியைப் படிக்கவும்",
+      sol_eyebrow: "பழைய மண்டி மற்றும் ஸ்மார்ட் மண்டி", sol_heading: "மண்டி நெரிசலையும் சுரண்டலையும் ஒழித்தல்", legacy_title: "ஒழுங்கற்ற 14 மணி நேர சாலை வரிசைகள்",
+      legacy_1: "உணவும் தண்ணீரும் இல்லாமல் விவசாயிகள் 3 கி.மீ. டிராக்டர் வரிசையில் டீசலை வீணடிக்கின்றனர்.", legacy_2: "விவசாயிகளின் சோர்வைப் பயன்படுத்தி இடைத்தரகர்கள் குவிண்டாலுக்கு ₹300 வரை விலையைக் குறைக்கின்றனர்.", legacy_3: "திடீர் பருவமற்ற மழையால் திறந்த சாலைகளில் வைக்கப்பட்ட தானிய மூட்டைகள் சேதமடைகின்றன.",
+      smart_title: "20 நிமிடங்களில் உறுதியான தள ஒதுக்கீடு", smart_1: "தானியங்கி நுழைவு அனுமதி வாகனத்தைச் சரியான எடை மேடை மற்றும் இறக்கும் தளத்துக்கு நேரடியாக வழிநடத்துகிறது.", smart_2: "பல மொழி குரல் உதவியாளர் தொலைபேசி IVR அல்லது ஒரே தொடுதலில் நேரத்தை முன்பதிவு செய்கிறது.", smart_3: "அதிக வருகைகளை அருகிலுள்ள APMC மண்டிகளுக்கு மாறும் சுமை சமநிலை பகிர்கிறது.",
+      arch_eyebrow: "தொழில்நுட்ப வரைபடம்", arch_heading: "குறைந்த இணைய வேகத்திலும் இயங்கும் வலுவான அமைப்பு", arch_1_title: "விவசாயி குரலும் குறியீடுகளும்", arch_1_desc: "WebSpeech API, தொடுதிரை குறியீடுகள் அல்லது பிராந்திய IVR தொலைபேசி வழிகள்.", arch_2_title: "அனுமதி ஒருங்கிணைவு", arch_2_desc: "அறுவடை உச்சகட்டத்திலும் ஒரே நுழைவு இருமுறை ஒதுக்கப்படாமல் FIFO முறை உறுதி செய்கிறது.", arch_3_title: "தானியங்கி நுழைவு", arch_3_desc: "OCR கேமராக்கள் வாகன எண்ணைப் படித்து QR அனுமதியுடன் 1.4 வினாடிகளில் பொருத்துகின்றன.", arch_4_title: "நேரடி வங்கி பணம்", arch_4_desc: "எடைச் சீட்டுகள் Aadhaar இணைக்கப்பட்ட MSP வங்கி பணப்பரிமாற்றத்தை உடனடியாகத் தொடங்குகின்றன.",
+      impact_eyebrow: "களச் சரிபார்ப்பு", impact_heading: "அளவிடக்கூடிய சமூகப் பொருளாதார மாற்றம்", metric_1_lbl: "நுழைவு காத்திருப்பு குறைவு", metric_1_sub: "14 மணி நேரத்திலிருந்து 22 நிமிடங்கள்", metric_2_lbl: "ஒவ்வொரு பயணத்திலும் சேமிப்பு", metric_2_sub: "டீசல் மற்றும் தங்கும் செலவு சேமிப்பு", metric_3_lbl: "அவசர விற்பனை", metric_3_sub: "உறுதியான MSP பாதுகாப்பு", metric_4_lbl: "கையாளப்பட்ட குவிண்டால்கள்", metric_4_sub: "மாதிரி இலக்கு",
+      login_intercept_msg: "மண்டி நுழைவு நேரத்தை முன்பதிவு செய்ய உங்கள் கைபேசி எண்ணைச் சரிபார்க்கவும்.", farmer_login_title: "விவசாயி உள்நுழைவு", login_sub_badge: "SIH 2026 APMC விவசாயி சரிபார்ப்பு", enter_mobile_desc: "சரிபார்ப்புக்கும் உடனடி மண்டி அனுமதிக்கும் உங்கள் 10 இலக்க கைபேசி எண்ணை உள்ளிடவும்.", lbl_mobile_num: "கைபேசி எண்", demo_mode_note: "சோதனை முறை: SIH 2026 க்காக OTP சரிபார்ப்பு உருவகப்படுத்தப்படுகிறது.", btn_send_otp: "OTP அனுப்பவும்", otp_sent_to: "OTP அனுப்பப்பட்டது:", btn_change_num: "எண்ணை மாற்றவும்", otp_expires_timer: "5:00 நிமிடங்களில் காலாவதியாகும்", btn_autofill_otp: "ஒரே தொடுதலில் நிரப்பவும்", lbl_enter_otp: "6 இலக்க OTP-ஐ உள்ளிடவும்", btn_verify_otp: "OTP சரிபார்த்து தொடரவும்", auth_success_title: "சரிபார்ப்பு வெற்றிகரமாக முடிந்தது!", auth_welcome_farmer: "வரவேற்கிறோம், சர்தார் ஹரிந்தர் சிங்", auth_aadhaar_status: "Aadhaar e-KYC சரிபார்க்கப்பட்டது (சோதனை)", prof_verification_status: "சரிபார்ப்பு நிலை", prof_status_val: "சரிபார்க்கப்பட்டது", prof_kisan_id: "விவசாயி அடையாளம் மற்றும் மண்டி", prof_dbt_acc: "நேரடி DBT கணக்கு", btn_read_profile: "சுயவிவரத்தைப் படிக்கவும்", btn_logout: "வெளியேறவும்",
+      voice_listening: "உங்கள் குரலைக் கேட்கிறோம்...", voice_hint: "இவ்வாறு சொல்லுங்கள்: நாளை காலை கோதுமையை முன்பதிவு செய்"
     }
   };
 
