@@ -53,6 +53,19 @@ tailwind.config = {
   button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid rgba(29,101,135,.45); outline-offset: 3px; }
   .lang-pill-active { background: #98d6fe; color: #001326; box-shadow: 0 2px 8px rgba(29,101,135,.2); }
   .card-reveal { animation: cardReveal .6s ease-out both; }
+  .ivr-phone { width: min(100%, 240px); margin: 0 auto; padding: 13px; border-radius: 25px; background: #0e2841; border: 3px solid #1d6587; box-shadow: inset 0 0 0 2px #001326, 0 14px 28px rgba(0,19,38,.25); }
+  .ivr-screen { min-height: 112px; padding: 10px; border: 4px solid #001326; border-radius: 9px; background: #c9d6a0; color: #15210f; font: 700 10px/1.35 monospace; box-shadow: inset 0 0 12px rgba(0,0,0,.2); }
+  .ivr-screen-title { font-size: 12px; letter-spacing: .04em; }
+  .ivr-screen-row { display: flex; justify-content: space-between; gap: 8px; }
+  .ivr-screen-lang { display: flex; gap: 4px; flex-wrap: wrap; }
+  .ivr-keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin-top: 12px; }
+  .ivr-key { min-height: 29px; border: 1px solid #3c566d; border-radius: 7px; background: #243d55; color: #fff; font: 700 13px monospace; box-shadow: 0 2px 0 #071727; }
+  .ivr-key:hover { background: #31516d; }
+  .ivr-call { background: #188447; border-color: #2bbd68; }
+  .ivr-end { background: #a72b2b; border-color: #e05d5d; }
+  .ivr-brand { display: flex; justify-content: space-between; align-items: center; color: #98d6fe; font: 700 9px monospace; margin-bottom: 7px; }
+  .brand-team-logo { width: 116px; height: 34px; object-fit: contain; background: #fff; border-radius: 4px; }
+  .footer-team-logo { width: 92px; height: 28px; object-fit: contain; background: #fff; border-radius: 4px; }
   @keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes navIn { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes sectionIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
@@ -74,6 +87,10 @@ tailwind.config = {
         <span class="text-lg font-extrabold text-primary tracking-tight leading-none">Smart Farmer Portal</span>
         <span class="text-xs uppercase font-bold tracking-wider text-secondary mt-0.5" data-i18n="tag_apmc">APMC Mandi Scheduling • SIH #26032</span>
       </div>
+      <div class="hidden sm:flex items-center gap-2 pl-2 border-l border-surface-container" aria-label="Powered by team logo">
+        <span class="text-[10px] font-bold text-outline leading-tight" data-i18n="powered_by">Powered by</span>
+        <img src="smart-farmer-team-logo.svg" alt="eNAM National Agriculture Market" class="brand-team-logo">
+      </div>
     </div>
 
     <!-- Nav Links (Desktop) -->
@@ -88,7 +105,7 @@ tailwind.config = {
     <!-- Header Right: Language Switcher & Farmer Auth Profile Button -->
     <div class="flex items-center gap-2 sm:gap-3">
       <!-- Language Trigger -->
-      <div class="hidden lg:flex items-center gap-1 bg-surface-container-low p-1 rounded-full border border-surface-container"><button onclick="setLanguage('en')" class="lang-pill-en px-2 py-0.5 rounded-full text-[11px] font-bold transition-all text-on-surface-variant hover:text-primary">EN</button><button onclick="setLanguage('hi')" class="lang-pill-hi px-2 py-0.5 rounded-full text-[11px] font-bold transition-all text-on-surface-variant hover:text-primary">हिं</button><button onclick="setLanguage('pa')" class="lang-pill-pa px-2 py-0.5 rounded-full text-[11px] font-bold transition-all text-on-surface-variant hover:text-primary">ਪੰ</button><button onclick="setLanguage('te')" class="lang-pill-te px-2 py-0.5 rounded-full text-[11px] font-bold transition-all text-on-surface-variant hover:text-primary">తె</button><button onclick="setLanguage('ta')" class="lang-pill-ta px-2 py-0.5 rounded-full text-[11px] font-bold transition-all text-on-surface-variant hover:text-primary">த</button></div><button onclick="openLanguageModal()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-secondary hover:bg-surface-container-high text-xs font-bold transition-all" title="Change Language / भाषा बदलें">
+      <div class="hidden lg:flex items-center gap-1 bg-surface-container-low p-1 rounded-full border border-surface-container"><button onclick="setLanguage('en')" class="lang-pill-en px-2 py-0.5 rounded-full text-[11px] font-bold transition-all text-on-surface-variant hover:text-primary">EN</button><button onclick="setLanguage('hi')" class="lang-pill-hi px-2 py-0.5 rounded-full text-[11px] font-bold transition-all text-on-surface-variant hover:text-primary">हिं</button><button onclick="setLanguage('ta')" class="lang-pill-ta px-2 py-0.5 rounded-full text-[11px] font-bold transition-all text-on-surface-variant hover:text-primary">த</button></div><button onclick="openLanguageModal()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-secondary hover:bg-surface-container-high text-xs font-bold transition-all" title="Change Language / भाषा बदलें">
         <span class="material-symbols-outlined text-[16px]">translate</span>
         <span id="currentLangDisplay" class="">English</span>
       </button>
@@ -202,7 +219,7 @@ tailwind.config = {
             <span data-i18n="btn_voice_booking" class="">Speak To Book</span>
           </button>
 
-          <button onclick="speakHeroContent()" class="p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-secondary transition-all" title="Listen to Overview">
+          <button onclick="speakHeroContent()" class="p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-secondary transition-all" data-i18n-title="listen_overview" title="Listen to Overview" aria-label="Listen to Overview">
             <span class="material-symbols-outlined text-[20px]">volume_up</span>
           </button>
         </div>
@@ -221,7 +238,7 @@ tailwind.config = {
                 <span class="text-xs text-secondary-container" data-i18n="gate_pass_govt">Govt of India APMC Verified</span>
               </div>
             </div>
-            <button onclick="speakPassText()" class="text-secondary-container hover:text-white" title="Read Pass Aloud">
+            <button onclick="speakPassText()" class="text-secondary-container hover:text-white" data-i18n-title="read_pass_aloud" title="Read Pass Aloud" aria-label="Read Pass Aloud">
               <span class="material-symbols-outlined text-[20px]">volume_up</span>
             </button>
           </div>
@@ -716,7 +733,7 @@ tailwind.config = {
           <span class="text-base font-extrabold text-secondary flex items-center gap-1 mr-3 border-r border-surface-container pr-3">
             🇮🇳 +91
           </span>
-          <input type="tel" id="loginMobileInput" maxlength="10" inputmode="numeric" placeholder="98765 43210" value="9876543210" class="w-full bg-transparent text-xl font-extrabold text-primary outline-none tracking-wider placeholder:text-outline/40">
+          <input type="tel" id="loginMobileInput" maxlength="10" inputmode="numeric" placeholder="98765 43210" data-i18n-placeholder="mobile_placeholder" value="9876543210" class="w-full bg-transparent text-xl font-extrabold text-primary outline-none tracking-wider placeholder:text-outline/40">
         </div>
       </div>
 
@@ -726,7 +743,7 @@ tailwind.config = {
           <span class="material-symbols-outlined text-amber-600 text-[18px]">info</span>
           <span class="font-medium" data-i18n="demo_mode_note">Demo mode: OTP verification is simulated for SIH 2026.</span>
         </div>
-        <button onclick="document.getElementById('loginMobileInput').value='9876543210'; speakNotification('Default demo number entered');" class="px-2.5 py-1 rounded-lg bg-amber-200 hover:bg-amber-300 text-amber-950 font-bold text-[11px] transition-all">Default</button>
+        <button onclick="document.getElementById('loginMobileInput').value='9876543210'; speakNotification('Default demo number entered');" data-i18n="default_demo" class="px-2.5 py-1 rounded-lg bg-amber-200 hover:bg-amber-300 text-amber-950 font-bold text-[11px] transition-all">Default</button>
       </div>
 
       <!-- Send OTP Action -->
@@ -755,9 +772,9 @@ tailwind.config = {
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-1.5 text-secondary">
             <span class="material-symbols-outlined text-[18px]">mark_email_read</span>
-            <span class="text-[10px] font-extrabold uppercase tracking-wider">JUDGE DEMO OTP CODE</span>
+            <span class="text-[10px] font-extrabold uppercase tracking-wider" data-i18n="judge_demo_code">JUDGE DEMO OTP CODE</span>
           </div>
-          <span class="px-2 py-0.5 rounded-full bg-secondary text-white text-[10px] font-bold">Fast Evaluation</span>
+          <span class="px-2 py-0.5 rounded-full bg-secondary text-white text-[10px] font-bold" data-i18n="fast_evaluation">Fast Evaluation</span>
         </div>
         <div class="flex items-center justify-between">
           <div>
@@ -821,7 +838,7 @@ tailwind.config = {
           <span data-i18n="auth_aadhaar_status" class="">Aadhaar e-KYC Verified (Demo)</span>
         </span>
       </div>
-      <p class="text-xs text-on-surface-variant">Returning to your mandi booking portal...</p>
+      <p class="text-xs text-on-surface-variant" data-i18n="auth_returning">Returning to your mandi booking portal...</p>
     </div>
 
   </div>
@@ -856,7 +873,7 @@ tailwind.config = {
             <span data-i18n="prof_status_val" class="">Verified / प्रमाणित</span>
           </span>
         </div>
-        <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">Govt e-KYC</span>
+          <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold" data-i18n="govt_ekyc">Govt e-KYC</span>
       </div>
 
       <div class="p-3.5 rounded-2xl bg-surface-container-low flex items-center justify-between">
@@ -874,7 +891,7 @@ tailwind.config = {
         <div class="flex flex-col">
           <span class="text-[10px] uppercase font-bold text-outline" data-i18n="prof_dbt_acc">Direct DBT Account</span>
           <span class="text-xs font-bold text-primary mt-0.5">State Bank •••• 4091</span>
-          <span class="text-[11px] text-emerald-700">Aadhaar Linked Direct Settlement</span>
+          <span class="text-[11px] text-emerald-700" data-i18n="aadhaar_settlement">Aadhaar Linked Direct Settlement</span>
         </div>
         <span class="material-symbols-outlined text-emerald-600">account_balance</span>
       </div>
@@ -900,8 +917,8 @@ tailwind.config = {
   <div class="w-full max-w-xl bg-surface-container-lowest rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col gap-4">
     <div class="flex items-center justify-between border-b border-surface-container pb-3">
       <div>
-        <h3 class="text-lg font-extrabold text-primary">Select Preferred Language / भाषा चुनें</h3>
-        <p class="text-xs text-on-surface-variant">Tap a language card to listen and translate the portal</p>
+        <h3 class="text-lg font-extrabold text-primary" data-i18n="language_title">Select Preferred Language</h3>
+        <p class="text-xs text-on-surface-variant" data-i18n="language_desc">Tap a language card to listen and translate the portal</p>
       </div>
       <button onclick="closeLanguageModal()" class="p-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface">
         <span class="material-symbols-outlined text-[20px]">close</span>
@@ -925,21 +942,6 @@ tailwind.config = {
         <span class="text-xl">🇮🇳</span>
       </button>
 
-      <button onclick="setLanguage('pa')" class="p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-surface-container text-left flex items-center justify-between transition-all group">
-        <div>
-          <span class="text-base font-bold text-primary block">ਪੰਜਾਬੀ (Punjabi)</span>
-          <span class="text-xs text-outline">ਕਣਕ ਤੇ ਝੋਨਾ ਮੰਡੀ ਸਲਾਟ</span>
-        </div>
-        <span class="text-xl">🌾</span>
-      </button>
-
-      <button onclick="setLanguage('te')" class="p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-surface-container text-left flex items-center justify-between transition-all group">
-        <div>
-          <span class="text-base font-bold text-primary block">తెలుగు (Telugu)</span>
-          <span class="text-xs text-outline">మార్కెట్ యార్డ్ బుకింగ్</span>
-        </div>
-        <span class="text-xl">🏛️</span>
-      </button>
     <button onclick="setLanguage('ta')" class="p-4 rounded-2xl bg-surface-container-low hover:bg-secondary-container/40 border-2 border-surface-container text-left flex items-center justify-between transition-all group"><div><span class="text-base font-bold text-primary block">தமிழ் (Tamil)</span><span class="text-xs text-outline">நேரடி தானிய முன்பதிவு மற்றும் மண்டி அனுமதிச்சீட்டு</span></div><span class="text-xl">🌾</span></button></div>
   </div>
 </div>
@@ -956,18 +958,35 @@ tailwind.config = {
       <h3 class="text-lg font-bold text-primary" data-i18n="voice_listening">Listening to your voice...</h3>
       <p class="text-xs text-on-surface-variant" data-i18n="voice_hint">Try saying: "Book Wheat for Tomorrow Morning"</p>
     </div>
+    <div class="ivr-phone" aria-label="Government IVR keypad phone">
+      <div class="ivr-brand"><span>GOVT IVR</span><span>4G</span></div>
+      <div class="ivr-screen" aria-live="polite">
+        <div class="ivr-screen-title" data-i18n="ivr_title">AGRI VOICE PORTAL</div>
+        <div data-i18n="ivr_toll_free">1800-180-1551</div>
+        <div class="ivr-screen-row"><span data-i18n="ivr_mode">IVR MODE</span><span>●</span></div>
+        <div class="ivr-screen-row"><span data-i18n="ivr_language">Language</span><span class="ivr-screen-lang"><span>English</span><span>हिन्दी</span><span>தமிழ்</span></span></div>
+        <div class="ivr-screen-row"><span data-i18n="ivr_queue">Booking Queue</span><span data-i18n="ivr_status">Status</span></div>
+      </div>
+      <div class="ivr-keypad">
+        <button class="ivr-key ivr-call" type="button" aria-label="Call">☎</button><button class="ivr-key" type="button">←</button><button class="ivr-key" type="button">1</button>
+        <button class="ivr-key" type="button">2</button><button class="ivr-key" type="button">3</button><button class="ivr-key" type="button">4</button>
+        <button class="ivr-key" type="button">5</button><button class="ivr-key" type="button">6</button><button class="ivr-key" type="button">7</button>
+        <button class="ivr-key" type="button">8</button><button class="ivr-key" type="button">9</button><button class="ivr-key" type="button">*</button>
+        <button class="ivr-key" type="button">0</button><button class="ivr-key" type="button">#</button><button class="ivr-key ivr-end" type="button" aria-label="End call">■</button>
+      </div>
+    </div>
     <div id="voiceTranscriptBox" class="w-full p-3 bg-surface-container rounded-xl text-xs sm:text-sm text-primary italic min-h-[48px] flex items-center justify-center">
       "Listening..."
     </div>
     <div class="flex items-center gap-2 w-full">
-      <button onclick="simulateVoiceBooking('wheat')" class="flex-1 py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container text-primary text-xs font-bold">
+      <button onclick="simulateVoiceBooking('wheat')" data-i18n="voice_sim_wheat" class="flex-1 py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container text-primary text-xs font-bold">
         Simulate (Wheat)
       </button>
-      <button onclick="simulateVoiceBooking('paddy')" class="flex-1 py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container text-primary text-xs font-bold">
+      <button onclick="simulateVoiceBooking('paddy')" data-i18n="voice_sim_paddy" class="flex-1 py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container text-primary text-xs font-bold">
         Simulate (Paddy)
       </button>
     </div>
-    <button onclick="closeVoiceModal()" class="text-xs text-on-surface-variant hover:text-primary py-1">
+    <button onclick="closeVoiceModal()" data-i18n="voice_cancel" class="text-xs text-on-surface-variant hover:text-primary py-1">
       Cancel / बंद करें
     </button>
   </div>
@@ -976,7 +995,7 @@ tailwind.config = {
 <!-- Footer -->
 <footer class="w-full bg-primary text-white py-6 px-4 border-t border-primary-container">
   <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-surface-dim">
-    <span class="">SMART INDIA HACKATHON 2026 • PROBLEM STATEMENT #26032 • TEAM STACK OVERFLOW(ED)</span>
+    <span class="flex items-center gap-3"><span data-i18n="footer_sih">SMART INDIA HACKATHON 2026 • PROBLEM STATEMENT #26032 • TEAM STACK OVERFLOW(ED)</span><img src="smart-farmer-team-logo.svg" alt="eNAM National Agriculture Market" class="footer-team-logo"></span>
     <span class="">Ministry of Agriculture &amp; Farmers Welfare • APMC Mandi Logistics</span>
   </div>
 </footer>
@@ -1125,7 +1144,10 @@ tailwind.config = {
       prof_kisan_id: "Kisan ID & Mandi Yard",
       prof_dbt_acc: "Direct DBT Account",
       btn_read_profile: "Read Profile Aloud",
-      btn_logout: "Logout"
+      btn_logout: "Logout",
+      language_title: "Select Preferred Language", language_desc: "Tap a language card to listen and translate the portal", default_demo: "Default",
+      judge_demo_code: "JUDGE DEMO OTP CODE", fast_evaluation: "Fast Evaluation", resend_countdown: "Resend in", resend_prompt: "Didn't receive OTP?", resend_demo: "Resend Demo OTP",
+      auth_returning: "Returning to your mandi booking portal...", govt_ekyc: "Govt e-KYC", aadhaar_settlement: "Aadhaar Linked Direct Settlement", voice_cancel: "Cancel", voice_sim_wheat: "Simulate (Wheat)", voice_sim_paddy: "Simulate (Paddy)", listen_overview: "Listen to Overview", read_pass_aloud: "Read Pass Aloud", powered_by: "Powered by", footer_sih: "SMART INDIA HACKATHON 2026 • PROBLEM STATEMENT #26032 • TEAM STACK OVERFLOW(ED)", ivr_title: "AGRI VOICE PORTAL", ivr_toll_free: "1800-180-1551", ivr_mode: "IVR MODE", ivr_language: "Language", ivr_queue: "Booking Queue", ivr_status: "Status", mobile_placeholder: "98765 43210"
     },
     hi: {
       tag_apmc: "एपीएमसी मंडी स्लॉट प्रणाली • एसआईएच 26032",
@@ -1238,10 +1260,11 @@ tailwind.config = {
       prof_kisan_id: "किसान आईडी व मंडी",
       prof_dbt_acc: "डीबीटी बैंक खाता",
       btn_read_profile: "प्रोफाइल बोलकर सुनें",
-      btn_logout: "लॉगआउट करें"
+      btn_logout: "लॉगआउट करें", mobile_placeholder: "98765 43210",
+      powered_by: "सहयोग से", footer_sih: "स्मार्ट इंडिया हैकाथॉन 2026 • समस्या विवरण #26032 • TEAM STACK OVERFLOW(ED)", ivr_title: "एग्री वॉइस पोर्टल", ivr_toll_free: "1800-180-1551", ivr_mode: "आईवीआर मोड", ivr_language: "भाषा", ivr_queue: "बुकिंग कतार", ivr_status: "स्थिति"
     },
     ta: {
-      tag_apmc: "APMC மண்டி நேர ஒதுக்கீடு • SIH #26032",
+      farmer_login_btn: "விவசாயி உள்நுழைவு", tag_apmc: "APMC மண்டி நேர ஒதுக்கீடு • SIH #26032",
       nav_hero: "முகப்பு", nav_booking: "நேர முன்பதிவு", nav_solution: "தீர்வு", nav_architecture: "தொழில்நுட்ப அமைப்பு", nav_impact: "தாக்கம்",
       sub_banner_text: "இந்திய அரசு APMC நேரடி கொள்முதல் தளம் • கல்வியறிவு தேவையற்ற எளிய பயன்பாடு", btn_voice_guide: "குரல் வழிகாட்டி",
       hero_badge: "காத்திருப்பில்லா மண்டி நுழைவு அமைப்பு", hero_heading: "தானியங்களை நேரடியாக முன்பதிவு செய்யுங்கள். மண்டி வாசலில் காத்திருப்பு இல்லை.",
@@ -1261,13 +1284,16 @@ tailwind.config = {
       arch_eyebrow: "தொழில்நுட்ப வரைபடம்", arch_heading: "குறைந்த இணைய வேகத்திலும் இயங்கும் வலுவான அமைப்பு", arch_1_title: "விவசாயி குரலும் குறியீடுகளும்", arch_1_desc: "WebSpeech API, தொடுதிரை குறியீடுகள் அல்லது பிராந்திய IVR தொலைபேசி வழிகள்.", arch_2_title: "அனுமதி ஒருங்கிணைவு", arch_2_desc: "அறுவடை உச்சகட்டத்திலும் ஒரே நுழைவு இருமுறை ஒதுக்கப்படாமல் FIFO முறை உறுதி செய்கிறது.", arch_3_title: "தானியங்கி நுழைவு", arch_3_desc: "OCR கேமராக்கள் வாகன எண்ணைப் படித்து QR அனுமதியுடன் 1.4 வினாடிகளில் பொருத்துகின்றன.", arch_4_title: "நேரடி வங்கி பணம்", arch_4_desc: "எடைச் சீட்டுகள் Aadhaar இணைக்கப்பட்ட MSP வங்கி பணப்பரிமாற்றத்தை உடனடியாகத் தொடங்குகின்றன.",
       impact_eyebrow: "களச் சரிபார்ப்பு", impact_heading: "அளவிடக்கூடிய சமூகப் பொருளாதார மாற்றம்", metric_1_lbl: "நுழைவு காத்திருப்பு குறைவு", metric_1_sub: "14 மணி நேரத்திலிருந்து 22 நிமிடங்கள்", metric_2_lbl: "ஒவ்வொரு பயணத்திலும் சேமிப்பு", metric_2_sub: "டீசல் மற்றும் தங்கும் செலவு சேமிப்பு", metric_3_lbl: "அவசர விற்பனை", metric_3_sub: "உறுதியான MSP பாதுகாப்பு", metric_4_lbl: "கையாளப்பட்ட குவிண்டால்கள்", metric_4_sub: "மாதிரி இலக்கு",
       login_intercept_msg: "மண்டி நுழைவு நேரத்தை முன்பதிவு செய்ய உங்கள் கைபேசி எண்ணைச் சரிபார்க்கவும்.", farmer_login_title: "விவசாயி உள்நுழைவு", login_sub_badge: "SIH 2026 APMC விவசாயி சரிபார்ப்பு", enter_mobile_desc: "சரிபார்ப்புக்கும் உடனடி மண்டி அனுமதிக்கும் உங்கள் 10 இலக்க கைபேசி எண்ணை உள்ளிடவும்.", lbl_mobile_num: "கைபேசி எண்", demo_mode_note: "சோதனை முறை: SIH 2026 க்காக OTP சரிபார்ப்பு உருவகப்படுத்தப்படுகிறது.", btn_send_otp: "OTP அனுப்பவும்", otp_sent_to: "OTP அனுப்பப்பட்டது:", btn_change_num: "எண்ணை மாற்றவும்", otp_expires_timer: "5:00 நிமிடங்களில் காலாவதியாகும்", btn_autofill_otp: "ஒரே தொடுதலில் நிரப்பவும்", lbl_enter_otp: "6 இலக்க OTP-ஐ உள்ளிடவும்", btn_verify_otp: "OTP சரிபார்த்து தொடரவும்", auth_success_title: "சரிபார்ப்பு வெற்றிகரமாக முடிந்தது!", auth_welcome_farmer: "வரவேற்கிறோம், சர்தார் ஹரிந்தர் சிங்", auth_aadhaar_status: "Aadhaar e-KYC சரிபார்க்கப்பட்டது (சோதனை)", prof_verification_status: "சரிபார்ப்பு நிலை", prof_status_val: "சரிபார்க்கப்பட்டது", prof_kisan_id: "விவசாயி அடையாளம் மற்றும் மண்டி", prof_dbt_acc: "நேரடி DBT கணக்கு", btn_read_profile: "சுயவிவரத்தைப் படிக்கவும்", btn_logout: "வெளியேறவும்",
-      voice_listening: "உங்கள் குரலைக் கேட்கிறோம்...", voice_hint: "இவ்வாறு சொல்லுங்கள்: நாளை காலை கோதுமையை முன்பதிவு செய்"
+      voice_listening: "உங்கள் குரலைக் கேட்கிறோம்...", voice_hint: "இவ்வாறு சொல்லுங்கள்: நாளை காலை கோதுமையை முன்பதிவு செய்", language_title: "விருப்பமான மொழியைத் தேர்ந்தெடுக்கவும்", language_desc: "மொழி அட்டையைத் தொடங்கி தளத்தை கேட்டு மொழிபெயர்க்கவும்", default_demo: "இயல்புநிலை", judge_demo_code: "நடுவர் சோதனை OTP குறியீடு", fast_evaluation: "விரைவு மதிப்பீடு", resend_countdown: "மீண்டும் அனுப்புவது", resend_prompt: "OTP வரவில்லையா?", resend_demo: "சோதனை OTP-ஐ மீண்டும் அனுப்பவும்", auth_returning: "உங்கள் மண்டி முன்பதிவு தளத்திற்குத் திரும்புகிறோம்...", govt_ekyc: "அரசு e-KYC", aadhaar_settlement: "Aadhaar இணைக்கப்பட்ட நேரடி பணப்பரிமாற்றம்", voice_cancel: "ரத்து செய்யவும்", voice_sim_wheat: "சோதனை (கோதுமை)", voice_sim_paddy: "சோதனை (நெல்)", listen_overview: "சுருக்கத்தைக் கேட்கவும்", read_pass_aloud: "அனுமதியைப் படிக்கவும்", powered_by: "ஆதரவு வழங்குவது", footer_sih: "SMART INDIA HACKATHON 2026 • சிக்கல் அறிக்கை #26032 • TEAM STACK OVERFLOW(ED)", ivr_title: "AGRI குரல் தளம்", ivr_toll_free: "1800-180-1551", ivr_mode: "IVR முறை", ivr_language: "மொழி", ivr_queue: "முன்பதிவு வரிசை", ivr_status: "நிலை", mobile_placeholder: "98765 43210"
     }
   };
 
   // Initialize Language and Authentication State
   window.addEventListener("DOMContentLoaded", () => {
+    let savedLanguage = null;
+    try { savedLanguage = localStorage.getItem("smart_farmer_language"); } catch (e) { /* Storage may be disabled. */ }
     initAuthUI();
+    setLanguage(savedLanguage && translations[savedLanguage] ? savedLanguage : "en", false);
     setupOtpInputAutoAdvance();
   });
 
@@ -1534,35 +1560,39 @@ tailwind.config = {
 
   // SELECTION HANDLERS FOR INTERACTIVE BOOKING
   function selectCrop(id, name, price, emoji) {
-    currentBooking.crop = name;
+    const displayName = currentLang === "en" ? name : translate("crop_" + id);
+    currentBooking.crop = displayName;
     currentBooking.cropEmoji = emoji;
-    document.getElementById("cardCropName").innerText = name;
+    document.getElementById("cardCropName").innerText = displayName;
     document.getElementById("cardCropEmoji").innerText = emoji;
-    document.getElementById("dispCrop").innerText = name;
+    document.getElementById("dispCrop").innerText = displayName;
     document.getElementById("dispCropIcon").innerText = emoji;
     speakNotification(name + " selected. MSP: " + price);
   }
 
   function selectDate(label, dateStr) {
-    currentBooking.date = `${label} (${dateStr})`;
+    const dateKey = { Today: "date_today", Tomorrow: "date_tomorrow", "Day After": "date_after" }[label];
+    currentBooking.date = `${dateKey ? translate(dateKey) : label} (${dateStr})`;
     document.getElementById("dispDate").innerText = currentBooking.date;
     speakNotification("Arrival date set to " + label);
   }
 
   function selectSlot(slotName, gate) {
-    currentBooking.slot = slotName;
+    const slotKey = slotName.startsWith("Morning") ? "slot_morning" : slotName.startsWith("Midday") ? "slot_midday" : "slot_evening";
+    currentBooking.slot = currentLang === "en" ? slotName : translate(slotKey);
     currentBooking.gate = gate + " (Bay 04)";
-    document.getElementById("cardWindow").innerText = slotName.replace(/\(.*?\)/g, "").trim();
+    document.getElementById("cardWindow").innerText = currentLang === "en" ? slotName.replace(/\(.*?\)/g, "").trim() : translate(slotKey);
     document.getElementById("cardBay").innerText = "Dock Bay #04";
-    document.getElementById("dispSlot").innerText = slotName;
+    document.getElementById("dispSlot").innerText = currentBooking.slot;
     document.getElementById("dispGate").innerText = currentBooking.gate;
     speakNotification("Time window selected: " + slotName + ". Assigned to " + gate);
   }
 
   function selectVehicle(vehName, cap, emoji) {
-    currentBooking.vehicle = vehName;
+    const vehicleKey = vehName === "Tractor Trolley" ? "veh_tractor" : vehName === "Heavy Truck" ? "veh_truck" : "veh_pickup";
+    currentBooking.vehicle = currentLang === "en" ? vehName : translate(vehicleKey);
     document.getElementById("cardWeight").innerText = cap;
-    document.getElementById("dispVehicle").innerText = vehName;
+    document.getElementById("dispVehicle").innerText = currentBooking.vehicle;
     speakNotification("Transport selected: " + vehName);
   }
 
@@ -1575,22 +1605,41 @@ tailwind.config = {
     document.getElementById("languageModal").classList.add("hidden");
   }
 
-  function setLanguage(lang) {
-    currentLang = lang;
-    const names = { en: "English", hi: "हिंदी", pa: "ਪੰਜਾਬੀ", te: "తెలుగు" };
-    document.getElementById("currentLangDisplay").innerText = names[lang] || "English";
+  function translate(key, lang = currentLang) {
+    return (translations[lang] && translations[lang][key]) || translations.en[key] || key;
+  }
 
-    // Apply translations
-    const dict = translations[lang] || translations.en;
+  function setLanguage(lang, announce = true) {
+    currentLang = translations[lang] ? lang : "en";
+    const names = { en: "English", hi: "हिंदी", pa: "ਪੰਜਾਬੀ", te: "తెలుగు", ta: "தமிழ்" };
+    document.documentElement.lang = currentLang === "ta" ? "ta" : currentLang;
+    document.getElementById("currentLangDisplay").innerText = names[currentLang];
+    try { localStorage.setItem("smart_farmer_language", currentLang); } catch (e) { /* Storage may be disabled. */ }
+
+    const dict = translations[currentLang] || translations.en;
     document.querySelectorAll("[data-i18n]").forEach(el => {
       const key = el.getAttribute("data-i18n");
-      if (dict[key]) {
-        el.innerText = dict[key];
-      }
+      el.innerText = dict[key] || translations.en[key] || key;
+    });
+    document.querySelectorAll("[data-i18n-title]").forEach(el => {
+      const key = el.getAttribute("data-i18n-title");
+      const value = dict[key] || translations.en[key] || key;
+      el.title = value;
+      el.setAttribute("aria-label", value);
+    });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+      const key = el.getAttribute("data-i18n-placeholder");
+      el.placeholder = dict[key] || translations.en[key] || key;
+    });
+    document.querySelectorAll("[class*='lang-pill-']").forEach(button => button.classList.remove("lang-pill-active"));
+    const activePill = document.querySelector(`.lang-pill-${currentLang}`);
+    if (activePill) activePill.classList.add("lang-pill-active");
+    document.querySelectorAll("#languageModal button[onclick^=\"setLanguage\"]").forEach(button => {
+      button.setAttribute("aria-pressed", button.getAttribute("onclick").includes(`'${currentLang}'`));
     });
 
     closeLanguageModal();
-    speakNotification("Language changed to " + names[lang]);
+    if (announce) speakNotification((dict.language_changed || translations.en.language_changed || "Language changed to ") + names[currentLang]);
   }
 
   // TEXT TO SPEECH (TTS) HELPER
@@ -1599,10 +1648,11 @@ tailwind.config = {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = 0.95;
-    if (currentLang === "hi") utterance.lang = "hi-IN";
-    else if (currentLang === "pa") utterance.lang = "pa-IN";
-    else if (currentLang === "te") utterance.lang = "te-IN";
-    else utterance.lang = "en-IN";
+    const languageCodes = { en: "en-IN", hi: "hi-IN", pa: "pa-IN", te: "te-IN", ta: "ta-IN" };
+    utterance.lang = languageCodes[currentLang] || "en-IN";
+    const voices = window.speechSynthesis.getVoices();
+    const languagePrefix = utterance.lang.toLowerCase().split("-")[0];
+    utterance.voice = voices.find(voice => voice.lang.toLowerCase().startsWith(languagePrefix)) || null;
     window.speechSynthesis.speak(utterance);
   }
 
