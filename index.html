@@ -1645,14 +1645,14 @@ tailwind.config = {
     document.getElementById("cardCropEmoji").innerText = emoji;
     document.getElementById("dispCrop").innerText = displayName;
     document.getElementById("dispCropIcon").innerText = emoji;
-    speakNotification(name + " selected. MSP: " + price);
+    speakNotification(currentBooking.crop + " selected. MSP: " + price);
   }
 
   function selectDate(label, dateStr) {
     const dateKey = { Today: "date_today", Tomorrow: "date_tomorrow", "Day After": "date_after" }[label];
     currentBooking.date = `${dateKey ? translate(dateKey) : label} (${dateStr})`;
     document.getElementById("dispDate").innerText = currentBooking.date;
-    speakNotification("Arrival date set to " + label);
+    speakNotification("Arrival date set to " + translate(dateKey));
   }
 
   function selectSlot(slotName, gate) {
@@ -1663,7 +1663,7 @@ tailwind.config = {
     document.getElementById("cardBay").innerText = "Dock Bay #04";
     document.getElementById("dispSlot").innerText = currentBooking.slot;
     document.getElementById("dispGate").innerText = currentBooking.gate;
-    speakNotification("Time window selected: " + slotName + ". Assigned to " + gate);
+    speakNotification("Time window selected: " + currentBooking.slot + ". Assigned to " + gate);
   }
 
   function selectVehicle(vehName, cap, emoji) {
@@ -1671,7 +1671,7 @@ tailwind.config = {
     currentBooking.vehicle = currentLang === "en" ? vehName : translate(vehicleKey);
     document.getElementById("cardWeight").innerText = cap;
     document.getElementById("dispVehicle").innerText = currentBooking.vehicle;
-    speakNotification("Transport selected: " + vehName);
+    speakNotification("Transport selected: " + currentBooking.vehicle);
   }
 
   // MULTILINGUAL TRANSLATION SYSTEM
@@ -1788,16 +1788,54 @@ tailwind.config = {
   }
 
   // TEXT TO SPEECH (TTS) HELPER
+  function localizedSpeechText(text) {
+    const exact = {
+      "Please enter a valid 10-digit mobile number.": { hi: "कृपया 10 अंकों का सही मोबाइल नंबर दर्ज करें।", ta: "சரியான 10 இலக்க கைபேசி எண்ணை உள்ளிடவும்." },
+      "Incorrect OTP entered. Please try again.": { hi: "गलत ओटीपी दर्ज किया गया है। कृपया फिर से प्रयास करें।", ta: "தவறான OTP. மீண்டும் முயற்சிக்கவும்." },
+      "Verification successful. Welcome Sardar Harinder Singh.": { hi: "सत्यापन सफल हुआ। सरदार हरिंदर सिंह, आपका स्वागत है।", ta: "சரிபார்ப்பு வெற்றிகரமாக முடிந்தது. சர்தார் ஹரிந்தர் சிங், வரவேற்கிறோம்." },
+      "Logged out successfully. Authentication reset.": { hi: "सफलतापूर्वक लॉगआउट हो गया। प्रमाणीकरण रीसेट कर दिया गया है।", ta: "வெளியேற்றம் வெற்றிகரமாக முடிந்தது. அங்கீகாரம் மீட்டமைக்கப்பட்டது." },
+      "Smart Farmer Portal for SIH 2026. Schedule your tractor unloading pass in under 60 seconds with zero waiting queue at the APMC mandi.": { hi: "SIH 2026 के लिए स्मार्ट फार्मर पोर्टल। एपीएमसी मंडी में बिना कतार के 60 सेकंड में ट्रैक्टर उतारने का पास बुक करें।", ta: "SIH 2026க்கான ஸ்மார்ட் ஃபார்மர் போர்டல். APMC மண்டியில் காத்திருப்பில்லாமல் 60 விநாடிகளில் டிராக்டர் இறக்குமதி அனுமதியைப் பதிவு செய்யுங்கள்." },
+      "Direct grain booking. Zero waiting at the Mandi Gate. An illiterate-friendly procurement gateway with verified dock gate tokens.": { hi: "सीधी अनाज बुकिंग। मंडी गेट पर शून्य इंतज़ार। सत्यापित डॉक टोकन वाला सरल खरीद पोर्टल।", ta: "நேரடி தானிய முன்பதிவு. மண்டி வாசலில் காத்திருப்பு இல்லை. சரிபார்க்கப்பட்ட நுழைவு அனுமதிகளுடன் எளிய கொள்முதல் தளம்." },
+      "Live token for Sardar Harinder Singh. Crop Wheat. Window morning rise. Gate 01 ready.": { hi: "सरदार हरिंदर सिंह का लाइव टोकन। फसल गेहूं। सुबह का समय। गेट 01 तैयार है।", ta: "சர்தார் ஹரிந்தர் சிங்கிற்கான நேரலை அனுமதி. பயிர் கோதுமை. காலை நேரம். நுழைவு 01 தயாராக உள்ளது." },
+      "Crop choices: Wheat at 2275, Paddy Rice at 2183, Mustard at 5650, Cotton at 7020.": { hi: "फसल विकल्प: गेहूं 2275, धान 2183, सरसों 5650, कपास 7020।", ta: "பயிர் விருப்பங்கள்: கோதுமை 2275, நெல் 2183, கடுகு 5650, பருத்தி 7020." },
+      "Arrival times: Morning rise with 12 minute fast dock, Midday sun, or Evening sunset.": { hi: "आने का समय: 12 मिनट वाले तेज़ सुबह के डॉक, दोपहर या शाम का समय।", ta: "வருகை நேரங்கள்: 12 நிமிட விரைவு காலை தளம், நண்பகல் அல்லது மாலை நேரம்." },
+      "Traditional mandis cause 14-hour roadside queues. Smart Farmer Portal provides guaranteed 20-minute dock allocation with instant direct benefit transfer.": { hi: "पारंपरिक मंडियों में 14 घंटे की कतारें लगती हैं। स्मार्ट फार्मर पोर्टल 20 मिनट में डॉक और तुरंत सीधे लाभ भुगतान देता है।", ta: "பாரம்பரிய மண்டிகளில் 14 மணி நேர சாலை வரிசைகள் ஏற்படுகின்றன. ஸ்மார்ட் ஃபார்மர் போர்டல் 20 நிமிட தள ஒதுக்கீடும் உடனடி நேரடி பலன் பரிமாற்றமும் வழங்குகிறது." },
+      "Voice assistant active. Please state your crop and preferred arrival time.": { hi: "वॉइस सहायक सक्रिय है। अपनी फसल और पसंदीदा आने का समय बताएं।", ta: "குரல் உதவியாளர் செயல்பாட்டில் உள்ளது. உங்கள் பயிரையும் விரும்பிய வருகை நேரத்தையும் சொல்லுங்கள்." },
+      "Voice booking recognized and applied to your gate pass.": { hi: "वॉइस बुकिंग पहचान ली गई है और आपके गेट पास में लागू कर दी गई है।", ta: "குரல் முன்பதிவு அறியப்பட்டு உங்கள் நுழைவு அனுமதியில் பயன்படுத்தப்பட்டது." },
+      "Default demo number entered": { hi: "डिफ़ॉल्ट डेमो नंबर दर्ज किया गया है।", ta: "இயல்புநிலை டெமோ எண் உள்ளிடப்பட்டது." }
+    };
+    if (currentLang === "en") return text;
+    if (exact[text] && exact[text][currentLang]) return exact[text][currentLang];
+    if (text.startsWith("Language changed to ")) return currentLang === "hi" ? "भाषा बदलकर हिंदी कर दी गई है।" : "மொழி தமிழாக மாற்றப்பட்டது.";
+    if (text.startsWith("Welcome back Harinder Singh.")) return currentLang === "hi" ? "हरिंदर सिंह, आपका स्वागत है। डॉक आरक्षित करने के लिए फसल चुनें।" : "ஹரிந்தர் சிங், வரவேற்கிறோம். தளத்தை முன்பதிவு செய்ய பயிரைத் தேர்ந்தெடுக்கவும்.";
+    if (text.startsWith("Gate pass APMC-26032-841 generated")) return currentLang === "hi" ? "गेट पास तैयार है और सत्यापित मोबाइल नंबर पर SMS भेज दिया गया है।" : "கேட் பாஸ் உருவாக்கப்பட்டு சரிபார்க்கப்பட்ட கைபேசி எண்ணுக்கு SMS அனுப்பப்பட்டது.";
+    if (text.startsWith("Demo OTP generated.")) return currentLang === "hi" ? "डेमो ओटीपी तैयार है। कोड है: " + text.split(": ")[1] : "டெமோ OTP உருவாக்கப்பட்டது. குறியீடு: " + text.split(": ")[1];
+    if (text.startsWith("Demo OTP automatically filled:")) return currentLang === "hi" ? "डेमो ओटीपी अपने आप भर दिया गया है: " + text.split(": ")[1] : "டெமோ OTP தானாக நிரப்பப்பட்டது: " + text.split(": ")[1];
+    if (text.startsWith("Fresh demo OTP sent:")) return currentLang === "hi" ? "नया डेमो ओटीपी भेजा गया है: " + text.split(": ")[1] : "புதிய டெமோ OTP அனுப்பப்பட்டது: " + text.split(": ")[1];
+    if (text.startsWith("Please enter demo OTP:")) return currentLang === "hi" ? "डेमो ओटीपी दर्ज करें: " + text.split(": ")[1] : "டெமோ OTP-ஐ உள்ளிடவும்: " + text.split(": ")[1];
+    if (text.startsWith("Farmer login.")) return currentLang === "hi" ? "किसान लॉगिन। अपना मोबाइल नंबर दर्ज करें और 6 अंकों के डेमो कोड से सत्यापित करें।" : "விவசாயி உள்நுழைவு. உங்கள் கைபேசி எண்ணை உள்ளிட்டு 6 இலக்க டெமோ குறியீட்டால் சரிபார்க்கவும்.";
+    if (text.startsWith("Verified Farmer Profile:")) return currentLang === "hi" ? "सत्यापित किसान प्रोफ़ाइल। स्थिति: सरकारी ई-केवाईसी से सत्यापित। पंजीकृत मंडी: एपीएमसी खन्ना मुख्य यार्ड।" : "சரிபார்க்கப்பட்ட விவசாயி சுயவிவரம். அரசு e-KYC மூலம் சரிபார்க்கப்பட்டது. பதிவு செய்யப்பட்ட மண்டி: APMC கன்னா பிரதான மண்டி.";
+    if (text.startsWith("Time window selected:")) return currentLang === "hi" ? "समय चुना गया है और " + text.split(". Assigned to ")[1] + " आवंटित किया गया है।" : "நேர இடைவெளி தேர்ந்தெடுக்கப்பட்டு " + text.split(". Assigned to ")[1] + " ஒதுக்கப்பட்டுள்ளது.";
+    if (text.startsWith("Transport selected:")) return currentLang === "hi" ? "परिवहन चुना गया: " + text.split(": ")[1] : "போக்குவரத்து தேர்ந்தெடுக்கப்பட்டது: " + text.split(": ")[1];
+    if (text.startsWith("Arrival date set to ")) return currentLang === "hi" ? "आने की तारीख तय है: " + text.replace("Arrival date set to ", "") : "வருகை தேதி அமைக்கப்பட்டது: " + text.replace("Arrival date set to ", "");
+    if (text.includes(" selected. MSP: ")) return currentLang === "hi" ? "फसल चुनी गई: " + text.split(" selected. MSP: ")[0] + ". एमएसपी: " + text.split(" selected. MSP: ")[1] : "பயிர் தேர்ந்தெடுக்கப்பட்டது: " + text.split(" selected. MSP: ")[0] + ". MSP: " + text.split(" selected. MSP: ")[1];
+    return text;
+  }
+
   function speakNotification(text) {
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
+    const languageCodes = { en: "en-IN", hi: "hi-IN", ta: "ta-IN" };
+    const speechLanguage = languageCodes[currentLang] || "en-IN";
+    const spokenText = localizedSpeechText(text);
+    const utterance = new SpeechSynthesisUtterance(spokenText);
     utterance.rate = 0.95;
-    const languageCodes = { en: "en-IN", hi: "hi-IN", pa: "pa-IN", te: "te-IN", ta: "ta-IN" };
-    utterance.lang = languageCodes[currentLang] || "en-IN";
+    utterance.lang = speechLanguage;
+    const languagePrefix = speechLanguage.split("-")[0];
     const voices = window.speechSynthesis.getVoices();
-    const languagePrefix = utterance.lang.toLowerCase().split("-")[0];
-    utterance.voice = voices.find(voice => voice.lang.toLowerCase().startsWith(languagePrefix)) || null;
+    utterance.voice = voices.find(voice => voice.lang.toLowerCase() === speechLanguage.toLowerCase())
+      || voices.find(voice => voice.lang.toLowerCase().startsWith(languagePrefix + "-"))
+      || voices.find(voice => voice.lang.toLowerCase().startsWith(languagePrefix));
     window.speechSynthesis.speak(utterance);
   }
 
