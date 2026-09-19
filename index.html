@@ -798,7 +798,7 @@ tailwind.config = {
           <span class="material-symbols-outlined text-amber-600 text-[18px]">info</span>
           <span class="font-medium" data-i18n="demo_mode_note">Demo mode: OTP verification is simulated for SIH 2026.</span>
         </div>
-        <button onclick="document.getElementById('loginMobileInput').value='9876543210'; speakNotification('Default demo number entered');" data-i18n="default_demo" class="px-2.5 py-1 rounded-lg bg-amber-200 hover:bg-amber-300 text-amber-950 font-bold text-[11px] transition-all">Default</button>
+        <button onclick="document.getElementById('loginMobileInput').value='9876543210'; speakMessage('defaultDemoNumber');" data-i18n="default_demo" class="px-2.5 py-1 rounded-lg bg-amber-200 hover:bg-amber-300 text-amber-950 font-bold text-[11px] transition-all">Default</button>
       </div>
 
       <!-- Send OTP Action -->
@@ -1366,6 +1366,19 @@ tailwind.config = {
     }
   };
 
+  // Central speech dictionary: add a language here without changing speech functions.
+  const speechMessages = {
+    en: {
+      defaultDemoNumber: "Default demo number entered", welcomeBack: "Welcome back Harinder Singh. Select your crop to reserve dock.", gatePassGenerated: "Gate pass {serial} generated and SMS sent to your verified mobile number.", invalidMobile: "Please enter a valid 10-digit mobile number.", otpGenerated: "Demo OTP generated. Code is: {otp}", otpFilled: "Demo OTP automatically filled: {otp}", incorrectOtp: "Incorrect OTP entered. Please try again.", verificationSuccess: "Verification successful. Welcome Sardar Harinder Singh.", freshOtp: "Fresh demo OTP sent: {otp}", loggedOut: "Logged out successfully. Authentication reset.", cropSelected: "{crop} selected. MSP: {price}", dateSelected: "Arrival date set to {date}", timeSelected: "Time window selected: {slot}. Assigned to {gate}", transportSelected: "Transport selected: {vehicle}", languageChanged: "Language changed to {language}", enterOtp: "Please enter demo OTP: {otp}", loginHelp: "Farmer login. Please enter your mobile number, then verify using the 6-digit demo code.", farmerProfile: "Verified Farmer Profile: Sardar Harinder Singh. Status: Verified with Government e-KYC. Registered at APMC Khanna Main Yard.", summary: "Smart Farmer Portal for SIH 2026. Schedule your tractor unloading pass in under 60 seconds with zero waiting queue at the APMC mandi.", hero: "Direct grain booking. Zero waiting at the Mandi Gate. An illiterate-friendly procurement gateway with verified dock gate tokens.", pass: "Live token for Sardar Harinder Singh. Crop Wheat. Window morning rise. Gate 01 ready.", crops: "Crop choices: Wheat at 2275, Paddy Rice at 2183, Mustard at 5650, Cotton at 7020.", times: "Arrival times: Morning rise with 12 minute fast dock, Midday sun, or Evening sunset.", solution: "Traditional mandis cause 14-hour roadside queues. Smart Farmer Portal provides guaranteed 20-minute dock allocation with instant direct benefit transfer.", otpPrompt: "Please enter demo OTP: {otp}", assistant: "Voice assistant active. Please state your crop and preferred arrival time.", voiceApplied: "Voice booking recognized and applied to your gate pass.", passDetails: "Gate pass serial {serial} for Sardar Harinder Singh. Crop: {crop}. Date: {date}. Assigned Gate: {gate}." 
+    },
+    hi: {
+      defaultDemoNumber: "डिफ़ॉल्ट डेमो नंबर दर्ज किया गया है।", welcomeBack: "हरिंदर सिंह, आपका स्वागत है। डॉक आरक्षित करने के लिए फसल चुनें।", gatePassGenerated: "गेट पास {serial} तैयार है और सत्यापित मोबाइल नंबर पर SMS भेज दिया गया है।", invalidMobile: "कृपया 10 अंकों का सही मोबाइल नंबर दर्ज करें।", otpGenerated: "डेमो ओटीपी तैयार है। कोड है: {otp}", otpFilled: "डेमो ओटीपी अपने आप भर दिया गया है: {otp}", incorrectOtp: "गलत ओटीपी दर्ज किया गया है। कृपया फिर से प्रयास करें।", verificationSuccess: "सत्यापन सफल हुआ। सरदार हरिंदर सिंह, आपका स्वागत है।", freshOtp: "नया डेमो ओटीपी भेजा गया है: {otp}", loggedOut: "सफलतापूर्वक लॉगआउट हो गया। प्रमाणीकरण रीसेट कर दिया गया है।", cropSelected: "{crop} चुनी गई। एमएसपी: {price}", dateSelected: "आने की तारीख तय है: {date}", timeSelected: "समय चुना गया है और {gate} आवंटित किया गया है।", transportSelected: "परिवहन चुना गया: {vehicle}", languageChanged: "भाषा बदलकर {language} कर दी गई है।", enterOtp: "डेमो ओटीपी दर्ज करें: {otp}", loginHelp: "किसान लॉगिन। अपना मोबाइल नंबर दर्ज करें और 6 अंकों के डेमो कोड से सत्यापित करें।", farmerProfile: "सत्यापित किसान प्रोफ़ाइल। स्थिति: सरकारी ई-केवाईसी से सत्यापित। पंजीकृत मंडी: एपीएमसी खन्ना मुख्य यार्ड।", summary: "SIH 2026 के लिए स्मार्ट फार्मर पोर्टल। एपीएमसी मंडी में बिना कतार के 60 सेकंड में ट्रैक्टर उतारने का पास बुक करें।", hero: "सीधी अनाज बुकिंग। मंडी गेट पर शून्य इंतज़ार। सत्यापित डॉक टोकन वाला सरल खरीद पोर्टल।", pass: "सरदार हरिंदर सिंह का लाइव टोकन। फसल गेहूं। सुबह का समय। गेट 01 तैयार है।", crops: "फसल विकल्प: गेहूं 2275, धान 2183, सरसों 5650, कपास 7020।", times: "आने का समय: 12 मिनट वाले तेज़ सुबह के डॉक, दोपहर या शाम का समय।", solution: "पारंपरिक मंडियों में 14 घंटे की कतारें लगती हैं। स्मार्ट फार्मर पोर्टल 20 मिनट में डॉक और तुरंत सीधे लाभ भुगतान देता है।", otpPrompt: "डेमो ओटीपी दर्ज करें: {otp}", assistant: "वॉइस सहायक सक्रिय है। अपनी फसल और पसंदीदा आने का समय बताएं।", voiceApplied: "वॉइस बुकिंग पहचान ली गई है और आपके गेट पास में लागू कर दी गई है।", passDetails: "गेट पास क्रमांक {serial}। किसान: सरदार हरिंदर सिंह। फसल: {crop}। तारीख: {date}। आवंटित गेट: {gate}।"
+    },
+    ta: {
+      defaultDemoNumber: "இயல்புநிலை டெமோ எண் உள்ளிடப்பட்டது.", welcomeBack: "ஹரிந்தர் சிங், வரவேற்கிறோம். தளத்தை முன்பதிவு செய்ய பயிரைத் தேர்ந்தெடுக்கவும்.", gatePassGenerated: "கேட் பாஸ் {serial} உருவாக்கப்பட்டு சரிபார்க்கப்பட்ட கைபேசி எண்ணுக்கு SMS அனுப்பப்பட்டது.", invalidMobile: "சரியான 10 இலக்க கைபேசி எண்ணை உள்ளிடவும்.", otpGenerated: "டெமோ OTP உருவாக்கப்பட்டது. குறியீடு: {otp}", otpFilled: "டெமோ OTP தானாக நிரப்பப்பட்டது: {otp}", incorrectOtp: "தவறான OTP. மீண்டும் முயற்சிக்கவும்.", verificationSuccess: "சரிபார்ப்பு வெற்றிகரமாக முடிந்தது. சர்தார் ஹரிந்தர் சிங், வரவேற்கிறோம்.", freshOtp: "புதிய டெமோ OTP அனுப்பப்பட்டது: {otp}", loggedOut: "வெளியேற்றம் வெற்றிகரமாக முடிந்தது. அங்கீகாரம் மீட்டமைக்கப்பட்டது.", cropSelected: "{crop} தேர்ந்தெடுக்கப்பட்டது. MSP: {price}", dateSelected: "வருகை தேதி அமைக்கப்பட்டது: {date}", timeSelected: "நேர இடைவெளி தேர்ந்தெடுக்கப்பட்டு {gate} ஒதுக்கப்பட்டுள்ளது.", transportSelected: "போக்குவரத்து தேர்ந்தெடுக்கப்பட்டது: {vehicle}", languageChanged: "மொழி {language} ஆக மாற்றப்பட்டது.", enterOtp: "டெமோ OTP-ஐ உள்ளிடவும்: {otp}", loginHelp: "விவசாயி உள்நுழைவு. உங்கள் கைபேசி எண்ணை உள்ளிட்டு 6 இலக்க டெமோ குறியீட்டால் சரிபார்க்கவும்.", farmerProfile: "சரிபார்க்கப்பட்ட விவசாயி சுயவிவரம். அரசு e-KYC மூலம் சரிபார்க்கப்பட்டது. பதிவு செய்யப்பட்ட மண்டி: APMC கன்னா பிரதான மண்டி.", summary: "SIH 2026க்கான ஸ்மார்ட் ஃபார்மர் போர்டல். APMC மண்டியில் காத்திருப்பில்லாமல் 60 விநாடிகளில் டிராக்டர் இறக்குமதி அனுமதியைப் பதிவு செய்யுங்கள்.", hero: "நேரடி தானிய முன்பதிவு. மண்டி வாசலில் காத்திருப்பு இல்லை. சரிபார்க்கப்பட்ட நுழைவு அனுமதிகளுடன் எளிய கொள்முதல் தளம்.", pass: "சர்தார் ஹரிந்தர் சிங்கிற்கான நேரலை அனுமதி. பயிர் கோதுமை. காலை நேரம். நுழைவு 01 தயாராக உள்ளது.", crops: "பயிர் விருப்பங்கள்: கோதுமை 2275, நெல் 2183, கடுகு 5650, பருத்தி 7020.", times: "வருகை நேரங்கள்: 12 நிமிட விரைவு காலை தளம், நண்பகல் அல்லது மாலை நேரம்.", solution: "பாரம்பரிய மண்டிகளில் 14 மணி நேர சாலை வரிசைகள் ஏற்படுகின்றன. ஸ்மார்ட் ஃபார்மர் போர்டல் 20 நிமிட தள ஒதுக்கீடும் உடனடி நேரடி பலன் பரிமாற்றமும் வழங்குகிறது.", otpPrompt: "டெமோ OTP-ஐ உள்ளிடவும்: {otp}", assistant: "குரல் உதவியாளர் செயல்பாட்டில் உள்ளது. உங்கள் பயிரையும் விரும்பிய வருகை நேரத்தையும் சொல்லுங்கள்.", voiceApplied: "குரல் முன்பதிவு அறியப்பட்டு உங்கள் நுழைவு அனுமதியில் பயன்படுத்தப்பட்டது.", passDetails: "கேட் பாஸ் எண் {serial}. விவசாயி: சர்தார் ஹரிந்தர் சிங். பயிர்: {crop}. தேதி: {date}. ஒதுக்கப்பட்ட நுழைவு: {gate}."
+    }
+  };
+
   // Initialize Language and Authentication State
   window.addEventListener("DOMContentLoaded", () => {
     let savedLanguage = null;
@@ -1435,7 +1448,7 @@ tailwind.config = {
     } else {
       const el = document.getElementById("booking");
       if (el) el.scrollIntoView({ behavior: "smooth" });
-      speakNotification("Welcome back Harinder Singh. Select your crop to reserve dock.");
+      speakMessage("welcomeBack");
     }
   }
 
@@ -1445,7 +1458,7 @@ tailwind.config = {
       pendingBookingAction = true;
       openFarmerLoginModal(true);
     } else {
-      speakNotification("Gate pass APMC-26032-841 generated and SMS sent to your verified mobile number.");
+      speakMessage("gatePassGenerated", { serial: "APMC-26032-841" });
       alert("✅ Mandi Gate Pass Saved!\nSerial: APMC-26032-841\nFarmer: " + user.name + "\nDock Gate 01 Assigned. Arrive at 08:00 AM.");
     }
   }
@@ -1478,7 +1491,7 @@ tailwind.config = {
   function handleSendOtp() {
     const mobileInput = document.getElementById("loginMobileInput").value.trim();
     if (!mobileInput || mobileInput.length < 10) {
-      speakNotification("Please enter a valid 10-digit mobile number.");
+      speakMessage("invalidMobile");
       document.getElementById("loginMobileInput").focus();
       return;
     }
@@ -1501,7 +1514,7 @@ tailwind.config = {
     // Start 30s Countdown
     startResendCountdown();
 
-    speakNotification("Demo OTP generated. Code is: " + currentGeneratedOtp.split("").join(" "));
+    speakMessage("otpGenerated", { otp: currentGeneratedOtp.split("").join(" ") });
     setTimeout(() => {
       if (boxes[0]) boxes[0].focus();
     }, 150);
@@ -1520,7 +1533,7 @@ tailwind.config = {
       box.value = digits[i] || "";
     });
     document.getElementById("otpErrorBox").classList.add("hidden");
-    speakNotification("Demo OTP automatically filled: " + currentGeneratedOtp);
+    speakMessage("otpFilled", { otp: currentGeneratedOtp });
   }
 
   // STEP 2: VERIFY OTP
@@ -1536,7 +1549,7 @@ tailwind.config = {
 
     if (entered !== currentGeneratedOtp) {
       showOtpError("Incorrect OTP. Please enter the demo code " + currentGeneratedOtp + " shown above.");
-      speakNotification("Incorrect OTP entered. Please try again.");
+      speakMessage("incorrectOtp");
       return;
     }
 
@@ -1554,7 +1567,7 @@ tailwind.config = {
       yard: DEMO_FARMER_PROFILE.yard
     });
 
-    speakNotification("Verification successful. Welcome Sardar Harinder Singh.");
+    speakMessage("verificationSuccess");
 
     // Auto-close and return to page after 1.4 seconds
     setTimeout(() => {
@@ -1576,7 +1589,7 @@ tailwind.config = {
     currentGeneratedOtp = Math.floor(100000 + Math.random() * 900000).toString();
     document.getElementById("demoGeneratedOtpCode").innerText = currentGeneratedOtp;
     startResendCountdown();
-    speakNotification("Fresh demo OTP sent: " + currentGeneratedOtp);
+    speakMessage("freshOtp", { otp: currentGeneratedOtp });
   }
 
   function startResendCountdown() {
@@ -1633,7 +1646,7 @@ tailwind.config = {
   function handleFarmerLogout() {
     setAuthState(null);
     closeFarmerProfileModal();
-    speakNotification("Logged out successfully. Authentication reset.");
+    speakMessage("loggedOut");
   }
 
   // SELECTION HANDLERS FOR INTERACTIVE BOOKING
@@ -1645,14 +1658,14 @@ tailwind.config = {
     document.getElementById("cardCropEmoji").innerText = emoji;
     document.getElementById("dispCrop").innerText = displayName;
     document.getElementById("dispCropIcon").innerText = emoji;
-    speakNotification(currentBooking.crop + " selected. MSP: " + price);
+    speakMessage("cropSelected", { crop: currentBooking.crop, price });
   }
 
   function selectDate(label, dateStr) {
     const dateKey = { Today: "date_today", Tomorrow: "date_tomorrow", "Day After": "date_after" }[label];
     currentBooking.date = `${dateKey ? translate(dateKey) : label} (${dateStr})`;
     document.getElementById("dispDate").innerText = currentBooking.date;
-    speakNotification("Arrival date set to " + translate(dateKey));
+    speakMessage("dateSelected", { date: translate(dateKey) });
   }
 
   function selectSlot(slotName, gate) {
@@ -1663,7 +1676,7 @@ tailwind.config = {
     document.getElementById("cardBay").innerText = "Dock Bay #04";
     document.getElementById("dispSlot").innerText = currentBooking.slot;
     document.getElementById("dispGate").innerText = currentBooking.gate;
-    speakNotification("Time window selected: " + currentBooking.slot + ". Assigned to " + gate);
+    speakMessage("timeSelected", { slot: currentBooking.slot, gate });
   }
 
   function selectVehicle(vehName, cap, emoji) {
@@ -1671,7 +1684,7 @@ tailwind.config = {
     currentBooking.vehicle = currentLang === "en" ? vehName : translate(vehicleKey);
     document.getElementById("cardWeight").innerText = cap;
     document.getElementById("dispVehicle").innerText = currentBooking.vehicle;
-    speakNotification("Transport selected: " + currentBooking.vehicle);
+    speakMessage("transportSelected", { vehicle: currentBooking.vehicle });
   }
 
   // MULTILINGUAL TRANSLATION SYSTEM
@@ -1718,7 +1731,7 @@ tailwind.config = {
     });
 
     closeLanguageModal();
-    if (announce) speakNotification((dict.language_changed || translations.en.language_changed || "Language changed to ") + names[currentLang]);
+    if (announce) speakMessage("languageChanged", { language: names[currentLang] });
   }
 
   // Standalone keypad demo state; it does not alter the existing booking workflow.
@@ -1787,50 +1800,21 @@ tailwind.config = {
     renderIvrDisplay();
   }
 
-  // TEXT TO SPEECH (TTS) HELPER
-  function localizedSpeechText(text) {
-    const exact = {
-      "Please enter a valid 10-digit mobile number.": { hi: "कृपया 10 अंकों का सही मोबाइल नंबर दर्ज करें।", ta: "சரியான 10 இலக்க கைபேசி எண்ணை உள்ளிடவும்." },
-      "Incorrect OTP entered. Please try again.": { hi: "गलत ओटीपी दर्ज किया गया है। कृपया फिर से प्रयास करें।", ta: "தவறான OTP. மீண்டும் முயற்சிக்கவும்." },
-      "Verification successful. Welcome Sardar Harinder Singh.": { hi: "सत्यापन सफल हुआ। सरदार हरिंदर सिंह, आपका स्वागत है।", ta: "சரிபார்ப்பு வெற்றிகரமாக முடிந்தது. சர்தார் ஹரிந்தர் சிங், வரவேற்கிறோம்." },
-      "Logged out successfully. Authentication reset.": { hi: "सफलतापूर्वक लॉगआउट हो गया। प्रमाणीकरण रीसेट कर दिया गया है।", ta: "வெளியேற்றம் வெற்றிகரமாக முடிந்தது. அங்கீகாரம் மீட்டமைக்கப்பட்டது." },
-      "Smart Farmer Portal for SIH 2026. Schedule your tractor unloading pass in under 60 seconds with zero waiting queue at the APMC mandi.": { hi: "SIH 2026 के लिए स्मार्ट फार्मर पोर्टल। एपीएमसी मंडी में बिना कतार के 60 सेकंड में ट्रैक्टर उतारने का पास बुक करें।", ta: "SIH 2026க்கான ஸ்மார்ட் ஃபார்மர் போர்டல். APMC மண்டியில் காத்திருப்பில்லாமல் 60 விநாடிகளில் டிராக்டர் இறக்குமதி அனுமதியைப் பதிவு செய்யுங்கள்." },
-      "Direct grain booking. Zero waiting at the Mandi Gate. An illiterate-friendly procurement gateway with verified dock gate tokens.": { hi: "सीधी अनाज बुकिंग। मंडी गेट पर शून्य इंतज़ार। सत्यापित डॉक टोकन वाला सरल खरीद पोर्टल।", ta: "நேரடி தானிய முன்பதிவு. மண்டி வாசலில் காத்திருப்பு இல்லை. சரிபார்க்கப்பட்ட நுழைவு அனுமதிகளுடன் எளிய கொள்முதல் தளம்." },
-      "Live token for Sardar Harinder Singh. Crop Wheat. Window morning rise. Gate 01 ready.": { hi: "सरदार हरिंदर सिंह का लाइव टोकन। फसल गेहूं। सुबह का समय। गेट 01 तैयार है।", ta: "சர்தார் ஹரிந்தர் சிங்கிற்கான நேரலை அனுமதி. பயிர் கோதுமை. காலை நேரம். நுழைவு 01 தயாராக உள்ளது." },
-      "Crop choices: Wheat at 2275, Paddy Rice at 2183, Mustard at 5650, Cotton at 7020.": { hi: "फसल विकल्प: गेहूं 2275, धान 2183, सरसों 5650, कपास 7020।", ta: "பயிர் விருப்பங்கள்: கோதுமை 2275, நெல் 2183, கடுகு 5650, பருத்தி 7020." },
-      "Arrival times: Morning rise with 12 minute fast dock, Midday sun, or Evening sunset.": { hi: "आने का समय: 12 मिनट वाले तेज़ सुबह के डॉक, दोपहर या शाम का समय।", ta: "வருகை நேரங்கள்: 12 நிமிட விரைவு காலை தளம், நண்பகல் அல்லது மாலை நேரம்." },
-      "Traditional mandis cause 14-hour roadside queues. Smart Farmer Portal provides guaranteed 20-minute dock allocation with instant direct benefit transfer.": { hi: "पारंपरिक मंडियों में 14 घंटे की कतारें लगती हैं। स्मार्ट फार्मर पोर्टल 20 मिनट में डॉक और तुरंत सीधे लाभ भुगतान देता है।", ta: "பாரம்பரிய மண்டிகளில் 14 மணி நேர சாலை வரிசைகள் ஏற்படுகின்றன. ஸ்மார்ட் ஃபார்மர் போர்டல் 20 நிமிட தள ஒதுக்கீடும் உடனடி நேரடி பலன் பரிமாற்றமும் வழங்குகிறது." },
-      "Voice assistant active. Please state your crop and preferred arrival time.": { hi: "वॉइस सहायक सक्रिय है। अपनी फसल और पसंदीदा आने का समय बताएं।", ta: "குரல் உதவியாளர் செயல்பாட்டில் உள்ளது. உங்கள் பயிரையும் விரும்பிய வருகை நேரத்தையும் சொல்லுங்கள்." },
-      "Voice booking recognized and applied to your gate pass.": { hi: "वॉइस बुकिंग पहचान ली गई है और आपके गेट पास में लागू कर दी गई है।", ta: "குரல் முன்பதிவு அறியப்பட்டு உங்கள் நுழைவு அனுமதியில் பயன்படுத்தப்பட்டது." },
-      "Default demo number entered": { hi: "डिफ़ॉल्ट डेमो नंबर दर्ज किया गया है।", ta: "இயல்புநிலை டெமோ எண் உள்ளிடப்பட்டது." }
-    };
-    if (currentLang === "en") return text;
-    if (exact[text] && exact[text][currentLang]) return exact[text][currentLang];
-    if (text.startsWith("Language changed to ")) return currentLang === "hi" ? "भाषा बदलकर हिंदी कर दी गई है।" : "மொழி தமிழாக மாற்றப்பட்டது.";
-    if (text.startsWith("Welcome back Harinder Singh.")) return currentLang === "hi" ? "हरिंदर सिंह, आपका स्वागत है। डॉक आरक्षित करने के लिए फसल चुनें।" : "ஹரிந்தர் சிங், வரவேற்கிறோம். தளத்தை முன்பதிவு செய்ய பயிரைத் தேர்ந்தெடுக்கவும்.";
-    if (text.startsWith("Gate pass APMC-26032-841 generated")) return currentLang === "hi" ? "गेट पास तैयार है और सत्यापित मोबाइल नंबर पर SMS भेज दिया गया है।" : "கேட் பாஸ் உருவாக்கப்பட்டு சரிபார்க்கப்பட்ட கைபேசி எண்ணுக்கு SMS அனுப்பப்பட்டது.";
-    if (text.startsWith("Demo OTP generated.")) return currentLang === "hi" ? "डेमो ओटीपी तैयार है। कोड है: " + text.split(": ")[1] : "டெமோ OTP உருவாக்கப்பட்டது. குறியீடு: " + text.split(": ")[1];
-    if (text.startsWith("Demo OTP automatically filled:")) return currentLang === "hi" ? "डेमो ओटीपी अपने आप भर दिया गया है: " + text.split(": ")[1] : "டெமோ OTP தானாக நிரப்பப்பட்டது: " + text.split(": ")[1];
-    if (text.startsWith("Fresh demo OTP sent:")) return currentLang === "hi" ? "नया डेमो ओटीपी भेजा गया है: " + text.split(": ")[1] : "புதிய டெமோ OTP அனுப்பப்பட்டது: " + text.split(": ")[1];
-    if (text.startsWith("Please enter demo OTP:")) return currentLang === "hi" ? "डेमो ओटीपी दर्ज करें: " + text.split(": ")[1] : "டெமோ OTP-ஐ உள்ளிடவும்: " + text.split(": ")[1];
-    if (text.startsWith("Farmer login.")) return currentLang === "hi" ? "किसान लॉगिन। अपना मोबाइल नंबर दर्ज करें और 6 अंकों के डेमो कोड से सत्यापित करें।" : "விவசாயி உள்நுழைவு. உங்கள் கைபேசி எண்ணை உள்ளிட்டு 6 இலக்க டெமோ குறியீட்டால் சரிபார்க்கவும்.";
-    if (text.startsWith("Verified Farmer Profile:")) return currentLang === "hi" ? "सत्यापित किसान प्रोफ़ाइल। स्थिति: सरकारी ई-केवाईसी से सत्यापित। पंजीकृत मंडी: एपीएमसी खन्ना मुख्य यार्ड।" : "சரிபார்க்கப்பட்ட விவசாயி சுயவிவரம். அரசு e-KYC மூலம் சரிபார்க்கப்பட்டது. பதிவு செய்யப்பட்ட மண்டி: APMC கன்னா பிரதான மண்டி.";
-    if (text.startsWith("Time window selected:")) return currentLang === "hi" ? "समय चुना गया है और " + text.split(". Assigned to ")[1] + " आवंटित किया गया है।" : "நேர இடைவெளி தேர்ந்தெடுக்கப்பட்டு " + text.split(". Assigned to ")[1] + " ஒதுக்கப்பட்டுள்ளது.";
-    if (text.startsWith("Transport selected:")) return currentLang === "hi" ? "परिवहन चुना गया: " + text.split(": ")[1] : "போக்குவரத்து தேர்ந்தெடுக்கப்பட்டது: " + text.split(": ")[1];
-    if (text.startsWith("Arrival date set to ")) return currentLang === "hi" ? "आने की तारीख तय है: " + text.replace("Arrival date set to ", "") : "வருகை தேதி அமைக்கப்பட்டது: " + text.replace("Arrival date set to ", "");
-    if (text.includes(" selected. MSP: ")) return currentLang === "hi" ? "फसल चुनी गई: " + text.split(" selected. MSP: ")[0] + ". एमएसपी: " + text.split(" selected. MSP: ")[1] : "பயிர் தேர்ந்தெடுக்கப்பட்டது: " + text.split(" selected. MSP: ")[0] + ". MSP: " + text.split(" selected. MSP: ")[1];
-    return text;
-  }
-
-  function speakNotification(text) {
+  // Resolve translated speech templates and select the best available locale voice.
+  function speakMessage(messageName, values = {}) {
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
+    // Language selection comes from the same currentLang state as the visible UI.
     const languageCodes = { en: "en-IN", hi: "hi-IN", ta: "ta-IN" };
     const speechLanguage = languageCodes[currentLang] || "en-IN";
-    const spokenText = localizedSpeechText(text);
+    const messages = speechMessages[currentLang] || speechMessages.en;
+    // Missing translations fall back to English; placeholders preserve dynamic values.
+    const template = messages[messageName] || speechMessages.en[messageName] || "";
+    const spokenText = template.replace(/\{(\w+)\}/g, (_, key) => values[key] ?? "");
     const utterance = new SpeechSynthesisUtterance(spokenText);
     utterance.rate = 0.95;
     utterance.lang = speechLanguage;
+    // Prefer an exact Indian voice, then the closest voice for the selected language.
     const languagePrefix = speechLanguage.split("-")[0];
     const voices = window.speechSynthesis.getVoices();
     utterance.voice = voices.find(voice => voice.lang.toLowerCase() === speechLanguage.toLowerCase())
@@ -1840,49 +1824,49 @@ tailwind.config = {
   }
 
   function speakOtpCode() {
-    speakNotification("Please enter demo OTP: " + currentGeneratedOtp.split("").join(" "));
+    speakMessage("otpPrompt", { otp: currentGeneratedOtp.split("").join(" ") });
   }
 
   function speakLoginHelp() {
-    speakNotification("Farmer login. Please enter your mobile number, then verify using the 6-digit demo code.");
+    speakMessage("loginHelp");
   }
 
   function speakFarmerProfile() {
-    speakNotification("Verified Farmer Profile: Sardar Harinder Singh. Status: Verified with Government e-KYC. Registered at APMC Khanna Main Yard.");
+    speakMessage("farmerProfile");
   }
 
   function speakSummary() {
-    speakNotification("Smart Farmer Portal for SIH 2026. Schedule your tractor unloading pass in under 60 seconds with zero waiting queue at the APMC mandi.");
+    speakMessage("summary");
   }
 
   function speakHeroContent() {
-    speakNotification("Direct grain booking. Zero waiting at the Mandi Gate. An illiterate-friendly procurement gateway with verified dock gate tokens.");
+    speakMessage("hero");
   }
 
   function speakPassText() {
-    speakNotification("Live token for Sardar Harinder Singh. Crop Wheat. Window morning rise. Gate 01 ready.");
+    speakMessage("pass");
   }
 
   function speakCrops() {
-    speakNotification("Crop choices: Wheat at 2275, Paddy Rice at 2183, Mustard at 5650, Cotton at 7020.");
+    speakMessage("crops");
   }
 
   function speakTimes() {
-    speakNotification("Arrival times: Morning rise with 12 minute fast dock, Midday sun, or Evening sunset.");
+    speakMessage("times");
   }
 
   function speakSolutionMatrix() {
-    speakNotification("Traditional mandis cause 14-hour roadside queues. Smart Farmer Portal provides guaranteed 20-minute dock allocation with instant direct benefit transfer.");
+    speakMessage("solution");
   }
 
   function readOutPassDetails() {
-    speakNotification("Gate pass serial " + currentBooking.serial + " for Sardar Harinder Singh. Crop: " + currentBooking.crop + ". Date: " + currentBooking.date + ". Assigned Gate: " + currentBooking.gate);
+    speakMessage("passDetails", { serial: currentBooking.serial, crop: currentBooking.crop, date: currentBooking.date, gate: currentBooking.gate });
   }
 
   // VOICE ASSISTANT MODAL (SIMULATED STT)
   function triggerVoiceAssistant() {
     document.getElementById("voiceModal").classList.remove("hidden");
-    speakNotification("Voice assistant active. Please state your crop and preferred arrival time.");
+    speakMessage("assistant");
   }
 
   function closeVoiceModal() {
@@ -1905,7 +1889,7 @@ tailwind.config = {
 
     setTimeout(() => {
       closeVoiceModal();
-      speakNotification("Voice booking recognized and applied to your gate pass.");
+      speakMessage("voiceApplied");
     }, 1200);
   }
 </script>
