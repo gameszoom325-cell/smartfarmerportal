@@ -71,7 +71,19 @@ tailwind.config = {
   .offline-offline { background: rgba(239,68,68,.08); color: #b91c1c; }
   .queue-traffic-meter { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
   .queue-traffic { padding: 12px; border-radius: 16px; background: #f9f9ff; border: 1px solid #dee8ff; }
-  @media (max-width: 640px) { .mini-stat-grid { grid-template-columns: 1fr 1fr; } }
+  .voice-toggle-pill { position: fixed; right: 18px; bottom: 18px; z-index: 60; display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); background: rgba(14,40,65,.94); color: #fff; box-shadow: 0 12px 28px rgba(0,19,38,.2); font-size: 12px; font-weight: 800; letter-spacing: .03em; }
+  .voice-toggle-pill .material-symbols-outlined { font-size: 18px; }
+  .voice-toggle-pill.is-off { background: rgba(71,24,0,.93); border-color: rgba(255,255,255,.15); }
+  .progress-rail { position: relative; overflow: hidden; width: 100%; height: 9px; border-radius: 999px; background: rgba(29,101,135,.15); }
+  .progress-rail-fill { position: absolute; inset: 0 auto 0 0; border-radius: inherit; background: linear-gradient(90deg, #1d6587 0%, #6ccad8 100%); }
+  .timeline-track { position: relative; display: grid; gap: 10px; grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  .timeline-step { position: relative; padding: 10px 8px; border-radius: 12px; border: 1px solid #dee8ff; background: #fff; text-align: center; font-size: 10px; font-weight: 800; color: #001326; }
+  .timeline-step::after { content: ""; position: absolute; right: -10px; top: 50%; width: 12px; height: 2px; background: #98d6fe; transform: translateY(-50%); }
+  .timeline-step:last-child::after { display: none; }
+  .timeline-step.is-complete { background: #dff7ec; border-color: rgba(25,107,36,.25); color: #166534; }
+  .timeline-step.is-current { background: #ecf6ff; border-color: rgba(29,101,135,.35); color: #115e80; }
+  .timeline-step.is-pending { background: #f3f4f6; border-color: #dde1e6; color: #43474d; }
+  @media (max-width: 640px) { .mini-stat-grid { grid-template-columns: 1fr 1fr; } .timeline-track { grid-template-columns: repeat(2, minmax(0, 1fr)); } .timeline-step::after { display: none; } .voice-toggle-pill { right: 10px; bottom: 10px; padding: 8px 12px; } }
   .ivr-phone { width: min(100%, 240px); margin: 0 auto; padding: 13px; border-radius: 25px; background: #0e2841; border: 3px solid #1d6587; box-shadow: inset 0 0 0 2px #001326, 0 14px 28px rgba(0,19,38,.25); }
   .ivr-screen { min-height: 112px; padding: 10px; border: 4px solid #001326; border-radius: 9px; background: #c9d6a0; color: #15210f; font: 700 10px/1.35 monospace; box-shadow: inset 0 0 12px rgba(0,0,0,.2); }
   .ivr-screen-title { font-size: 12px; letter-spacing: .04em; }
@@ -148,6 +160,10 @@ tailwind.config = {
 </style>
 </head>
 <body class="bg-surface font-sans text-on-surface antialiased min-h-screen flex flex-col">
+  <button id="globalVoiceToggle" type="button" class="voice-toggle-pill" aria-pressed="false" onclick="toggleVoicePreference()" aria-label="Voice OFF" title="Voice OFF">
+    <span class="material-symbols-outlined text-[18px]">volume_off</span>
+    <span data-i18n="voice_off">Voice OFF</span>
+  </button>
 
 <!-- Top Fixed Header -->
 <header class="fixed top-0 w-full z-40 bg-surface-container-lowest/95 backdrop-blur-md border-b border-surface-container-high shadow-sm">
@@ -158,7 +174,7 @@ tailwind.config = {
         🌾
       </div>
       <div class="flex flex-col">
-        <span class="text-lg font-extrabold text-primary tracking-tight leading-none">Smart Farmer Portal</span>
+        <span class="text-lg font-extrabold text-primary tracking-tight leading-none" data-i18n="site_name">Smart Farmer Portal</span>
         <span class="text-xs uppercase font-bold tracking-wider text-secondary mt-0.5" data-i18n="tag_apmc">APMC Mandi Scheduling • SIH #26032</span>
       </div>
       <div class="hidden sm:flex items-center gap-2 pl-2 border-l border-surface-container" aria-label="Powered by team logo">
@@ -172,7 +188,7 @@ tailwind.config = {
       <a href="#hero" class="px-3 py-1 rounded-full text-xs font-bold text-primary bg-surface-container-lowest shadow-sm" data-i18n="nav_hero">Hero</a>
       <a href="#booking" class="px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant hover:text-primary" data-i18n="nav_booking">Slot Booking</a>
       <a href="#ai-modules" class="px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant hover:text-primary">AI Command Center</a>
-      <a href="#farmer-workbench" class="px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant hover:text-primary">Dashboard</a>
+      <a href="#farmer-workbench" class="px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant hover:text-primary" data-i18n="nav_dashboard">Dashboard</a>
       <a href="#solution" class="px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant hover:text-primary" data-i18n="nav_solution">Solution</a>
       <a href="#architecture" class="px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant hover:text-primary" data-i18n="nav_architecture">Architecture</a>
       <a href="#impact" class="px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant hover:text-primary" data-i18n="nav_impact">Impact</a>
@@ -355,7 +371,7 @@ tailwind.config = {
 
               <div class="p-2.5 rounded-xl bg-surface-container-low">
                 <span class="text-[10px] uppercase text-outline font-semibold block" data-i18n="lbl_bay">Assigned Dock</span>
-                <span class="font-bold text-on-tertiary-container text-sm mt-0.5 block" id="cardBay">Dock Bay #04</span>
+                <span class="font-bold text-on-tertiary-container text-sm mt-0.5 block" id="cardBay" data-i18n="dock_bay">Dock Bay #04</span>
               </div>
             </div>
 
@@ -619,59 +635,59 @@ tailwind.config = {
     <div class="max-w-7xl mx-auto space-y-8">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <span class="module-chip">AI Mandi Intelligence</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-primary mt-3">Smart Procurement & Queue Optimization</h2>
-          <p class="text-sm text-on-surface-variant max-w-2xl mt-2">One decision layer for the farmer and the mandi operator: choose the most profitable yard, predict congestion, and route every vehicle to a calmer gate.</p>
+          <span class="module-chip" data-i18n="module_ai_intelligence">AI Mandi Intelligence</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-primary mt-3" data-i18n="smart_procurement_title">Smart Procurement & Queue Optimization</h2>
+          <p class="text-sm text-on-surface-variant max-w-2xl mt-2" data-i18n="smart_procurement_desc">One decision layer for the farmer and the mandi operator: choose the most profitable yard, predict congestion, and route every vehicle to a calmer gate.</p>
         </div>
         <div id="offlineStatusIndicator" class="offline-badge offline-online">
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          Online • Offline cache ready
+          <span data-i18n="text_online">Online • Offline cache ready</span>
         </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div class="p-6 rounded-3xl bg-surface-container-lowest shadow-sm border border-surface-container">
           <div class="flex items-center justify-between">
-            <h3 class="text-xl font-extrabold text-primary">Smart Mandi AI Recommendation</h3>
+            <h3 class="text-xl font-extrabold text-primary" data-i18n="module_ai_recommendation">Smart Mandi AI Recommendation</h3>
             <span class="material-symbols-outlined text-[24px] text-secondary">smart_toy</span>
           </div>
-          <p class="text-xs text-on-surface-variant mt-2">The prototype scores distance, queue pressure, waiting time, market price, transport cost, and expected return for your selected load.</p>
+          <p class="text-xs text-on-surface-variant mt-2" data-i18n="recommendation_desc">The prototype scores distance, queue pressure, waiting time, market price, transport cost, and expected return for your selected load.</p>
           <form id="recommendationForm" class="mt-5 space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <label class="block text-xs font-bold text-primary uppercase tracking-wide">
-                Crop Type
+                <span data-i18n="crop_type_label">Crop Type</span>
                 <select id="recommendCrop" class="mt-2 w-full rounded-2xl border border-surface-container bg-surface-container-low px-3 py-2.5 text-sm text-primary">
-                  <option value="wheat">Wheat</option>
-                  <option value="paddy">Paddy</option>
-                  <option value="mustard">Mustard</option>
-                  <option value="cotton">Cotton</option>
+                  <option value="wheat" data-i18n="crop_wheat" data-i18n-value="crop_wheat">Wheat</option>
+                  <option value="paddy" data-i18n="crop_paddy">Paddy</option>
+                  <option value="mustard" data-i18n="crop_mustard">Mustard</option>
+                  <option value="cotton" data-i18n="crop_cotton">Cotton</option>
                 </select>
               </label>
               <label class="block text-xs font-bold text-primary uppercase tracking-wide">
-                Quantity
+                <span data-i18n="quantity_label">Quantity</span>
                 <input id="recommendQty" type="number" value="85" min="10" max="500" class="mt-2 w-full rounded-2xl border border-surface-container bg-surface-container-low px-3 py-2.5 text-sm text-primary" />
               </label>
               <label class="block text-xs font-bold text-primary uppercase tracking-wide">
-                Farmer Location
+                <span data-i18n="farmer_location_label">Farmer Location</span>
                 <select id="recommendLocation" class="mt-2 w-full rounded-2xl border border-surface-container bg-surface-container-low px-3 py-2.5 text-sm text-primary">
-                  <option value="Khanna">Khanna</option>
-                  <option value="Ludhiana">Ludhiana</option>
-                  <option value="Moga">Moga</option>
-                  <option value="Samrala">Samrala</option>
+                  <option value="Khanna" data-i18n="location_khanna">Khanna</option>
+                  <option value="Ludhiana" data-i18n="location_ludhiana">Ludhiana</option>
+                  <option value="Moga" data-i18n="location_moga">Moga</option>
+                  <option value="Samrala" data-i18n="location_samrala">Samrala</option>
                 </select>
               </label>
               <label class="block text-xs font-bold text-primary uppercase tracking-wide">
-                Vehicle Type
+                <span data-i18n="vehicle_type_label">Vehicle Type</span>
                 <select id="recommendVehicle" class="mt-2 w-full rounded-2xl border border-surface-container bg-surface-container-low px-3 py-2.5 text-sm text-primary">
-                  <option value="Tractor Trolley">Tractor Trolley</option>
-                  <option value="Mini Pickup">Mini Pickup</option>
-                  <option value="Heavy Truck">Heavy Truck</option>
+                  <option value="Tractor Trolley" data-i18n="veh_tractor">Tractor Trolley</option>
+                  <option value="Mini Pickup" data-i18n="veh_pickup">Mini Pickup</option>
+                  <option value="Heavy Truck" data-i18n="veh_truck">Heavy Truck</option>
                 </select>
               </label>
             </div>
             <button type="submit" class="w-full py-3 rounded-2xl bg-on-tertiary-container hover:bg-tertiary-container text-white font-bold text-sm shadow-md flex items-center justify-center gap-2">
               <span class="material-symbols-outlined text-[20px]">analytics</span>
-              Recommend Best Mandi
+              <span data-i18n="recommend_best_mandi">Recommend Best Mandi</span>
             </button>
           </form>
 
@@ -680,35 +696,35 @@ tailwind.config = {
 
         <div class="p-6 rounded-3xl bg-surface-container-lowest shadow-sm border border-surface-container">
           <div class="flex items-center justify-between">
-            <h3 class="text-xl font-extrabold text-primary">Live Mandi Command Center</h3>
+            <h3 class="text-xl font-extrabold text-primary" data-i18n="module_live_command_center">Live Mandi Command Center</h3>
             <span class="material-symbols-outlined text-[24px] text-secondary">monitor_heart</span>
           </div>
-          <p class="text-xs text-on-surface-variant mt-2">A shared operational view for gate staff and farmers. Simulation refreshes every 5 seconds for the SIH demonstration.</p>
+          <p class="text-xs text-on-surface-variant mt-2" data-i18n="command_center_desc">A shared operational view for gate staff and farmers. Simulation refreshes every 5 seconds for the SIH demonstration.</p>
           <div class="mini-stat-grid mt-5">
             <div class="mini-stat">
-              <span class="mini-stat-label">Farmers waiting</span>
+              <span class="mini-stat-label" data-i18n="farmers_waiting_label">Farmers waiting</span>
               <span id="liveFarmersWaiting" class="mini-stat-value">184</span>
             </div>
             <div class="mini-stat">
-              <span class="mini-stat-label">Vehicles inside</span>
+              <span class="mini-stat-label" data-i18n="vehicles_inside_label">Vehicles inside</span>
               <span id="liveVehiclesInside" class="mini-stat-value">72</span>
             </div>
             <div class="mini-stat">
-              <span class="mini-stat-label">Available gates</span>
+              <span class="mini-stat-label" data-i18n="available_gates_label">Available gates</span>
               <span id="liveAvailableGates" class="mini-stat-value">2</span>
             </div>
             <div class="mini-stat">
-              <span class="mini-stat-label">Available docks</span>
+              <span class="mini-stat-label" data-i18n="available_docks_label">Available docks</span>
               <span id="liveAvailableDocks" class="mini-stat-value">5</span>
             </div>
           </div>
           <div class="mt-5 flex items-center justify-between rounded-2xl bg-primary-container px-4 py-3 text-white">
             <div>
-              <span class="text-[10px] uppercase tracking-wider text-secondary-container">Average unloading</span>
+              <span class="text-[10px] uppercase tracking-wider text-secondary-container" data-i18n="average_unloading_label">Average unloading</span>
               <div class="text-xl font-extrabold mt-1" id="avgUnloadTime">18 mins</div>
             </div>
             <div class="text-right">
-              <span class="text-[10px] uppercase tracking-wider text-secondary-container">Rush level</span>
+              <span class="text-[10px] uppercase tracking-wider text-secondary-container" data-i18n="rush_level_label">Rush level</span>
               <div class="text-xl font-extrabold mt-1" id="rushLevel">Moderate</div>
             </div>
           </div>
@@ -719,16 +735,16 @@ tailwind.config = {
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div class="p-6 rounded-3xl bg-surface-container-lowest shadow-sm border border-surface-container">
           <div class="flex items-center justify-between">
-            <h3 class="text-xl font-extrabold text-primary">AI Queue Prediction Engine</h3>
+            <h3 class="text-xl font-extrabold text-primary" data-i18n="queue_prediction_title">AI Queue Prediction Engine</h3>
             <span class="material-symbols-outlined text-[24px] text-secondary">timeline</span>
           </div>
           <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <label class="block text-xs font-bold text-primary uppercase tracking-wide">
-              Current vehicles
+              <span data-i18n="current_vehicles_label">Current vehicles</span>
               <input id="queueVehicles" type="number" value="72" min="0" max="500" class="mt-2 w-full rounded-2xl border border-surface-container bg-surface-container-low px-3 py-2.5 text-sm text-primary" />
             </label>
             <label class="block text-xs font-bold text-primary uppercase tracking-wide">
-              Time
+              <span data-i18n="time_label">Time</span>
               <select id="queueTime" class="mt-2 w-full rounded-2xl border border-surface-container bg-surface-container-low px-3 py-2.5 text-sm text-primary">
                 <option value="9am">9 AM</option>
                 <option value="10am" selected>10 AM</option>
@@ -737,7 +753,7 @@ tailwind.config = {
               </select>
             </label>
             <label class="block text-xs font-bold text-primary uppercase tracking-wide">
-              Crop season
+              <span data-i18n="crop_season_label">Crop season</span>
               <select id="queueSeason" class="mt-2 w-full rounded-2xl border border-surface-container bg-surface-container-low px-3 py-2.5 text-sm text-primary">
                 <option value="Rabi">Rabi</option>
                 <option value="Kharif" selected>Kharif</option>
@@ -745,7 +761,7 @@ tailwind.config = {
               </select>
             </label>
             <label class="block text-xs font-bold text-primary uppercase tracking-wide">
-              Historical data
+              <span data-i18n="historical_data_label">Historical data</span>
               <select id="queueHistory" class="mt-2 w-full rounded-2xl border border-surface-container bg-surface-container-low px-3 py-2.5 text-sm text-primary">
                 <option value="High">High</option>
                 <option value="Medium" selected>Medium</option>
@@ -755,38 +771,38 @@ tailwind.config = {
           </div>
           <button type="button" id="analyzeQueueBtn" class="mt-5 w-full py-3 rounded-2xl bg-primary hover:bg-primary/90 text-white font-bold text-sm shadow-md flex items-center justify-center gap-2">
             <span class="material-symbols-outlined text-[20px]">predictive_analytics</span>
-            Analyze Arrival Pattern
+            <span data-i18n="analyze_arrival_pattern">Analyze Arrival Pattern</span>
           </button>
           <div id="queuePredictionResult" class="mt-5 rounded-2xl bg-surface-container p-4" aria-live="polite"></div>
         </div>
 
         <div class="p-6 rounded-3xl bg-surface-container-lowest shadow-sm border border-surface-container">
           <div class="flex items-center justify-between">
-            <h3 class="text-xl font-extrabold text-primary">Price Intelligence</h3>
+            <h3 class="text-xl font-extrabold text-primary" data-i18n="price_intelligence_title">Price Intelligence</h3>
             <span class="material-symbols-outlined text-[24px] text-secondary">trending_up</span>
           </div>
           <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div class="mini-stat">
-              <span class="mini-stat-label">Current MSP</span>
+              <span class="mini-stat-label" data-i18n="current_msp_label">Current MSP</span>
               <span class="mini-stat-value">₹2,275</span>
             </div>
             <div class="mini-stat">
-              <span class="mini-stat-label">Market price</span>
+              <span class="mini-stat-label" data-i18n="market_price_label">Market price</span>
               <span class="mini-stat-value">₹2,450</span>
             </div>
             <div class="mini-stat">
-              <span class="mini-stat-label">Demand level</span>
-              <span class="mini-stat-value">High</span>
+              <span class="mini-stat-label" data-i18n="demand_level_label">Demand level</span>
+              <span class="mini-stat-value" data-i18n="demand_high">High</span>
             </div>
             <div class="mini-stat">
-              <span class="mini-stat-label">Prediction</span>
+              <span class="mini-stat-label" data-i18n="prediction_label">Prediction</span>
               <span class="mini-stat-value">+4.2%</span>
             </div>
           </div>
           <div class="mt-5 rounded-2xl bg-surface-container p-4">
             <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold uppercase tracking-wider text-primary">Weekly trend</span>
-              <span class="text-xs font-bold text-emerald-700">Bullish</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-primary" data-i18n="weekly_trend_label">Weekly trend</span>
+              <span class="text-xs font-bold text-emerald-700" data-i18n="bullish_label">Bullish</span>
             </div>
             <div class="chart-bars" aria-label="price trend chart">
               <span class="chart-bar" style="height: 38%;"></span>
@@ -797,7 +813,7 @@ tailwind.config = {
               <span class="chart-bar" style="height: 88%;"></span>
               <span class="chart-bar" style="height: 100%;"></span>
             </div>
-            <p class="mt-3 text-sm text-on-surface-variant">Best selling suggestion: sell 35% of stock in the next 48 hours before the next price surge window.</p>
+            <p class="mt-3 text-sm text-on-surface-variant" data-i18n="best_selling_suggestion">Best selling suggestion: sell 35% of stock in the next 48 hours before the next price surge window.</p>
           </div>
         </div>
       </div>
@@ -807,10 +823,10 @@ tailwind.config = {
   <section id="farmer-workbench" class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 space-y-8">
     <div class="flex items-center justify-between gap-4 flex-wrap">
       <div>
-        <span class="module-chip">Farmer Dashboard</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-primary mt-3">Today's Mandi Operations</h2>
+        <span class="module-chip" data-i18n="module_farmer_dashboard">Farmer Dashboard</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-primary mt-3" data-i18n="today_mandi_operations">Today's Mandi Operations</h2>
       </div>
-      <div class="text-sm font-semibold text-on-surface-variant">Saved waiting time: <span class="font-extrabold text-secondary">2h 45m</span></div>
+      <div class="text-sm font-semibold text-on-surface-variant"><span data-i18n="saved_waiting_time_label">Saved waiting time:</span> <span class="font-extrabold text-secondary">2h 45m</span></div>
     </div>
 
     <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
@@ -818,15 +834,15 @@ tailwind.config = {
         <div id="dashboardMetricCards" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
         <div class="p-6 rounded-3xl bg-surface-container-lowest shadow-sm border border-surface-container">
           <div class="flex items-center justify-between">
-            <h3 class="text-xl font-extrabold text-primary">Smart Notifications</h3>
-            <span class="px-2.5 py-1 rounded-full bg-secondary-container text-secondary text-[10px] font-bold">3 live alerts</span>
+            <h3 class="text-xl font-extrabold text-primary" data-i18n="module_notifications">Smart Notifications</h3>
+            <span class="px-2.5 py-1 rounded-full bg-secondary-container text-secondary text-[10px] font-bold" data-i18n="live_alerts_count">3 live alerts</span>
           </div>
           <div id="notificationList" class="mt-4 space-y-3"></div>
         </div>
         <div class="p-6 rounded-3xl bg-surface-container-lowest shadow-sm border border-surface-container">
           <div class="flex items-center justify-between">
-            <h3 class="text-xl font-extrabold text-primary">Sales History & Income</h3>
-            <span class="text-sm font-bold text-emerald-700">₹1,68,400 total</span>
+            <h3 class="text-xl font-extrabold text-primary" data-i18n="sales_history_income_title">Sales History & Income</h3>
+            <span class="text-sm font-bold text-emerald-700">₹1,68,400 <span data-i18n="total_label">total</span></span>
           </div>
           <div id="analyticsSummary" class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
         </div>
@@ -835,7 +851,7 @@ tailwind.config = {
       <div class="space-y-6">
         <div class="p-6 rounded-3xl bg-primary text-white shadow-md">
           <div class="flex items-center justify-between">
-            <h3 class="text-xl font-extrabold">Smart Transport</h3>
+            <h3 class="text-xl font-extrabold" data-i18n="smart_transport_title">Smart Transport</h3>
             <span class="material-symbols-outlined text-[24px] text-secondary-container">local_shipping</span>
           </div>
           <div id="transportOptions" class="mt-5 space-y-3"></div>
@@ -843,12 +859,12 @@ tailwind.config = {
 
         <div class="p-6 rounded-3xl bg-surface-container-lowest shadow-sm border border-surface-container">
           <div class="flex items-center justify-between">
-            <h3 class="text-xl font-extrabold text-primary">Crop Quality Analyzer</h3>
+            <h3 class="text-xl font-extrabold text-primary" data-i18n="crop_quality_analyzer_title">Crop Quality Analyzer</h3>
             <span class="material-symbols-outlined text-[24px] text-secondary">image_search</span>
           </div>
           <label class="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-surface-container bg-surface-container-low p-5 text-center">
             <span class="material-symbols-outlined text-[28px] text-secondary">upload_file</span>
-            <span class="mt-2 text-sm font-bold text-primary">Upload crop image</span>
+            <span class="mt-2 text-sm font-bold text-primary" data-i18n="upload_crop_image">Upload crop image</span>
             <input id="cropImageInput" type="file" accept="image/*" class="hidden" />
           </label>
           <div id="qualityResult" class="mt-4 rounded-2xl bg-surface-container p-4" aria-live="polite"></div>
@@ -861,48 +877,48 @@ tailwind.config = {
     <div class="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-2 gap-6">
       <div class="p-6 rounded-3xl bg-surface-container-lowest shadow-sm border border-surface-container">
         <div class="flex items-center justify-between">
-          <h3 class="text-xl font-extrabold text-primary">TNAU Knowledge Hub</h3>
+          <h3 class="text-xl font-extrabold text-primary" data-i18n="module_tnau_knowledge_hub">TNAU Knowledge Hub</h3>
           <span class="material-symbols-outlined text-[24px] text-secondary">library_books</span>
         </div>
         <div class="mt-5 flex flex-wrap gap-2">
-          <button type="button" class="px-3 py-1.5 rounded-full bg-secondary-container text-secondary text-xs font-bold">Crop guides</button>
-          <button type="button" class="px-3 py-1.5 rounded-full bg-surface-container text-primary text-xs font-bold">Disease management</button>
-          <button type="button" class="px-3 py-1.5 rounded-full bg-surface-container text-primary text-xs font-bold">Fertilizer advice</button>
-          <button type="button" class="px-3 py-1.5 rounded-full bg-surface-container text-primary text-xs font-bold">Modern farming</button>
+          <button type="button" class="px-3 py-1.5 rounded-full bg-secondary-container text-secondary text-xs font-bold" data-i18n="knowledge_crop_guides">Crop guides</button>
+          <button type="button" class="px-3 py-1.5 rounded-full bg-surface-container text-primary text-xs font-bold" data-i18n="knowledge_disease_management">Disease management</button>
+          <button type="button" class="px-3 py-1.5 rounded-full bg-surface-container text-primary text-xs font-bold" data-i18n="knowledge_fertilizer_advice">Fertilizer advice</button>
+          <button type="button" class="px-3 py-1.5 rounded-full bg-surface-container text-primary text-xs font-bold" data-i18n="knowledge_modern_farming">Modern farming</button>
         </div>
         <div id="knowledgeHubCards" class="mt-5 space-y-3"></div>
       </div>
 
       <div class="p-6 rounded-3xl bg-surface-container-lowest shadow-sm border border-surface-container">
         <div class="flex items-center justify-between">
-          <h3 class="text-xl font-extrabold text-primary">Government Schemes</h3>
+          <h3 class="text-xl font-extrabold text-primary" data-i18n="government_schemes_title">Government Schemes</h3>
           <span class="material-symbols-outlined text-[24px] text-secondary">workspace_premium</span>
         </div>
         <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div class="p-3 rounded-2xl bg-surface-container">
-            <div class="text-xs font-bold uppercase text-outline">PM Kisan</div>
+            <div class="text-xs font-bold uppercase text-outline" data-i18n="scheme_pm_kisan">PM Kisan</div>
             <div class="mt-1 text-sm font-bold text-primary">₹6,000/year</div>
           </div>
           <div class="p-3 rounded-2xl bg-surface-container">
-            <div class="text-xs font-bold uppercase text-outline">Crop Insurance</div>
-            <div class="mt-1 text-sm font-bold text-primary">Coverage up to 80%</div>
+            <div class="text-xs font-bold uppercase text-outline" data-i18n="crop_insurance_title">Crop Insurance</div>
+            <div class="mt-1 text-sm font-bold text-primary" data-i18n="crop_insurance_desc">Coverage up to 80%</div>
           </div>
           <div class="p-3 rounded-2xl bg-surface-container">
-            <div class="text-xs font-bold uppercase text-outline">Soil Health Card</div>
-            <div class="mt-1 text-sm font-bold text-primary">Free soil test</div>
+            <div class="text-xs font-bold uppercase text-outline" data-i18n="soil_health_card_title">Soil Health Card</div>
+            <div class="mt-1 text-sm font-bold text-primary" data-i18n="soil_health_card_desc">Free soil test</div>
           </div>
           <div class="p-3 rounded-2xl bg-surface-container">
-            <div class="text-xs font-bold uppercase text-outline">eNAM & MSP</div>
-            <div class="mt-1 text-sm font-bold text-primary">Direct price access</div>
+            <div class="text-xs font-bold uppercase text-outline" data-i18n="scheme_enam_msp">eNAM & MSP</div>
+            <div class="mt-1 text-sm font-bold text-primary" data-i18n="enam_desc">Direct price access</div>
           </div>
         </div>
         <div class="mt-5 rounded-2xl bg-primary-container p-4 text-white">
-          <div class="text-xs font-bold uppercase tracking-wider text-secondary-container">Eligibility checker</div>
+          <div class="text-xs font-bold uppercase tracking-wider text-secondary-container" data-i18n="eligibility_checker_title">Eligibility checker</div>
           <div class="mt-3 flex flex-col sm:flex-row gap-3">
-            <input id="schemeLandSize" type="number" value="5" min="0" class="w-full rounded-xl border border-white/20 bg-white/10 px-3 py-2.5 text-sm text-white placeholder:text-white/70" placeholder="Land size (acres)" />
-            <button type="button" id="checkSchemeBtn" class="px-4 py-2.5 rounded-xl bg-secondary hover:bg-secondary/90 text-white font-bold text-xs">Check eligibility</button>
+            <input id="schemeLandSize" type="number" value="5" min="0" class="w-full rounded-xl border border-white/20 bg-white/10 px-3 py-2.5 text-sm text-white placeholder:text-white/70" placeholder="Land size (acres)" data-i18n-placeholder="land_size_placeholder" />
+            <button type="button" id="checkSchemeBtn" class="px-4 py-2.5 rounded-xl bg-secondary hover:bg-secondary/90 text-white font-bold text-xs" data-i18n="check_eligibility">Check eligibility</button>
           </div>
-          <div id="schemeEligibilityResult" class="mt-3 text-sm font-semibold text-secondary-container">Eligible for PM Kisan and Soil Health Card support.</div>
+          <div id="schemeEligibilityResult" class="mt-3 text-sm font-semibold text-secondary-container" data-i18n="scheme_eligible_default">Eligible for PM Kisan and Soil Health Card support.</div>
         </div>
       </div>
     </div>
@@ -911,10 +927,10 @@ tailwind.config = {
   <section id="analytics" class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 space-y-6">
     <div class="flex items-center justify-between gap-4 flex-wrap">
       <div>
-        <span class="module-chip">Analytics</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-primary mt-3">Farmer Growth & Performance</h2>
+        <span class="module-chip" data-i18n="analytics_chip">Analytics</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-primary mt-3" data-i18n="farmer_growth_performance_title">Farmer Growth & Performance</h2>
       </div>
-      <div class="text-sm font-semibold text-on-surface-variant">Best mandi used: <span class="font-extrabold text-secondary">Khanna APMC</span></div>
+      <div class="text-sm font-semibold text-on-surface-variant"><span data-i18n="best_mandi_used_label">Best mandi used:</span> <span class="font-extrabold text-secondary">Khanna APMC</span></div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
@@ -1109,7 +1125,7 @@ tailwind.config = {
 </main>
 
 <!-- Floating Voice Assistant Microphone Button (64x64px) -->
-<button onclick="triggerVoiceAssistant()" aria-label="AI Voice Booking Assistant" class="fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full bg-on-tertiary-container hover:bg-tertiary-container text-white shadow-2xl flex items-center justify-center transition-transform hover:scale-105 active:scale-95" title="Click to speak and book slot">
+<button onclick="triggerVoiceAssistant()" aria-label="AI Voice Booking Assistant" class="fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full bg-on-tertiary-container hover:bg-tertiary-container text-white shadow-2xl flex items-center justify-center transition-transform hover:scale-105 active:scale-95" title="Click to speak and book slot" data-i18n-title="voice_assistant_title">
   <span class="material-symbols-outlined text-[32px]">mic</span>
   <span class="absolute -top-1 -right-1 flex h-4 w-4">
     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
@@ -1833,8 +1849,9 @@ tailwind.config = {
       pendingBookingAction = true;
       openFarmerLoginModal(true);
     } else {
-      speakMessage("gatePassGenerated", { serial: "APMC-26032-841" });
-      alert("✅ Mandi Gate Pass Saved!\nSerial: APMC-26032-841\nFarmer: " + user.name + "\nDock Gate 01 Assigned. Arrive at 08:00 AM.");
+      const serial = "APMC-26032-841";
+      speakMessage("gatePassGenerated", { serial });
+      alert(t("gate_pass_saved", { serial, farmer: user.name, gate: "01", time: "08:00 AM" }));
     }
   }
 
@@ -1918,12 +1935,12 @@ tailwind.config = {
     boxes.forEach(b => entered += b.value.trim());
 
     if (entered.length < 6) {
-      showOtpError("Please enter all 6 digits of the OTP.");
+      showOtpError(t("otp_enter_all_digits"));
       return;
     }
 
     if (entered !== currentGeneratedOtp) {
-      showOtpError("Incorrect OTP. Please enter the demo code " + currentGeneratedOtp + " shown above.");
+      showOtpError(t("otp_incorrect_message", { otp: currentGeneratedOtp }));
       speakMessage("incorrectOtp");
       return;
     }
@@ -1980,11 +1997,11 @@ tailwind.config = {
       timeLeft--;
       if (timeLeft <= 0) {
         clearInterval(resendTimerInterval);
-        label.innerText = "Didn't receive OTP?";
+        label.innerText = t("resend_prompt");
         btn.disabled = false;
         btn.classList.remove("opacity-50");
       } else {
-        label.innerText = `Resend in ${timeLeft}s`;
+        label.innerText = t("resend_countdown", { seconds: timeLeft });
       }
     }, 1000);
   }
@@ -2048,7 +2065,7 @@ tailwind.config = {
     currentBooking.slot = currentLang === "en" ? slotName : translate(slotKey);
     currentBooking.gate = gate + " (Bay 04)";
     document.getElementById("cardWindow").innerText = currentLang === "en" ? slotName.replace(/\(.*?\)/g, "").trim() : translate(slotKey);
-    document.getElementById("cardBay").innerText = "Dock Bay #04";
+    document.getElementById("cardBay").innerText = t("dock_bay");
     document.getElementById("dispSlot").innerText = currentBooking.slot;
     document.getElementById("dispGate").innerText = currentBooking.gate;
     speakMessage("timeSelected", { slot: currentBooking.slot, gate });
@@ -2071,18 +2088,127 @@ tailwind.config = {
     document.getElementById("languageModal").classList.add("hidden");
   }
 
+  const localeStore = {};
+  const localeNames = { en: "English", hi: "हिंदी", ta: "தமிழ்" };
+  const speechLanguageMap = { en: "en-IN", hi: "hi-IN", ta: "ta-IN" };
+  const voiceStorageKey = "smart_farmer_voice_enabled";
+  let voiceEnabled = false;
+
+  function getStoredVoicePreference() {
+    try {
+      const saved = localStorage.getItem(voiceStorageKey);
+      return saved === null ? false : saved === "true";
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function persistVoicePreference(nextState) {
+    try {
+      localStorage.setItem(voiceStorageKey, String(nextState));
+    } catch (error) {
+      console.warn("Voice preference could not be saved.", error);
+    }
+  }
+
+  function updateVoiceToggleUI() {
+    const button = document.getElementById("globalVoiceToggle");
+    if (!button) return;
+    const active = !!voiceEnabled;
+    button.classList.toggle("is-off", !active);
+    button.innerHTML = active
+      ? '<span class="material-symbols-outlined text-[18px]">volume_up</span><span>' + t("voice_on") + '</span>'
+      : '<span class="material-symbols-outlined text-[18px]">volume_off</span><span>' + t("voice_off") + '</span>';
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+    button.setAttribute("aria-label", active ? t("voice_on") : t("voice_off"));
+    button.title = active ? t("voice_on") : t("voice_off");
+  }
+
+  function stopAllSpeech() {
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+    voiceEnabled = false;
+    persistVoicePreference(false);
+    updateVoiceToggleUI();
+  }
+
+  function toggleVoicePreference() {
+    voiceEnabled = !voiceEnabled;
+    persistVoicePreference(voiceEnabled);
+    if (!voiceEnabled && window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+    updateVoiceToggleUI();
+  }
+
+  function getPreferredSpeechVoice() {
+    const lang = currentLang && speechLanguageMap[currentLang] ? currentLang : "en";
+    const langCode = speechLanguageMap[lang] || "en-IN";
+    if (!('speechSynthesis' in window)) return null;
+    const voices = window.speechSynthesis.getVoices();
+    const exact = voices.find(voice => voice.lang && voice.lang.toLowerCase().startsWith(langCode.toLowerCase()));
+    return exact || voices.find(voice => voice.lang && voice.lang.toLowerCase().startsWith("en")) || voices[0] || null;
+  }
+
+  function loadLocaleBundle(lang) {
+    const base = translations[lang] || {};
+    const merged = { ...(translations.en || {}), ...base };
+    localeStore[lang] = merged;
+    return merged;
+  }
+
+  async function loadLocaleFiles() {
+    const langs = Object.keys(localeNames);
+    for (const lang of langs) {
+      try {
+        const response = await fetch(`locales/${lang}.json`, { cache: "no-store" });
+        if (!response.ok) throw new Error(`Locale unavailable: ${lang}`);
+        const json = await response.json();
+        localeStore[lang] = { ...(translations[lang] || {}), ...json };
+      } catch (error) {
+        loadLocaleBundle(lang);
+      }
+    }
+    if (localeStore[currentLang]) {
+      setLanguage(currentLang, false);
+    }
+  }
+
+  function t(key, params = {}, lang = currentLang) {
+    const dict = localeStore[lang] || translations[lang] || translations.en || {};
+    let value = dict[key] || translations.en[key] || key;
+    Object.entries(params).forEach(([param, replacement]) => {
+      value = value.replace(new RegExp(`\\{${param}\\}`, "g"), String(replacement));
+    });
+    return value;
+  }
+
   function translate(key, lang = currentLang) {
-    return (translations[lang] && translations[lang][key]) || translations.en[key] || key;
+    return t(key, {}, lang);
+  }
+
+  function refreshLanguageSensitiveContent() {
+    renderMandiConsole();
+    renderRecommendationResults();
+    renderQueuePrediction();
+    renderDashboardMetrics();
+    renderNotifications();
+    renderAnalyticsSummary();
+    renderTransportOptions();
+    renderKnowledgeHub();
+    renderAdvancedModules();
+    updateOfflineStatus();
   }
 
   function setLanguage(lang, announce = true) {
-    currentLang = translations[lang] ? lang : "en";
-    const names = { en: "English", hi: "हिंदी", pa: "ਪੰਜਾਬੀ", te: "తెలుగు", ta: "தமிழ்" };
+    currentLang = localeStore[lang] || translations[lang] ? lang : "en";
+    const names = localeNames;
     document.documentElement.lang = currentLang === "ta" ? "ta" : currentLang;
-    document.getElementById("currentLangDisplay").innerText = names[currentLang];
+    document.getElementById("currentLangDisplay").innerText = names[currentLang] || "English";
     try { localStorage.setItem("smart_farmer_language", currentLang); } catch (e) { /* Storage may be disabled. */ }
 
-    const dict = translations[currentLang] || translations.en;
+    const dict = localeStore[currentLang] || translations[currentLang] || translations.en;
     document.querySelectorAll("[data-i18n]").forEach(el => {
       const key = el.getAttribute("data-i18n");
       el.innerText = dict[key] || translations.en[key] || key;
@@ -2097,6 +2223,7 @@ tailwind.config = {
       const key = el.getAttribute("data-i18n-placeholder");
       el.placeholder = dict[key] || translations.en[key] || key;
     });
+    refreshLanguageSensitiveContent();
     renderIvrText();
     document.querySelectorAll("[class*='lang-pill-']").forEach(button => button.classList.remove("lang-pill-active"));
     const activePill = document.querySelector(`.lang-pill-${currentLang}`);
@@ -2152,6 +2279,19 @@ tailwind.config = {
     if (status) status.innerText = translate(key, ivrLanguage);
   }
 
+  function initializeLanguage() {
+    loadLocaleBundle("en");
+    loadLocaleBundle("hi");
+    loadLocaleBundle("ta");
+    voiceEnabled = getStoredVoicePreference();
+    let savedLanguage = null;
+    try { savedLanguage = localStorage.getItem("smart_farmer_language"); } catch (e) { /* Storage may be disabled. */ }
+    const selectedLanguage = savedLanguage && (localeStore[savedLanguage] || translations[savedLanguage]) ? savedLanguage : "en";
+    setLanguage(selectedLanguage, false);
+    updateVoiceToggleUI();
+    loadLocaleFiles();
+  }
+
   function startIvrCall() {
     if (ivrCallTimer) clearTimeout(ivrCallTimer);
     const lcd = document.getElementById("ivrLcd");
@@ -2177,19 +2317,17 @@ tailwind.config = {
 
   // Resolve translated speech templates and select the best available locale voice.
   function speakMessage(messageName, values = {}) {
-    if (!('speechSynthesis' in window)) return;
-    window.speechSynthesis.cancel();
-    // Language selection comes from the same currentLang state as the visible UI.
+    if (!voiceEnabled || !('speechSynthesis' in window)) return;
     const languageCodes = { en: "en-IN", hi: "hi-IN", ta: "ta-IN" };
     const speechLanguage = languageCodes[currentLang] || "en-IN";
     const messages = speechMessages[currentLang] || speechMessages.en;
-    // Missing translations fall back to English; placeholders preserve dynamic values.
     const template = messages[messageName] || speechMessages.en[messageName] || "";
     const spokenText = template.replace(/\{(\w+)\}/g, (_, key) => values[key] ?? "");
+    if (!spokenText.trim()) return;
+    window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(spokenText);
     utterance.rate = 0.95;
     utterance.lang = speechLanguage;
-    // Prefer an exact Indian voice, then the closest voice for the selected language.
     const languagePrefix = speechLanguage.split("-")[0];
     const voices = window.speechSynthesis.getVoices();
     utterance.voice = voices.find(voice => voice.lang.toLowerCase() === speechLanguage.toLowerCase())
@@ -2282,34 +2420,34 @@ tailwind.config = {
       { gate: 'Gate 04', status: 'Available', waiting: '16 min' }
     ],
     dashboardMetrics: [
-      { label: 'Today\'s Slot', value: '08:30 AM', accent: 'text-primary' },
-      { label: 'Queue Position', value: 'No. 12', accent: 'text-secondary' },
-      { label: 'Expected Entry', value: '09:25 AM', accent: 'text-emerald-700' },
-      { label: 'Current Crop Price', value: '₹2,450/Q', accent: 'text-amber-700' },
-      { label: 'Weather Status', value: 'Sunny', accent: 'text-sky-700' },
-      { label: 'Payment Status', value: 'Approved', accent: 'text-emerald-700' }
+      { labelKey: 'today_slot', value: '08:30 AM', accent: 'text-primary' },
+      { labelKey: 'queue_position', value: 'No. 12', accent: 'text-secondary' },
+      { labelKey: 'expected_entry', value: '09:25 AM', accent: 'text-emerald-700' },
+      { labelKey: 'current_crop_price', value: '₹2,450/Q', accent: 'text-amber-700' },
+      { labelKey: 'weather_status', value: 'Sunny', accent: 'text-sky-700' },
+      { labelKey: 'payment_status', value: 'Approved', accent: 'text-emerald-700' }
     ],
     notifications: [
-      { type: 'info', message: 'Your mandi slot is after 30 minutes. Stay near the gate with your documents ready.', time: 'Now' },
-      { type: 'alert', message: 'Queue reduced at Gate 02 by 8 vehicles in the last 25 minutes.', time: '12 min ago' },
-      { type: 'warning', message: 'Heavy rain expected in the next 2 hours. Secure your harvest sacks before unloading.', time: '20 min ago' },
-      { type: 'success', message: 'Market price increased by ₹95/quintal in the last 3 hours.', time: '30 min ago' }
+      { type: 'info', key: 'notification_slot_after_30', time: 'Now', timeKey: 'notification_just_now' },
+      { type: 'alert', key: 'notification_queue_reduced', time: '12 min ago', timeKey: 'notification_minutes_ago', minutes: 12 },
+      { type: 'warning', key: 'notification_heavy_rain', time: '20 min ago', timeKey: 'notification_minutes_ago', minutes: 20 },
+      { type: 'success', key: 'notification_market_price_increase', time: '30 min ago', timeKey: 'notification_minutes_ago', minutes: 30 }
     ],
     transport: [
-      { type: 'Tractor', availability: 'Available', eta: '18 min', cost: '₹650', distance: '14 km' },
-      { type: 'Mini Truck', availability: '2 ready', eta: '27 min', cost: '₹1,250', distance: '19 km' },
-      { type: 'Heavy Vehicle', availability: 'Busy', eta: '41 min', cost: '₹2,180', distance: '31 km' }
+      { typeKey: 'transport_tractor', availabilityKey: 'status_available', availability: 'Available', eta: '18 min', cost: '₹650', distance: '14 km' },
+      { typeKey: 'transport_mini_truck', availabilityKey: 'transport_available', availability: '2 ready', eta: '27 min', cost: '₹1,250', distance: '19 km' },
+      { typeKey: 'transport_heavy_vehicle', availabilityKey: 'transport_busy', availability: 'Busy', eta: '41 min', cost: '₹2,180', distance: '31 km' }
     ],
     knowledge: [
-      { title: 'Wheat crop guide', description: 'Sowing window, nutrient schedule, and harvest readiness for Punjab fields.' },
-      { title: 'Disease management', description: 'Step-by-step identification and treatment for yellow rust and leaf blight.' },
-      { title: 'Fertilizer recommendation', description: 'Balanced nitrogen, phosphorus and potash schedule by crop stage.' }
+      { titleKey: 'knowledge_wheat_guide', descriptionKey: 'knowledge_wheat_desc' },
+      { titleKey: 'knowledge_disease', descriptionKey: 'knowledge_disease_desc' },
+      { titleKey: 'knowledge_fertilizer', descriptionKey: 'knowledge_fertilizer_desc' }
     ],
     analytics: [
-      { label: 'Previous transactions', value: '12', detail: '₹2.4L processed' },
-      { label: 'Sales history', value: '7 lots', detail: '3.4 tonnes sold' },
-      { label: 'Total earnings', value: '₹1.68L', detail: '+12% from last month' },
-      { label: 'Saved waiting time', value: '2h 45m', detail: 'Fuel + diesel savings' }
+      { labelKey: 'analytics_prev_transactions', value: '12', detail: '₹2.4L processed' },
+      { labelKey: 'analytics_sales_history', value: '7 lots', detail: '3.4 tonnes sold' },
+      { labelKey: 'analytics_total_earnings', value: '₹1.68L', detail: '+12% from last month' },
+      { labelKey: 'analytics_waiting_time_saved', value: '2h 45m', detail: 'Fuel + diesel savings' }
     ]
   };
 
@@ -2334,8 +2472,8 @@ tailwind.config = {
     const online = navigator.onLine !== false;
     badge.className = `offline-badge ${online ? 'offline-online' : 'offline-offline'}`;
     badge.innerHTML = online
-      ? '<span class="w-2 h-2 rounded-full bg-emerald-500"></span>Online • Offline cache ready'
-      : '<span class="w-2 h-2 rounded-full bg-red-500"></span>Offline • Using cached data';
+      ? `<span class="w-2 h-2 rounded-full bg-emerald-500"></span>${t('online')} • ${t('offline_cache_ready')}`
+      : `<span class="w-2 h-2 rounded-full bg-red-500"></span>${t('text_offline')}`;
   }
 
   function renderMandiConsole() {
@@ -2347,19 +2485,25 @@ tailwind.config = {
       Moderate: 'status-moderate',
       'Heavy Rush': 'status-heavy'
     };
+    const statusLabelMap = {
+      Available: t('status_available'),
+      Moderate: t('status_moderate'),
+      'Heavy Rush': t('status_heavy_rush')
+    };
 
     grid.innerHTML = smartMandiData.liveGates.map((item) => {
       const width = item.status === 'Available' ? '35%' : item.status === 'Moderate' ? '62%' : '88%';
+      const statusText = statusLabelMap[item.status] || item.status;
       return `
         <div class="rounded-2xl bg-surface-container p-3 border border-surface-container-high">
           <div class="flex items-center justify-between gap-3">
             <div class="font-extrabold text-primary">${item.gate}</div>
             <span class="status-pill ${statusClassMap[item.status] || 'status-available'}">
               <span class="w-2 h-2 rounded-full bg-current"></span>
-              ${item.status}
+              ${statusText}
             </span>
           </div>
-          <div class="mt-3 text-sm font-semibold text-on-surface-variant">Waiting: ${item.waiting}</div>
+          <div class="mt-3 text-sm font-semibold text-on-surface-variant">${t('waiting_label')}: ${item.waiting}</div>
           <div class="rush-meter mt-2"><div class="rush-meter-fill" style="width: ${width};"></div></div>
         </div>
       `;
@@ -2371,8 +2515,8 @@ tailwind.config = {
     document.getElementById('liveVehiclesInside').innerText = vehiclesInside;
     document.getElementById('liveAvailableGates').innerText = 2;
     document.getElementById('liveAvailableDocks').innerText = 5;
-    document.getElementById('avgUnloadTime').innerText = `${18 + Math.round(Math.random() * 12)} mins`;
-    document.getElementById('rushLevel').innerText = farmersWaiting > 200 ? 'High' : 'Moderate';
+    document.getElementById('avgUnloadTime').innerText = `${18 + Math.round(Math.random() * 12)} ${t('minutes_short')}`;
+    document.getElementById('rushLevel').innerText = farmersWaiting > 200 ? t('high') : t('moderate');
   }
 
   function getRecommendationData(crop, quantity, location, vehicle) {
@@ -2409,25 +2553,26 @@ tailwind.config = {
     const container = document.getElementById('recommendationResults');
     if (!container) return;
 
+    const translatedVehicle = vehicle === 'Tractor Trolley' ? t('veh_tractor') : vehicle === 'Heavy Truck' ? t('veh_truck') : t('veh_pickup');
     container.innerHTML = `
       <div class="rounded-2xl bg-primary-container text-white p-4 shadow-md">
         <div class="flex items-center justify-between gap-3">
           <div>
-            <div class="text-[10px] uppercase font-bold tracking-wider text-secondary-container">Recommended Mandi</div>
+            <div class="text-[10px] uppercase font-bold tracking-wider text-secondary-container">${t('recommended_mandi')}</div>
             <div class="mt-1 text-xl font-extrabold">${best.name}</div>
           </div>
-          <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-100 text-[10px] font-bold">Best fit</span>
+          <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-100 text-[10px] font-bold">${t('best_fit')}</span>
         </div>
-        <div class="mt-3 text-xs text-surface-dim">For ${quantity} quintals from ${location} using a ${vehicle.toLowerCase()}, this option balances return and waiting risk.</div>
+        <div class="mt-3 text-xs text-surface-dim">${t('for_quantity_from_location', { quantity, location, vehicle: translatedVehicle.toLowerCase() })}</div>
         <div class="mt-4 grid grid-cols-2 gap-2 text-sm">
-          <div class="rounded-xl bg-white/10 p-2"><div class="text-[10px] uppercase tracking-wider text-secondary-container">Distance</div><div class="mt-1 font-bold">${best.distance} km</div></div>
-          <div class="rounded-xl bg-white/10 p-2"><div class="text-[10px] uppercase tracking-wider text-secondary-container">Current Queue</div><div class="mt-1 font-bold">${best.queue} vehicles</div></div>
-          <div class="rounded-xl bg-white/10 p-2"><div class="text-[10px] uppercase tracking-wider text-secondary-container">Waiting</div><div class="mt-1 font-bold">${best.wait} minutes</div></div>
-          <div class="rounded-xl bg-white/10 p-2"><div class="text-[10px] uppercase tracking-wider text-secondary-container">Price</div><div class="mt-1 font-bold">₹${best.price}/quintal</div></div>
-          <div class="col-span-2 rounded-xl bg-white/10 p-2"><div class="text-[10px] uppercase tracking-wider text-secondary-container">Estimated Profit</div><div class="mt-1 font-bold text-emerald-300">₹${best.expectedProfit.toLocaleString('en-IN')}</div></div>
+          <div class="rounded-xl bg-white/10 p-2"><div class="text-[10px] uppercase tracking-wider text-secondary-container">${t('distance')}</div><div class="mt-1 font-bold">${best.distance} km</div></div>
+          <div class="rounded-xl bg-white/10 p-2"><div class="text-[10px] uppercase tracking-wider text-secondary-container">${t('current_queue')}</div><div class="mt-1 font-bold">${best.queue} ${t('vehicles')}</div></div>
+          <div class="rounded-xl bg-white/10 p-2"><div class="text-[10px] uppercase tracking-wider text-secondary-container">${t('waiting')}</div><div class="mt-1 font-bold">${best.wait} ${t('minutes')}</div></div>
+          <div class="rounded-xl bg-white/10 p-2"><div class="text-[10px] uppercase tracking-wider text-secondary-container">${t('price')}</div><div class="mt-1 font-bold">₹${best.price}/quintal</div></div>
+          <div class="col-span-2 rounded-xl bg-white/10 p-2"><div class="text-[10px] uppercase tracking-wider text-secondary-container">${t('estimated_profit')}</div><div class="mt-1 font-bold text-emerald-300">₹${best.expectedProfit.toLocaleString('en-IN')}</div></div>
         </div>
         <div class="mt-3 flex items-center justify-between text-[10px] uppercase tracking-wider text-secondary-container">
-          <span>Decision confidence</span>
+          <span>${t('decision_confidence')}</span>
           <span class="font-bold text-white">${Math.round(best.score)}%</span>
         </div>
         <div class="rush-meter mt-1 bg-white/15"><div class="rush-meter-fill" style="width: ${Math.round(best.score)}%;"></div></div>
@@ -2437,11 +2582,11 @@ tailwind.config = {
           <div class="flex items-center justify-between rounded-2xl bg-surface-container p-3 text-sm">
             <div>
               <div class="font-bold text-primary">${entry.name}</div>
-              <div class="text-xs text-on-surface-variant">${entry.distance} km • ${entry.wait} min wait</div>
+              <div class="text-xs text-on-surface-variant">${entry.distance} km • ${entry.wait} ${t('minutes')} ${t('waiting')}</div>
             </div>
             <div class="text-right">
               <div class="font-bold text-secondary">₹${entry.expectedProfit.toLocaleString('en-IN')}</div>
-              <div class="text-[10px] uppercase tracking-wider text-outline">Profit</div>
+              <div class="text-[10px] uppercase tracking-wider text-outline">${t('profit')}</div>
             </div>
           </div>
         `).join('')}
@@ -2468,12 +2613,13 @@ tailwind.config = {
           : item.type === 'success'
             ? 'border-emerald-200 bg-emerald-50 text-emerald-900'
             : 'border-red-200 bg-red-50 text-red-900';
+      const timeText = item.timeKey ? t(item.timeKey, { minutes: item.minutes || 0 }) : t('notification_just_now');
       return `
         <div class="flex items-start gap-3 rounded-2xl border p-3 ${styles}">
           <span class="mt-0.5 material-symbols-outlined text-[18px]">${item.type === 'success' ? 'check_circle' : item.type === 'warning' ? 'warning' : item.type === 'alert' ? 'priority_high' : 'info'}</span>
           <div class="flex-1">
-            <div class="text-sm font-bold">${item.message}</div>
-            <div class="text-[10px] uppercase tracking-wider mt-1 opacity-75">${item.time}</div>
+            <div class="text-sm font-bold">${t(item.key)}</div>
+            <div class="text-[10px] uppercase tracking-wider mt-1 opacity-75">${timeText}</div>
           </div>
         </div>
       `;
@@ -2486,7 +2632,7 @@ tailwind.config = {
 
     container.innerHTML = smartMandiData.dashboardMetrics.map((metric) => `
       <div class="rounded-2xl bg-surface-container-lowest border border-surface-container p-4 shadow-sm">
-        <div class="text-[10px] uppercase tracking-wider text-outline font-bold">${metric.label}</div>
+        <div class="text-[10px] uppercase tracking-wider text-outline font-bold">${t(metric.labelKey)}</div>
         <div class="mt-2 text-lg font-extrabold ${metric.accent}">${metric.value}</div>
       </div>
     `).join('');
@@ -2498,7 +2644,7 @@ tailwind.config = {
 
     container.innerHTML = smartMandiData.analytics.map((item) => `
       <div class="rounded-2xl bg-surface-container p-4">
-        <div class="text-[10px] uppercase tracking-wider text-outline font-bold">${item.label}</div>
+        <div class="text-[10px] uppercase tracking-wider text-outline font-bold">${t(item.labelKey)}</div>
         <div class="mt-2 text-2xl font-extrabold text-primary">${item.value}</div>
         <div class="text-xs text-on-surface-variant mt-1">${item.detail}</div>
       </div>
@@ -2512,13 +2658,13 @@ tailwind.config = {
     container.innerHTML = smartMandiData.transport.map((item) => `
       <div class="rounded-2xl bg-white/10 border border-white/15 p-3 text-white">
         <div class="flex items-center justify-between gap-2">
-          <div class="font-extrabold text-base">${item.type}</div>
+          <div class="font-extrabold text-base">${t(item.typeKey)}</div>
           <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-[10px] font-bold text-emerald-200">${item.availability}</span>
         </div>
         <div class="mt-3 grid grid-cols-3 gap-2 text-xs text-surface-dim">
-          <div><div class="text-[10px] uppercase tracking-wider text-secondary-container">ETA</div><div class="mt-1 font-bold text-white">${item.eta}</div></div>
-          <div><div class="text-[10px] uppercase tracking-wider text-secondary-container">Cost</div><div class="mt-1 font-bold text-white">${item.cost}</div></div>
-          <div><div class="text-[10px] uppercase tracking-wider text-secondary-container">Dist</div><div class="mt-1 font-bold text-white">${item.distance}</div></div>
+          <div><div class="text-[10px] uppercase tracking-wider text-secondary-container">${t('eta')}</div><div class="mt-1 font-bold text-white">${item.eta}</div></div>
+          <div><div class="text-[10px] uppercase tracking-wider text-secondary-container">${t('cost')}</div><div class="mt-1 font-bold text-white">${item.cost}</div></div>
+          <div><div class="text-[10px] uppercase tracking-wider text-secondary-container">${t('distance_short')}</div><div class="mt-1 font-bold text-white">${item.distance}</div></div>
         </div>
       </div>
     `).join('');
@@ -2531,10 +2677,10 @@ tailwind.config = {
     container.innerHTML = smartMandiData.knowledge.map((item) => `
       <div class="rounded-2xl border border-surface-container bg-surface-container p-4">
         <div class="flex items-center justify-between gap-3">
-          <div class="font-extrabold text-primary">${item.title}</div>
+          <div class="font-extrabold text-primary">${t(item.titleKey)}</div>
           <span class="material-symbols-outlined text-[18px] text-secondary">arrow_forward</span>
         </div>
-        <p class="mt-2 text-sm text-on-surface-variant">${item.description}</p>
+        <p class="mt-2 text-sm text-on-surface-variant">${t(item.descriptionKey)}</p>
       </div>
     `).join('');
   }
@@ -2571,21 +2717,22 @@ tailwind.config = {
     const result = document.getElementById('queuePredictionResult');
     if (!result) return;
 
+    const rushKey = rushLabel === 'High' ? 'high' : rushLabel === 'Low' ? 'low' : 'medium';
     result.innerHTML = `
       <div class="space-y-3">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-bold uppercase tracking-wider text-primary">Current rush</span>
-          <span class="px-2.5 py-1 rounded-full bg-secondary-container text-secondary text-[10px] font-bold">${rushLabel}</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-primary">${t('current_rush')}</span>
+          <span class="px-2.5 py-1 rounded-full bg-secondary-container text-secondary text-[10px] font-bold">${t(rushKey)}</span>
         </div>
         <div class="rounded-2xl bg-surface-container-low p-4">
-          <div class="text-xs uppercase tracking-wider text-outline">Prediction</div>
-          <div class="mt-1 text-xl font-extrabold text-primary">Tomorrow ${timeWindow}</div>
+          <div class="text-xs uppercase tracking-wider text-outline">${t('prediction')}</div>
+          <div class="mt-1 text-xl font-extrabold text-primary">${t('tomorrow', {}, currentLang)} ${timeWindow}</div>
           <div class="mt-1 text-sm font-semibold text-secondary">${predictionText}</div>
         </div>
         <div class="queue-traffic-meter">
-          <div class="queue-traffic"><div class="text-[10px] uppercase tracking-wider text-outline">Best arrival</div><div class="mt-2 text-base font-extrabold text-primary">${timeWindow}</div></div>
-          <div class="queue-traffic"><div class="text-[10px] uppercase tracking-wider text-outline">Reduction</div><div class="mt-2 text-base font-extrabold text-primary">${reduction}</div></div>
-          <div class="queue-traffic"><div class="text-[10px] uppercase tracking-wider text-outline">Season</div><div class="mt-2 text-base font-extrabold text-primary">${season}</div></div>
+          <div class="queue-traffic"><div class="text-[10px] uppercase tracking-wider text-outline">${t('best_arrival')}</div><div class="mt-2 text-base font-extrabold text-primary">${timeWindow}</div></div>
+          <div class="queue-traffic"><div class="text-[10px] uppercase tracking-wider text-outline">${t('reduction')}</div><div class="mt-2 text-base font-extrabold text-primary">${reduction}</div></div>
+          <div class="queue-traffic"><div class="text-[10px] uppercase tracking-wider text-outline">${t('season')}</div><div class="mt-2 text-base font-extrabold text-primary">${season}</div></div>
         </div>
       </div>
     `;
@@ -2608,18 +2755,18 @@ tailwind.config = {
     result.innerHTML = `
       <div class="flex items-center justify-between">
         <div>
-          <div class="text-[10px] uppercase tracking-wider text-outline font-bold">Crop</div>
+          <div class="text-[10px] uppercase tracking-wider text-outline font-bold">${t('crop')}</div>
           <div class="mt-1 text-lg font-extrabold text-primary">${cropData.crop}</div>
         </div>
-        <div class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">Grade ${cropData.grade}</div>
+        <div class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">${t('grade')} ${cropData.grade}</div>
       </div>
       <div class="mt-4 grid grid-cols-2 gap-3 text-sm">
-        <div class="rounded-xl bg-white p-2"><div class="text-[10px] uppercase tracking-wider text-outline">Quality</div><div class="mt-1 font-bold text-primary">${cropData.quality}</div></div>
-        <div class="rounded-xl bg-white p-2"><div class="text-[10px] uppercase tracking-wider text-outline">Damage level</div><div class="mt-1 font-bold text-primary">Low</div></div>
-        <div class="rounded-xl bg-white p-2"><div class="text-[10px] uppercase tracking-wider text-outline">Moisture</div><div class="mt-1 font-bold text-primary">${cropData.moisture}</div></div>
-        <div class="rounded-xl bg-white p-2"><div class="text-[10px] uppercase tracking-wider text-outline">Expected price</div><div class="mt-1 font-bold text-primary">${cropData.rate}</div></div>
+        <div class="rounded-xl bg-white p-2"><div class="text-[10px] uppercase tracking-wider text-outline">${t('quality')}</div><div class="mt-1 font-bold text-primary">${cropData.quality}</div></div>
+        <div class="rounded-xl bg-white p-2"><div class="text-[10px] uppercase tracking-wider text-outline">${t('damage_level')}</div><div class="mt-1 font-bold text-primary">${t('low_damage')}</div></div>
+        <div class="rounded-xl bg-white p-2"><div class="text-[10px] uppercase tracking-wider text-outline">${t('moisture')}</div><div class="mt-1 font-bold text-primary">${cropData.moisture}</div></div>
+        <div class="rounded-xl bg-white p-2"><div class="text-[10px] uppercase tracking-wider text-outline">${t('expected_price')}</div><div class="mt-1 font-bold text-primary">${cropData.rate}</div></div>
       </div>
-      <div class="mt-3 text-xs text-on-surface-variant">${file ? 'AI-ready upload preview processed for prototype grading. Connect future model API here.' : 'Upload a crop image to simulate quality analysis.'}</div>
+      <div class="mt-3 text-xs text-on-surface-variant">${file ? t('ai_ready_preview') : t('upload_image_hint')}</div>
     `;
   }
 
@@ -2629,12 +2776,217 @@ tailwind.config = {
     if (!result) return;
 
     if (landSize <= 5) {
-      result.textContent = 'Eligible for PM Kisan, Soil Health Card and Crop Insurance support.';
+      result.textContent = t('scheme_eligible_pm_kisan');
     } else if (landSize <= 12) {
-      result.textContent = 'Eligible for Soil Health Card and direct MSP assistance support.';
+      result.textContent = t('scheme_eligible_soil_msp');
     } else {
-      result.textContent = 'Eligible for eNAM listing and premium crop insurance assistance.';
+      result.textContent = t('scheme_eligible_enam');
     }
+  }
+
+  let demoSimulationTimer = null;
+  let demoModeEnabled = false;
+
+  function renderAdvancedModules() {
+    const digitalTwinStats = document.getElementById('digitalTwinStats');
+    if (digitalTwinStats) {
+      const stats = [
+        { label: t('live_farmers_waiting'), value: '184' },
+        { label: t('live_vehicles_inside'), value: '76' },
+        { label: t('live_available_gates'), value: '2' },
+        { label: t('live_available_docks'), value: '5' }
+      ];
+      digitalTwinStats.innerHTML = stats.map((stat) => `
+        <div class="rounded-2xl bg-surface-container p-3 border border-surface-container-high">
+          <div class="text-[10px] uppercase tracking-wider text-outline font-bold">${stat.label}</div>
+          <div class="mt-2 text-2xl font-extrabold text-primary">${stat.value}</div>
+        </div>
+      `).join('');
+    }
+
+    const prediction = document.getElementById('digitalTwinPrediction');
+    if (prediction) {
+      prediction.innerText = demoModeEnabled ? 'Heavy rush expected from 11 AM - 2 PM' : 'Heavy rush expected from 11 AM - 2 PM';
+    }
+    const arrival = document.getElementById('digitalTwinArrival');
+    if (arrival) arrival.innerText = `${t('best_arrival')}: 4 PM`;
+
+    const journey = document.getElementById('journeyTrackerContainer');
+    if (journey) {
+      const steps = [
+        { label: 'Registration', state: 'complete' },
+        { label: 'Slot Booking', state: 'complete' },
+        { label: 'QR Pass', state: 'complete' },
+        { label: 'Vehicle Arrival', state: 'current' },
+        { label: 'Gate Verification', state: 'pending' },
+        { label: 'Quality Check', state: 'pending' },
+        { label: 'Weight Recording', state: 'pending' },
+        { label: 'Payment', state: 'pending' }
+      ];
+      journey.innerHTML = steps.map((step) => `
+        <div class="timeline-step ${step.state === 'complete' ? 'is-complete' : step.state === 'current' ? 'is-current' : 'is-pending'}">
+          ${step.label}
+        </div>
+      `).join('');
+    }
+
+    const adminStats = document.getElementById('adminDashboardStats');
+    if (adminStats) {
+      const stats = [
+        { label: 'Farmers today', value: '482' },
+        { label: 'Queue management', value: '72%' },
+        { label: 'Gate control', value: '3 / 5' },
+        { label: 'Dock allocation', value: '18' },
+        { label: 'Transactions', value: '₹4.8L' }
+      ];
+      adminStats.innerHTML = stats.map((stat) => `
+        <div class="rounded-2xl bg-surface-container-lowest border border-surface-container p-4 shadow-sm">
+          <div class="text-[10px] uppercase tracking-wider text-outline font-bold">${stat.label}</div>
+          <div class="mt-2 text-xl font-extrabold text-primary">${stat.value}</div>
+        </div>
+      `).join('');
+    }
+
+    const fairResult = document.getElementById('fairPriceResult');
+    if (fairResult && !fairResult.dataset.initialized) {
+      fairResult.innerHTML = `
+        <div class="flex items-center justify-between gap-4">
+          <div>
+            <div class="text-[10px] uppercase tracking-wider text-outline font-bold">${t('fair_price_score')}</div>
+            <div class="mt-1 text-2xl font-extrabold text-primary">89/100</div>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">${t('status_available')}</span>
+        </div>
+        <div class="mt-3 text-sm text-on-surface-variant">MSP: ₹2,275 • Market: ₹2,420 • Average Mandi: ₹2,380</div>
+      `;
+      fairResult.dataset.initialized = 'true';
+    }
+
+    const receipt = document.getElementById('weighmentReceipt');
+    if (receipt) {
+      receipt.innerHTML = `
+        <div class="rounded-2xl bg-white p-3 border border-surface-container text-primary">
+          <div class="flex items-center justify-between border-b border-surface-container pb-2">
+            <div>
+              <div class="text-[10px] uppercase tracking-wider text-outline font-bold">${t('receipt_farmer')}</div>
+              <div class="font-extrabold">Sardar Harinder Singh</div>
+            </div>
+            <span class="px-2 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">${t('receipt_paid')}</span>
+          </div>
+          <div class="mt-3 grid grid-cols-2 gap-2 text-xs">
+            <div><span class="text-outline block">${t('receipt_crop')}</span><span class="font-bold">Wheat</span></div>
+            <div><span class="text-outline block">${t('receipt_qty')}</span><span class="font-bold">85 Qtl</span></div>
+            <div><span class="text-outline block">${t('receipt_rate')}</span><span class="font-bold">₹2,450</span></div>
+            <div><span class="text-outline block">${t('receipt_total')}</span><span class="font-bold">₹2,08,250</span></div>
+          </div>
+          <div class="mt-3 text-[10px] uppercase tracking-wider text-outline">${t('receipt_id')}: APMC-2026-8412</div>
+        </div>
+      `;
+    }
+
+    const weather = document.getElementById('weatherAdvisorCard');
+    if (weather) {
+      weather.innerHTML = `
+        <div class="rounded-2xl bg-surface-container p-3">
+          <div class="flex items-center justify-between">
+            <div class="font-extrabold text-primary">${t('weather_rain_risk')}</div>
+            <span class="text-xs font-bold text-amber-700">${t('low')}</span>
+          </div>
+          <div class="progress-rail mt-2"><div class="progress-rail-fill" style="width: 30%;"></div></div>
+        </div>
+        <div class="rounded-2xl bg-surface-container p-3">
+          <div class="flex items-center justify-between"><div class="font-extrabold text-primary">${t('weather_temperature')}</div><span class="text-xs font-bold text-sky-700">28°C</span></div>
+          <div class="text-xs text-on-surface-variant mt-2">${t('weather_dry_weather_hint')}</div>
+        </div>
+      `;
+    }
+
+    const network = document.getElementById('mandiNetworkMap');
+    if (network) {
+      const items = [
+        { name: 'Khanna APMC', distance: '18 km', queue: '25 vehicles', price: '₹2,450' },
+        { name: 'Ludhiana Mandi', distance: '26 km', queue: '36 vehicles', price: '₹2,405' },
+        { name: 'Moga APMC', distance: '34 km', queue: '18 vehicles', price: '₹2,388' }
+      ];
+      network.innerHTML = items.map((item) => `
+        <div class="rounded-2xl bg-surface-container p-3 border border-surface-container-high">
+          <div class="font-extrabold text-primary">${item.name}</div>
+          <div class="mt-2 text-xs text-on-surface-variant">${item.distance} • ${item.queue} • ${item.price}</div>
+        </div>
+      `).join('');
+    }
+
+    const demoLog = document.getElementById('demoSimulationLog');
+    if (demoLog) {
+      const log = demoModeEnabled
+        ? t('demo_mode_active_log')
+        : t('demo_mode_normal_log');
+      demoLog.innerText = log;
+      const toggleBtn = document.getElementById('demoModeToggleBtn');
+      if (toggleBtn) {
+        toggleBtn.innerText = demoModeEnabled ? t('demo_mode_active') : t('demo_mode_normal');
+      }
+    }
+  }
+
+  function evaluateFairPrice() {
+    const crop = document.getElementById('fairCrop')?.value || 'Wheat';
+    const qty = Number(document.getElementById('fairQty')?.value || 85);
+    const offered = Number(document.getElementById('fairPrice')?.value || 2275);
+    const result = document.getElementById('fairPriceResult');
+    if (!result) return;
+
+    const reference = { Wheat: 2450, Paddy: 2380, Mustard: 5650, Cotton: 7020 }[crop] || 2450;
+    const score = Math.max(55, Math.min(98, Math.round((offered / reference) * 100 + 8)));
+    const status = offered >= reference ? 'Fair Price' : 'Underpaid';
+    result.innerHTML = `
+      <div class="flex items-center justify-between gap-4">
+        <div>
+          <div class="text-[10px] uppercase tracking-wider text-outline font-bold">${t('fair_price_score')}</div>
+          <div class="mt-1 text-2xl font-extrabold text-primary">${score}/100</div>
+        </div>
+        <span class="px-3 py-1 rounded-full ${offered >= reference ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'} text-[10px] font-bold">${status}</span>
+      </div>
+      <div class="mt-3 text-sm text-on-surface-variant">${crop} • ${qty} Qtl • MSP ₹${reference.toLocaleString('en-IN')} • Offered ₹${offered.toLocaleString('en-IN')}.</div>
+    `;
+  }
+
+  function toggleDemoMode() {
+    demoModeEnabled = !demoModeEnabled;
+    if (demoModeEnabled) {
+      startDemoSimulation();
+    } else {
+      stopDemoSimulation();
+    }
+    renderAdvancedModules();
+  }
+
+  function startDemoSimulation() {
+    demoModeEnabled = true;
+    if (demoSimulationTimer) clearInterval(demoSimulationTimer);
+    demoSimulationTimer = setInterval(() => {
+      const queueValue = document.getElementById('digitalTwinPrediction');
+      if (queueValue) {
+        const phases = [
+          'Heavy rush expected from 11 AM - 2 PM',
+          'Queue reducing steadily after 2 PM',
+          'Gate 02 is calming down and processing faster',
+          'Best arrival slot shifted to 4 PM - 6 PM'
+        ];
+        const index = Math.floor(Math.random() * phases.length);
+        queueValue.innerText = phases[index];
+      }
+    }, 4000);
+    renderAdvancedModules();
+  }
+
+  function stopDemoSimulation() {
+    demoModeEnabled = false;
+    if (demoSimulationTimer) {
+      clearInterval(demoSimulationTimer);
+      demoSimulationTimer = null;
+    }
+    renderAdvancedModules();
   }
 
   function initializeSmartModules() {
@@ -2647,6 +2999,7 @@ tailwind.config = {
     renderAnalyticsSummary();
     renderTransportOptions();
     renderKnowledgeHub();
+    renderAdvancedModules();
 
     document.getElementById('recommendationForm')?.addEventListener('submit', handleRecommendationSubmit);
     document.getElementById('analyzeQueueBtn')?.addEventListener('click', renderQueuePrediction);
@@ -2668,15 +3021,124 @@ tailwind.config = {
     window.setInterval(() => {
       renderMandiConsole();
       renderNotifications();
+      renderAdvancedModules();
       saveSmartPortalCache();
     }, 5000);
   }
 
+  initializeLanguage();
   initializeSmartModules();
 </script>
 
+  <section class="w-full bg-surface-container-low py-12 px-4 sm:px-6 border-t border-surface-container">
+    <div class="max-w-7xl mx-auto space-y-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="module-chip" data-i18n="module_ai_digital_twin">AI Mandi Digital Twin</span>
+          <h2 class="mt-3 text-2xl sm:text-3xl font-extrabold text-primary" data-i18n="module_live_command_center">Live Mandi Command Center</h2>
+        </div>
+        <button type="button" onclick="toggleDemoMode()" class="px-4 py-2 rounded-full bg-primary text-white text-xs font-bold shadow-sm" id="demoModeToggleBtn" data-i18n="demo_mode_normal">Normal Mode</button>
+      </div>
 
+      <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        <div class="xl:col-span-2 rounded-3xl bg-surface-container-lowest border border-surface-container p-5 shadow-sm">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3" id="digitalTwinStats"></div>
+        </div>
+        <div class="rounded-3xl bg-primary-container text-white p-5 shadow-lg border border-secondary/20">
+          <div class="text-[10px] uppercase tracking-wider text-secondary-container font-bold" data-i18n="ai_prediction">AI Prediction</div>
+          <div class="mt-3 text-xl font-extrabold" id="digitalTwinPrediction">Heavy rush expected from 11 AM - 2 PM</div>
+          <div class="mt-4 text-sm text-secondary-container" id="digitalTwinArrival">Recommended arrival: 4 PM</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section class="w-full bg-surface py-12 px-4 sm:px-6 border-t border-surface-container">
+    <div class="max-w-7xl mx-auto space-y-8">
+      <div>
+        <span class="module-chip" data-i18n="journey_tracker">Farmer Journey Tracker</span>
+        <h2 class="mt-3 text-2xl font-extrabold text-primary" data-i18n="journey_trail">Registration to Payment Flow</h2>
+      </div>
+      <div id="journeyTrackerContainer" class="timeline-track"></div>
+    </div>
+  </section>
 
+  <section class="w-full bg-surface-container-low py-12 px-4 sm:px-6 border-t border-surface-container">
+    <div class="max-w-7xl mx-auto space-y-8">
+      <div>
+        <span class="module-chip" data-i18n="admin_dashboard">Mandi Admin Dashboard</span>
+        <h2 class="mt-3 text-2xl font-extrabold text-primary" data-i18n="admin_dashboard_title">Queue & Dock Control</h2>
+      </div>
+      <div id="adminDashboardStats" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4"></div>
+    </div>
+  </section>
+
+  <section class="w-full bg-surface py-12 px-4 sm:px-6 border-t border-surface-container">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-3 gap-6">
+      <div class="xl:col-span-2 rounded-3xl bg-surface-container-lowest border border-surface-container p-5 shadow-sm">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xl font-extrabold text-primary" data-i18n="fair_price_protection">AI Fair Price Protection</h3>
+          <span class="text-xs text-secondary font-bold uppercase tracking-wider" data-i18n="fair_price_score">Fair Price Score</span>
+        </div>
+        <form id="fairPriceForm" class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+          <label class="text-sm font-semibold text-on-surface-variant">
+            <span class="block mb-1" data-i18n="crop">Crop</span>
+            <select id="fairCrop" class="w-full rounded-xl border border-surface-container p-2.5 bg-white text-primary text-sm">
+              <option value="Wheat">Wheat</option>
+              <option value="Paddy">Paddy</option>
+              <option value="Mustard">Mustard</option>
+              <option value="Cotton">Cotton</option>
+            </select>
+          </label>
+          <label class="text-sm font-semibold text-on-surface-variant">
+            <span class="block mb-1" data-i18n="quantity">Quantity</span>
+            <input id="fairQty" type="number" min="1" value="85" class="w-full rounded-xl border border-surface-container p-2.5 bg-white text-primary text-sm" />
+          </label>
+          <label class="text-sm font-semibold text-on-surface-variant">
+            <span class="block mb-1" data-i18n="offered_price">Offered Price</span>
+            <input id="fairPrice" type="number" min="1" value="2275" class="w-full rounded-xl border border-surface-container p-2.5 bg-white text-primary text-sm" />
+          </label>
+        </form>
+        <div class="mt-4 flex gap-3">
+          <button type="button" onclick="evaluateFairPrice()" class="px-4 py-2 rounded-full bg-primary text-white text-xs font-bold shadow-sm" data-i18n="check_price">Check Price</button>
+        </div>
+        <div id="fairPriceResult" class="mt-4 rounded-2xl bg-surface-container p-4 text-sm text-on-surface-variant"></div>
+      </div>
+
+      <div class="rounded-3xl bg-primary-container text-white p-5 shadow-lg border border-secondary/20">
+        <div class="text-[10px] uppercase tracking-wider text-secondary-container font-bold" data-i18n="digital_weighment_receipt">Digital Weighment Receipt</div>
+        <div id="weighmentReceipt" class="mt-4 space-y-2 text-sm"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full bg-surface-container-low py-12 px-4 sm:px-6 border-t border-surface-container">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-3 gap-6">
+      <div class="rounded-3xl bg-surface-container-lowest border border-surface-container p-5 shadow-sm">
+        <h3 class="text-xl font-extrabold text-primary" data-i18n="weather_impact_advisor">AI Weather Impact Advisor</h3>
+        <div id="weatherAdvisorCard" class="mt-4 space-y-3"></div>
+      </div>
+      <div class="rounded-3xl bg-surface-container-lowest border border-surface-container p-5 shadow-sm xl:col-span-2">
+        <h3 class="text-xl font-extrabold text-primary" data-i18n="mandi_network_map">Mandi Network Map</h3>
+        <div id="mandiNetworkMap" class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full bg-surface py-12 px-4 sm:px-6 border-t border-surface-container">
+    <div class="max-w-7xl mx-auto rounded-3xl border border-surface-container bg-surface-container-lowest p-6 shadow-sm">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div>
+          <span class="module-chip" data-i18n="demo_simulation_mode">SIH Demo Simulation Mode</span>
+          <h3 class="mt-3 text-2xl font-extrabold text-primary" data-i18n="demo_mode_title">Simulated Mandi Operations</h3>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" onclick="startDemoSimulation()" class="px-4 py-2 rounded-full bg-emerald-600 text-white text-xs font-bold shadow-sm" data-i18n="start_demo">Start Demo</button>
+          <button type="button" onclick="stopDemoSimulation()" class="px-4 py-2 rounded-full bg-primary text-white text-xs font-bold shadow-sm" data-i18n="stop_demo">Stop Demo</button>
+        </div>
+      </div>
+      <div id="demoSimulationLog" class="mt-5 rounded-2xl bg-surface-container p-4 text-sm text-on-surface-variant"></div>
+    </div>
+  </section>
 
 </body></html>
